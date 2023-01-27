@@ -17,8 +17,9 @@ function App() {
           id: id,
         },
       });
-      setObservationsList([response.data.results.results]);
-      console.log("success!", observationsList);
+      setObservationsList(response.data.results);
+      console.log("success!", response.data.results);
+      // console.log("success!", response.data);
     } catch (err) {
       console.log("ERROR!", err);
     }
