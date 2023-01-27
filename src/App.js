@@ -4,29 +4,24 @@ import ObservationsList from "./ObservationsList";
 import { useState, useEffect } from "react";
 
 function App() {
-  const [observationsList, setObservationsList] = useState([]);
+  const [observationsList, setObservationsList] = useState(["cheese"]);
 
   const URL = "https://api.inaturalist.org/v1";
 
   // BELOW WILL CHANGE TO RETRIEVE FROM STATE ONCE
   // LARGER GET CALL IS SET UP
-  const getObservationByID = (id) => {
-    axios
-      .get(`${URL}/identifications`, {
+  const getObservationByID = async (id) => {
+    try {
+      const response = await axios.get(`${URL}/identifications`, {
         params: {
           id: id,
         },
-      })
-      .then((response) => {
-        console.log("success!", response.data);
-      })
-      // .then((response) => {
-      //   setObservationsList(response.data)
-      //   console.log("success!", observationsList);
-      // })
-      .catch((error) => {
-        console.log("ERROR!", error.response.data);
       });
+      setObservationsList([response.data.results.results]);
+      console.log("success!", observationsList);
+    } catch (err) {
+      console.log("ERROR!", err);
+    }
   };
 
   useEffect(() => {
