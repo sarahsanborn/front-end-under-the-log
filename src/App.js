@@ -1,7 +1,8 @@
-import Map from "./Map";
+import TheMap from "./TheMap";
 import axios from "axios";
 import ObservationsList from "./ObservationsList";
 import { useState, useEffect } from "react";
+import './App.css';
 
 function App() {
   const [observationsList, setObservationsList] = useState(["cheese"]);
@@ -37,7 +38,7 @@ function App() {
         <p>Dropdown Filter</p>
       </header>
       <main>
-        <Map></Map>
+        <TheMap></TheMap>
       </main>
     </div>
   );
