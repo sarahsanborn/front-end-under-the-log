@@ -19,15 +19,58 @@ function App() {
       });
       setObservationsList(response.data.results);
       console.log("success!", response.data.results);
-      // console.log("success!", response.data);
     } catch (err) {
       console.log("ERROR!", err);
     }
   };
 
-  useEffect(() => {
-    getObservationByID(147215905);
-  }, []);
+  const getObservationsByTaxon = async (taxon) => {
+    try {
+      const response = await axios.get(`${URL}/observations`, {
+        params: {
+          taxon_name: taxon,
+          place_id: 46,
+          year: [2021, 2023],
+          photos: true,
+          quality_grade: "research",
+          captive: false,
+          geoprivacy: "open",
+          per_page: 100,
+        },
+      });
+
+      console.log("success! getObservationsByTaxon");
+
+      const updatedObservations = [];
+
+      for (let i in response.data.results) {
+        const info = {
+          id: response.data.results[i]["id"],
+          common_name:
+            response.data.results[i]["taxon"]["preferred_common_name"],
+          latin_name: response.data.results[i]["taxon"]["name"],
+          date: response.data.results[i]["created_at_details"],
+          image_url:
+            response.data.results[i]["observation_photos"][0]["photo"]["url"],
+          lat: response.data.results[i]["geojson"]["coordinates"][1],
+          lon: response.data.results[i]["geojson"]["coordinates"][0],
+          native: response.data.results[i]["taxon"]["native"],
+        };
+
+        updatedObservations.push(info);
+      }
+      setObservationsList(updatedObservations);
+    } catch (err) {
+      console.log("ERROR!", err);
+    }
+  };
+
+  // useEffect(() => {
+  //   // getObservationByID(147215905);
+  //   getObservationsByTaxon("borage");
+
+  //   console.log("obs list state contains:", observationsList);
+  // }, []);
 
   return (
     <div>
