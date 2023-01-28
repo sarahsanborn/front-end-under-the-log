@@ -137,7 +137,7 @@ const response = {
       project_ids: [],
       community_taxon_id: null,
       geojson: {
-        coordinates: [-122.3494747957, 47.643476464],
+        coordinates: [-122.3494747957, 47.643476464], // COORDINATES HERE
         type: "Point",
       },
       owners_identification_from_vision: true,
@@ -145,7 +145,7 @@ const response = {
       obscured: false,
       num_identification_disagreements: 0,
       geoprivacy: null,
-      location: "47.643476464,-122.3494747957", // COORDINATES HERE
+      location: "47.643476464,-122.3494747957",
       votes: [],
       spam: false,
       user: {
@@ -765,39 +765,65 @@ const response = {
   ],
 };
 
-
-
-
-
 // chosen name : name in response object
-	id: 
-	common_name: prefferred_common_name,
-	latin_name: ,
-	date: ,
-	image_url: ,
-	lat: ,
-	lon: ,
-	native: ,
+// id: YAS;
+// common_name: YAS;
+// latin_name: YAS;
+// date: YAS;
+// image_url: YAS;
+// lat: YAS;
+// lon: YAS;
+// native: YAS;
 
+// {
+// 	id:{
+// 	common_name: ,
+// 	latin_name: ,
+// 	date: ,
+// 	image_url: ,
+// 	lat: ,
+// 	lon: ,
+// 	native: ,
+// 	},
+// id:{
+// 	common_name: prefferred_common_name,
+// 	latin_name: ,
+// 	date: ,
+// 	image_url: ,
+// 	lat: ,
+// 	lon: ,
+// 	native: ,
+// 	}
+// }
 
-// {1:
-	// {
-		// 	common_name: ,
-	// 	latin_name: ,
-	// 	date: ,
-	// 	image_url: ,
-	// 	lat: ,
-	// 	lon: ,
-	// 	native: ,
-	// },
-// 2:
-	// {
-		// 	common_name: ,
-	// 	latin_name: ,
-	// 	date: ,
-	// 	image_url: ,
-	// 	lat: ,
-	// 	lon: ,
-	// 	native: ,
-	// }
-// };
+// console.log("obs list state contains:", observationsList);
+// COULD LOOP AT 0 TO GET MORE OBSERVATIONS
+// console.log("to get id", observationsList[0]["id"]);
+// console.log("to get date", observationsList[0]["created_at_details"]);
+// console.log(
+//   "to get native",
+//   observationsList[0]["observation"]["taxon"]["native"]
+// );
+// console.log(
+//   "to get latin name",
+//   observationsList[0]["observation"]["taxon"]["name"]
+// );
+// console.log(
+//   "to get common name",
+//   observationsList[0]["observation"]["taxon"]["preferred_common_name"]
+// );
+// console.log(
+//   "to get img url",
+//   observationsList[0]["observation"]["observation_photos"][0]["photo"][
+//     "url"
+//   ]
+// );
+// COULD LOOP AT SECOND 0 TO GET MORE PHOTOS
+// console.log(
+//   "to get lon",
+//   observationsList[0]["observation"]["geojson"]["coordinates"][0]
+// );
+// console.log(
+//   "to get lat",
+//   observationsList[0]["observation"]["geojson"]["coordinates"][1]
+// );
