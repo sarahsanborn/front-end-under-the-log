@@ -50,7 +50,7 @@
 
 // mapboxgl.accessToken = 'pk.eyJ1IjoiZm9yYWdpbmdjYXBzdG9uZSIsImEiOiJjbGRjNmpwaDcwN2k1M25tamNhMXZycGY5In0.jI4XtoOVqLvBEXuXld6Cdw';
 
-// function TheMap() {
+// function ReactMap() {
 //   // UPDATE THESE NEXT FIVE LINES WITH OUR MAP INFO
 //   const mapContainer = useRef(null); // HERE
 //   const map = useRef(null); // HERE
@@ -88,7 +88,7 @@
 
 // };
 
-// export default TheMap;
+// export default ReactMap;
 
 
 
@@ -99,7 +99,7 @@
 // import React, { useState, useRef } from "react";
 // import ReactMapGL from "react-map-gl";
 
-// function TheMap() {
+// function ReactMap() {
 //   const [viewport, setViewport] = useState({
 //     latitude: 47.410,
 //     longitude: -120.485,
@@ -126,20 +126,34 @@
 //   );
 // };
 
-// export default TheMap;
+// export default ReactMap;
 
 
 
-import Map, {Marker} from 'react-map-gl';
+import Map, { Marker } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import React, { useState } from "react";
 
-function TheMap() {
+function ReactMap( {dataMarkers}) {
   const [viewState, setViewState] = useState({
     latitude: 47.010,
     longitude: -120.485,
     zoom: 6.4
   });
+
+  const mapMarkers = () => {
+    dataMarkers.map((dataMarker) => {
+    return (
+        <Marker 
+            key={dataMarker.id} 
+            longitude={dataMarker.longitude} 
+            latitude={dataMarker.latitude}
+        >
+            <p>HERE IS THE DOT</p>
+        </Marker>
+        )
+    })
+  }
 
   return (
     <div className="map-container">
@@ -151,8 +165,9 @@ function TheMap() {
         mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
       >
       </Map>
+      {mapMarkers()}
     </div>
   );
 };
 
-export default TheMap;
+export default ReactMap;

@@ -1,4 +1,4 @@
-import TheMap from "./TheMap";
+import ReactMap from "./ReactMap";
 import axios from "axios";
 import ObservationsList from "./ObservationsList";
 import { useState, useEffect } from "react";
@@ -6,6 +6,16 @@ import './App.css';
 
 function App() {
   const [observationsList, setObservationsList] = useState(["cheese"]);
+
+  // Added by Sarah for Markers used in ReactMap
+  const [dataMarkers, setDataMarkers] = useState([]) // Does this need to be passed into ReactMap?
+
+    useEffect(() => {
+        fetch('/markers') // This needs to be updated to gather marker data
+        .then(res => res.json())
+        .then(data => setDataMarkers(data))
+    }, []);
+
 
   const URL = "https://api.inaturalist.org/v1";
 
@@ -83,7 +93,7 @@ function App() {
         </ul>
       </header>
       <main>
-        <TheMap></TheMap>
+        <ReactMap dataMarkers={dataMarkers}></ReactMap>
       </main>
     </div>
   );
