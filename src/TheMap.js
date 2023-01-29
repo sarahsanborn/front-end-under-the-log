@@ -109,10 +109,8 @@ function TheMap() {
   });
   const mapRef = useRef();
 
-  console.log(process.env.REACT_APP_MAPBOX_TOKEN);
-
   return (
-    <div>
+    <div className="map-container">
       <ReactMapGL
         {...viewport}
         maxZoom={20}

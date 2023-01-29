@@ -74,11 +74,13 @@ function App() {
   // }, []);
 
   return (
-    <div>
+    <div className="grid-container">
       <header>
-        <h1>Under The Log</h1>
-        <p>Search Bar</p>
-        <p>Dropdown Filter</p>
+        <h1>under the log</h1>
+        <ul className="search-filter-list">
+          <li>search bar</li>
+          <li>dropdown filter</li>
+        </ul>
       </header>
       <main>
         <TheMap></TheMap>
