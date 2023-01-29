@@ -25,13 +25,3 @@ header {
 .search-filter-list li {
     margin-left: 20px;
 }
-
-/* .map-container {
-    height: 90vh;
-} */
-
-.mapboxgl-canvas {
-    height: 100%;
-    width: 100%;
-}
-
