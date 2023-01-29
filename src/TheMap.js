@@ -96,32 +96,61 @@
 
 
 
-import React, { useState, useRef } from "react";
-import ReactMapGL from "react-map-gl";
+// import React, { useState, useRef } from "react";
+// import ReactMapGL from "react-map-gl";
+
+// function TheMap() {
+//   const [viewport, setViewport] = useState({
+//     latitude: 47.410,
+//     longitude: -120.485,
+//     width: "100vw",
+//     height: "100vh",
+//     zoom: 6
+//   });
+//   const mapRef = useRef();
+
+//   return (
+//     <div className="map-container">
+//       <ReactMapGL
+//         {...viewport}
+//         maxZoom={20}
+//         mapStyle='mapbox://styles/mapbox/streets-v12'
+//         mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN} // Also tried mapboxApiAccessToken. This resolved: https://stackoverflow.com/questions/72254578/how-to-solve-that-a-valid-mapbox-access-token-is-required-to-use-mapbox-gl-js
+//         onViewportChange={(newViewport) => {
+//           setViewport({ ...newViewport, zoom: viewport.zoom});
+//         }}
+//         ref={mapRef}
+//       >
+//       </ReactMapGL>
+//     </div>
+//   );
+// };
+
+// export default TheMap;
+
+
+
+import Map, {Marker} from 'react-map-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
+import React, { useState } from "react";
 
 function TheMap() {
-  const [viewport, setViewport] = useState({
-    latitude: 47.410,
+  const [viewState, setViewState] = useState({
+    latitude: 47.010,
     longitude: -120.485,
-    width: "100vw",
-    height: "400px",
-    zoom: 6
+    zoom: 6.4
   });
-  const mapRef = useRef();
 
   return (
     <div className="map-container">
-      <ReactMapGL
-        {...viewport}
-        maxZoom={20}
-        mapStyle='mapbox://styles/mapbox/streets-v12'
-        mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN} // Also tried mapboxApiAccessToken. This resolved: https://stackoverflow.com/questions/72254578/how-to-solve-that-a-valid-mapbox-access-token-is-required-to-use-mapbox-gl-js
-        onViewportChange={newViewport => {
-          setViewport({ ...newViewport });
-        }}
-        ref={mapRef}
+      <Map
+        {...viewState}
+        onMove={event => setViewState(event.viewState)}
+        style={{width: '100vw', height: '100vh'}}
+        mapStyle="mapbox://styles/mapbox/streets-v12"
+        mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
       >
-      </ReactMapGL>
+      </Map>
     </div>
   );
 };
