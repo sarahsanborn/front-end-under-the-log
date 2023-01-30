@@ -1,4 +1,4 @@
-import Map, { Marker } from "react-map-gl";
+import Map, { Marker, Popup } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import React, { useState, useMemo } from "react";
 import { FaLeaf } from "react-icons/fa";
@@ -10,6 +10,7 @@ function ReactMap({ dataMarkers }) {
     zoom: 6.4,
   });
 
+  const [popupInfo, setPopupInfo] = useState(null);
   // const mapMarkers = () => {
   //   dataMarkers.map((dataMarker) => {
   //     console.log(dataMarker);
@@ -33,6 +34,11 @@ function ReactMap({ dataMarkers }) {
           key={dataMarker.id}
           longitude={dataMarker.longitude}
           latitude={dataMarker.latitude}
+          anchor="bottom"
+          onClick={(event) => {
+            event.originalEvent.stopPropagation();
+            setPopupInfo(dataMarker);
+          }}
         >
           <FaLeaf />
         </Marker>
@@ -54,6 +60,26 @@ function ReactMap({ dataMarkers }) {
         <p>HERE HERE HERE</p>
       </Marker> */}
         {markers}
+        {popupInfo && (
+          <Popup
+            anchor="top"
+            id={Number(popupInfo.id)}
+            latitude={Number(popupInfo.latitude)}
+            longitude={Number(popupInfo.longitude)}
+            onClose={() => setPopupInfo(null)}
+          >
+            <div>
+              <h1>{popupInfo.common_name}</h1>
+              <h2>{popupInfo.latin_name}</h2>
+              <p>Date Observed: {popupInfo.date}</p>
+              <p>Native: {popupInfo.native.toString()}</p>
+              <img
+                src={popupInfo.image_url}
+                alt="picture of observed species"
+              ></img>
+            </div>
+          </Popup>
+        )}
       </Map>
     </div>
   );

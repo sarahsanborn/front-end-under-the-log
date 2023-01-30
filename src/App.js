@@ -2,7 +2,7 @@ import ReactMap from "./ReactMap";
 import axios from "axios";
 import ObservationsList from "./ObservationsList";
 import { useState, useEffect } from "react";
-import './App.css';
+import "./App.css";
 
 function App() {
   const [observationsList, setObservationsList] = useState([]);
@@ -16,7 +16,6 @@ function App() {
   //       .then(res => res.json())
   //       .then(data => setDataMarkers(data))
   //   }, []);
-
 
   const URL = "https://api.inaturalist.org/v1";
 
@@ -61,7 +60,7 @@ function App() {
           common_name:
             response.data.results[i]["taxon"]["preferred_common_name"],
           latin_name: response.data.results[i]["taxon"]["name"],
-          date: response.data.results[i]["created_at_details"],
+          date: response.data.results[i]["created_at_details"]["date"],
           image_url:
             response.data.results[i]["observation_photos"][0]["photo"]["url"],
           latitude: response.data.results[i]["geojson"]["coordinates"][1],
