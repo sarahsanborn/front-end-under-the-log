@@ -73,10 +73,7 @@ function ReactMap({ dataMarkers }) {
               <h2>{popupInfo.latin_name}</h2>
               <p>Date Observed: {popupInfo.date}</p>
               <p>Native: {popupInfo.native.toString()}</p>
-              <img
-                src={popupInfo.image_url}
-                alt="picture of observed species"
-              ></img>
+              <img src={popupInfo.image_url} alt="observed species"></img>
             </div>
           </Popup>
         )}

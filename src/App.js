@@ -71,6 +71,14 @@ function App() {
         updatedObservations.push(info);
       }
       setObservationsList(updatedObservations);
+      // setObservationsList((observationsList) => [
+      //   ...observationsList,
+      //   updatedObservations,
+      // ]);
+      // setObservationsList(observationsList.concat(updatedObservations));
+      // setObservationsList((observationsList) => [
+      //   updatedObservations + observationsList,
+      // ]);
     } catch (err) {
       console.log("ERROR!", err);
     }
@@ -79,6 +87,10 @@ function App() {
   useEffect(() => {
     // getObservationByID(147215905);
     getObservationsByTaxon("borage");
+    getObservationsByTaxon("salmonberry");
+    // getObservationsByTaxon("wood sorrel");
+    // getObservationsByTaxon("pickleweed");
+    // getObservationsByTaxon("chanterelle");
 
     console.log("obs list state contains:", observationsList);
   }, []);
