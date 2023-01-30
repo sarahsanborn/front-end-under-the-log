@@ -5,16 +5,17 @@ import { useState, useEffect } from "react";
 import './App.css';
 
 function App() {
-  const [observationsList, setObservationsList] = useState(["cheese"]);
+  const [observationsList, setObservationsList] = useState([]);
+  // {latitude:47.3, longitude:-120.485, id:1}
 
   // Added by Sarah for Markers used in ReactMap
-  const [dataMarkers, setDataMarkers] = useState([]) // Does this need to be passed into ReactMap?
+  // const [dataMarkers, setDataMarkers] = useState([]) // Does this need to be passed into ReactMap?
 
-    useEffect(() => {
-        fetch('/markers') // This needs to be updated to gather marker data
-        .then(res => res.json())
-        .then(data => setDataMarkers(data))
-    }, []);
+  //   useEffect(() => {
+  //       fetch('/markers') // This needs to be updated to gather marker data
+  //       .then(res => res.json())
+  //       .then(data => setDataMarkers(data))
+  //   }, []);
 
 
   const URL = "https://api.inaturalist.org/v1";
@@ -63,8 +64,8 @@ function App() {
           date: response.data.results[i]["created_at_details"],
           image_url:
             response.data.results[i]["observation_photos"][0]["photo"]["url"],
-          lat: response.data.results[i]["geojson"]["coordinates"][1],
-          lon: response.data.results[i]["geojson"]["coordinates"][0],
+          latitude: response.data.results[i]["geojson"]["coordinates"][1],
+          longitude: response.data.results[i]["geojson"]["coordinates"][0],
           native: response.data.results[i]["taxon"]["native"],
         };
 
@@ -76,12 +77,12 @@ function App() {
     }
   };
 
-  // useEffect(() => {
-  //   // getObservationByID(147215905);
-  //   getObservationsByTaxon("borage");
+  useEffect(() => {
+    // getObservationByID(147215905);
+    getObservationsByTaxon("borage");
 
-  //   console.log("obs list state contains:", observationsList);
-  // }, []);
+    console.log("obs list state contains:", observationsList);
+  }, []);
 
   return (
     <div className="grid-container">
@@ -93,7 +94,7 @@ function App() {
         </ul>
       </header>
       <main>
-        <ReactMap dataMarkers={dataMarkers}></ReactMap>
+        <ReactMap dataMarkers={observationsList}></ReactMap>
       </main>
     </div>
   );

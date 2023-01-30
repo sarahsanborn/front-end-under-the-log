@@ -15,6 +15,7 @@ header {
     align-items: center;
     background-color: #265061;
     color: #FFF5F3;
+    height: 10vh;
 }
 
 .search-filter-list {

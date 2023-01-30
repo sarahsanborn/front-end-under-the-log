@@ -136,37 +136,52 @@ import React, { useState } from "react";
 
 function ReactMap( {dataMarkers}) {
   const [viewState, setViewState] = useState({
-    latitude: 47.010,
+    latitude: 47.310,
     longitude: -120.485,
     zoom: 6.4
   });
 
-  const mapMarkers = () => {
-    dataMarkers.map((dataMarker) => {
-    return (
-        <Marker 
-            key={dataMarker.id} 
-            longitude={dataMarker.longitude} 
-            latitude={dataMarker.latitude}
-        >
-            <p>HERE IS THE DOT</p>
-        </Marker>
-        )
-    })
-  }
+  // const mapMarkers = () => {
+  //   dataMarkers.map((dataMarker) => {
+  //     console.log(dataMarker);
+  //   return (
+  //       <Marker 
+  //           // key={dataMarker.id} 
+  //           longitude={dataMarker.longitude} 
+  //           latitude={dataMarker.latitude}
+  //           anchor="bottom"
+  //       >
+  //           <h1>HERE IS THE DOT</h1>
+  //       </Marker>
+  //       )
+  //   }
+  //   )
+  // }
 
   return (
     <div className="map-container">
       <Map
         {...viewState}
         onMove={event => setViewState(event.viewState)}
-        style={{width: '100vw', height: '100vh'}}
-        mapStyle="mapbox://styles/mapbox/streets-v12"
+        style={{width: '100vw', height: '90vh'}}
+        mapStyle="mapbox://styles/foragingcapstone/cldc9qo4i001m01lexygzvftr/draft"
+        // mapStyle="mapbox://styles/foragingcapstone/cldj35obm000101p9dxvz40cc/draft"
         mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
       >
-      </Map>
-      {mapMarkers()}
-    </div>
+      {/* <Marker longitude={-120.485} latitude={47.310} anchor="bottom" >
+        <p>HERE HERE HERE</p>
+      </Marker> */}
+      {/* {mapMarkers()} Should this be in or outside of Map? */}
+      {dataMarkers.map(dataMarker => (
+        <Marker key={dataMarker.id} 
+                longitude={dataMarker.longitude} 
+                latitude={dataMarker.latitude}
+        >
+          <p>HERE HERE HERE</p>
+        </Marker>
+      ))};
+    </Map>
+  </div>
   );
 };
 
