@@ -133,6 +133,7 @@
 import Map, { Marker } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import React, { useState } from "react";
+import { FaLeaf } from 'react-icons/fa'
 
 function ReactMap( {dataMarkers}) {
   const [viewState, setViewState] = useState({
@@ -177,7 +178,7 @@ function ReactMap( {dataMarkers}) {
                 longitude={dataMarker.longitude} 
                 latitude={dataMarker.latitude}
         >
-          <p>HERE HERE HERE</p>
+          <FaLeaf />
         </Marker>
       ))};
     </Map>
