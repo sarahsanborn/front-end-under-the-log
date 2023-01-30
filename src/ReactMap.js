@@ -1,154 +1,22 @@
-// import { useRef, useEffect, useState } from 'react';
-// // import useSwr from 'swr';
-// // import { Marker } from 'react-map-gl';
-// // import useSupercluster from 'use-supercluster';
-// // import mapboxgl from 'mapbox-gl';
-// import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
+import Map, { Marker } from "react-map-gl";
+import "mapbox-gl/dist/mapbox-gl.css";
+import React, { useState, useMemo } from "react";
+import { FaLeaf } from "react-icons/fa";
 
-// // const fakeData = {
-// //   1:
-// //     {
-// //       common_name: 'salmonberry',
-// //       latin_name: 'Rubus spectabilis',
-// //       date: '2023-01-23',
-// //       image_url: 'https://inaturalist-open-data.s3.amazonaws.com/photos/253278614/square.jpg',
-// //       lat: 47.643476464,
-// //       lon: -122.3494747957,
-// //       native: true,
-// //     },
-// //   2:
-// //     {
-// //       common_name: 'Pacific Glasswort',
-// //       latin_name: 'Salicornia pacifica',
-// //       date: '2021-10-26',
-// //       image_url: 'https://inaturalist-open-data.s3.amazonaws.com/photos/166211458/square.jpg',
-// //       lat: 48.055336,
-// //       lon: -122.910772,
-// //       native: true,
-// //     },
-// //   3:
-// //     {
-// //       common_name: 'Pacific Glasswort',
-// //       latin_name: 'Salicornia pacifica',
-// //       date: '2019-09-16',
-// //       image_url: 'https://inaturalist-open-data.s3.amazonaws.com/photos/111517323/square.jpg',
-// //       lat: 48.395858,
-// //       lon: -122.585964,
-// //       native: true,
-// //     },
-// //   4:
-// //     {
-// //       common_name: 'Pacific Glasswort',
-// //       latin_name: 'Salicornia pacifica',
-// //       date: '2018-09-16',
-// //       image_url: 'https://static.inaturalist.org/photos/25011560/square.jpeg',
-// //       lat: 48.404805,
-// //       lon: -122.586822,
-// //       native: true,
-// //     }
-// //   };
-
-// mapboxgl.accessToken = 'pk.eyJ1IjoiZm9yYWdpbmdjYXBzdG9uZSIsImEiOiJjbGRjNmpwaDcwN2k1M25tamNhMXZycGY5In0.jI4XtoOVqLvBEXuXld6Cdw';
-
-// function ReactMap() {
-//   // UPDATE THESE NEXT FIVE LINES WITH OUR MAP INFO
-//   const mapContainer = useRef(null); // HERE
-//   const map = useRef(null); // HERE
-//   const [lng, setLng] = useState(-120.485); 
-//   const [lat, setLat] = useState(47.410); 
-//   const [zoom, setZoom] = useState(6.52); 
-  
-//   useEffect(() => {
-//     if (map.current) return; // initialize map only once
-//     map.current = new mapboxgl.Map({
-//       container: mapContainer.current, // This tells Mapbox to render the map inside a specific DOM element
-//       style: 'mapbox://styles/mapbox/streets-v12',
-//       center: [lng, lat],
-//       zoom: zoom
-//     });
-//   });
-  
-//   useEffect(() => {
-//     if (!map.current) return; // wait for map to initialize
-//     map.current.on('move', () => {
-//       setLng(map.current.getCenter().lng.toFixed(4));
-//       setLat(map.current.getCenter().lat.toFixed(4));
-//       setZoom(map.current.getZoom().toFixed(2));
-//     });
-//   });
-
-//   return (
-//     <div>
-//       <div className="sidebar">
-//           Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
-//         </div>
-//         <div ref={mapContainer} className="map-container" />
-//     </div>
-//   )
-
-// };
-
-// export default ReactMap;
-
-
-
-
-
-
-
-// import React, { useState, useRef } from "react";
-// import ReactMapGL from "react-map-gl";
-
-// function ReactMap() {
-//   const [viewport, setViewport] = useState({
-//     latitude: 47.410,
-//     longitude: -120.485,
-//     width: "100vw",
-//     height: "100vh",
-//     zoom: 6
-//   });
-//   const mapRef = useRef();
-
-//   return (
-//     <div className="map-container">
-//       <ReactMapGL
-//         {...viewport}
-//         maxZoom={20}
-//         mapStyle='mapbox://styles/mapbox/streets-v12'
-//         mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN} // Also tried mapboxApiAccessToken. This resolved: https://stackoverflow.com/questions/72254578/how-to-solve-that-a-valid-mapbox-access-token-is-required-to-use-mapbox-gl-js
-//         onViewportChange={(newViewport) => {
-//           setViewport({ ...newViewport, zoom: viewport.zoom});
-//         }}
-//         ref={mapRef}
-//       >
-//       </ReactMapGL>
-//     </div>
-//   );
-// };
-
-// export default ReactMap;
-
-
-
-import Map, { Marker } from 'react-map-gl';
-import 'mapbox-gl/dist/mapbox-gl.css';
-import React, { useState } from "react";
-import { FaLeaf } from 'react-icons/fa'
-
-function ReactMap( {dataMarkers}) {
+function ReactMap({ dataMarkers }) {
   const [viewState, setViewState] = useState({
-    latitude: 47.310,
+    latitude: 47.31,
     longitude: -120.485,
-    zoom: 6.4
+    zoom: 6.4,
   });
 
   // const mapMarkers = () => {
   //   dataMarkers.map((dataMarker) => {
   //     console.log(dataMarker);
   //   return (
-  //       <Marker 
-  //           // key={dataMarker.id} 
-  //           longitude={dataMarker.longitude} 
+  //       <Marker
+  //           // key={dataMarker.id}
+  //           longitude={dataMarker.longitude}
   //           latitude={dataMarker.latitude}
   //           anchor="bottom"
   //       >
@@ -158,32 +26,37 @@ function ReactMap( {dataMarkers}) {
   //   }
   //   )
   // }
+  const markers = useMemo(
+    () =>
+      dataMarkers.map((dataMarker) => (
+        <Marker
+          key={dataMarker.id}
+          longitude={dataMarker.longitude}
+          latitude={dataMarker.latitude}
+        >
+          <FaLeaf />
+        </Marker>
+      )),
+    [dataMarkers]
+  );
 
   return (
     <div className="map-container">
       <Map
         {...viewState}
-        onMove={event => setViewState(event.viewState)}
-        style={{width: '100vw', height: '90vh'}}
+        onMove={(event) => setViewState(event.viewState)}
+        style={{ width: "100vw", height: "90vh" }}
         mapStyle="mapbox://styles/foragingcapstone/cldc9qo4i001m01lexygzvftr/draft"
         // mapStyle="mapbox://styles/foragingcapstone/cldj35obm000101p9dxvz40cc/draft"
         mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
       >
-      {/* <Marker longitude={-120.485} latitude={47.310} anchor="bottom" >
+        {/* <Marker longitude={-120.485} latitude={47.310} anchor="bottom" >
         <p>HERE HERE HERE</p>
       </Marker> */}
-      {/* {mapMarkers()} Should this be in or outside of Map? */}
-      {dataMarkers.map(dataMarker => (
-        <Marker key={dataMarker.id} 
-                longitude={dataMarker.longitude} 
-                latitude={dataMarker.latitude}
-        >
-          <FaLeaf />
-        </Marker>
-      ))};
-    </Map>
-  </div>
+        {markers}
+      </Map>
+    </div>
   );
-};
+}
 
 export default ReactMap;
