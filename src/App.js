@@ -46,13 +46,13 @@ function App() {
           quality_grade: "research",
           captive: false,
           geoprivacy: "open",
-          per_page: 100,
+          per_page: 200,
         },
       });
 
       console.log("success! getObservationsByTaxon");
 
-      const updatedObservations = [];
+      const updatedObservations = [...observationsList];
 
       for (let i in response.data.results) {
         const info = {
