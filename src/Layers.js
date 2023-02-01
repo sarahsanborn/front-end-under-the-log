@@ -1,9 +1,11 @@
+import { FaLeaf } from "react-icons/fa";
+
 const clusterLayer = {
   id: 'clusters',
   type: 'circle',
-  source: 'earthquakes',
+  source: 'taxa',
   filter: ['has', 'point_count'],
-  paint: {
+  paint: { 
     'circle-color': ['step', ['get', 'point_count'], '#51bbd6', 100, '#f1f075', 750, '#f28cb1'],
     'circle-radius': ['step', ['get', 'point_count'], 20, 100, 30, 750, 40]
   }
@@ -12,7 +14,7 @@ const clusterLayer = {
 const clusterCountLayer = {
   id: 'cluster-count',
   type: 'symbol',
-  source: 'earthquakes',
+  source: 'taxa',
   filter: ['has', 'point_count'],
   layout: {
     'text-field': '{point_count_abbreviated}',
@@ -24,10 +26,14 @@ const clusterCountLayer = {
 const unclusteredPointLayer = {
   id: 'unclustered-point',
   type: 'circle',
-  source: 'earthquakes',
+  source: 'taxa',
   filter: ['!', ['has', 'point_count']],
+  // layout: {
+  //   'icon-image': <FaLeaf></FaLeaf>,
+  //   'icon-size': 0.25
+  // }
   paint: {
-    'circle-color': '#11b4da',
+    'circle-color': '#265061',
     'circle-radius': 4,
     'circle-stroke-width': 1,
     'circle-stroke-color': '#fff'

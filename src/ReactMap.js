@@ -96,15 +96,13 @@ function ReactMap({ dataMarkers, dataGeoJSON }) {
           data={dataGeoJSON}
           cluster={true}
           clusterMaxZoom={14}
-          clusterRadius={50}
+          clusterRadius={70}
         >
           <Layer {...clusterLayer} />
           <Layer {...clusterCountLayer} />
           <Layer {...unclusteredPointLayer} />
         </Source>
-        {/* <Marker longitude={-120.485} latitude={47.310} anchor="bottom" >
-        <p>HERE HERE HERE</p>
-      </Marker> */}
+
         {/* {markers}
         {popupInfo && (
           <Popup
