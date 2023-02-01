@@ -827,3 +827,142 @@ const response = {
 //   "to get lat",
 //   observationsList[0]["observation"]["geojson"]["coordinates"][1]
 // );
+
+// async function getPageOfResults(taxon, page) {
+// 	const response = await axios.get(`${URL}/observations?page=` + page);
+// 	try {
+// 		const response = await axios.get(`${URL}/observations`, {
+// 			params: {
+// 				taxon_name: taxon,
+// 				place_id: 46,
+// 				year: [2021, 2023],
+// 				photos: true,
+// 				quality_grade: "research",
+// 				captive: false,
+// 				geoprivacy: "open",
+// 				per_page: 200,
+// 				page: page
+// 			},
+// 		});
+// 	return response.data.results; // .results.values()? I don't know
+// } catch (err) {
+// console.log("ERROR!", err);
+// }
+
+// const getObservationsByTaxon = async (taxon) => {
+// 	// try {
+// 	//   const response = await axios.get(`${URL}/observations`, {
+// 	//     params: {
+// 	//       taxon_name: taxon,
+// 	//       place_id: 46,
+// 	//       year: [2021, 2023],
+// 	//       photos: true,
+// 	//       quality_grade: "research",
+// 	//       captive: false,
+// 	//       geoprivacy: "open",
+// 	//       per_page: 200,
+// 	//     },
+// 	//   });
+
+// 		// console.log("success! getObservationsByTaxon");
+// 		// console.log(response.data.page);
+
+// 		const updatedObservations = [];
+// 		let lastResultsLength = 200;
+// 		let page = 1;
+// 		while (lastResultsLength === 200) {
+// 			const newResults = await getPageOfResults(taxon, page);
+// 			page++;
+
+// 			for (let i in newResults) {
+// 				const info = {
+// 					id: response.data.results[i]["id"],
+// 					common_name:
+// 						response.data.results[i]["taxon"]["preferred_common_name"],
+// 					latin_name: response.data.results[i]["taxon"]["name"],
+// 					date: response.data.results[i]["created_at_details"]["date"],
+// 					image_url:
+// 						response.data.results[i]["observation_photos"][0]["photo"]["url"],
+// 					latitude: response.data.results[i]["geojson"]["coordinates"][1],
+// 					longitude: response.data.results[i]["geojson"]["coordinates"][0],
+// 					native: response.data.results[i]["taxon"]["native"],
+// 				};
+
+// 				updatedObservations.push(info);
+// 			}
+
+// 			lastResultsLength = newResults.length;
+// 		}
+
+// 		// setObservationsList(updatedObservations);
+// 		// setObservationsList((observationsList) => [
+// 		//   ...observationsList,
+// 		//   updatedObservations,
+// 		// ]);
+// 		// setObservationsList(observationsList.concat(updatedObservations));
+// 		setObservationsList([...observationsList, ...updatedObservations]);
+// 	} catch (err) {
+// 		console.log("ERROR!", err);
+// 	}
+// };
+
+// NEW TRY
+
+// const dataUnpacker = (results) => {
+
+// const updatedObservations = [];
+
+// for (let i in results) {
+// 	const info = {
+// 		id: results[i]["id"],
+//         common_name: results[i]["taxon"]["preferred_common_name"],
+//         latin_name: results[i]["taxon"]["name"],
+//         date: results[i]["created_at_details"]["date"],
+//         image_url: results[i]["observation_photos"][0]["photo"]["url"],
+//         latitude: results[i]["geojson"]["coordinates"][1],
+//         longitude: results[i]["geojson"]["coordinates"][0],
+//         native: results[i]["taxon"]["native"],
+// 	};
+
+// 	updatedObservations.push(info);
+// }
+// setObservationsList([...observationsList, ...updatedObservations]);
+// };
+
+// const getObservationsByTaxon = async (taxon, page=1) => {
+// 	try {
+// 		const response = await axios.get(`${URL}/observations`, {
+// 			params: {
+// 				taxon_name: taxon,
+// 				place_id: 46,
+// 				year: [2021, 2023],
+// 				photos: true,
+// 				quality_grade: "research",
+// 				captive: false,
+// 				geoprivacy: "open",
+// 				per_page: 200,
+// 				page: page
+// 			},
+// 		});
+
+// 		const numOfPages = 1 + Math.floor(response.data.total_results/200)
+
+// 		if (numOfPages === 1){
+// 			dataUnpacker(response.data.results)
+// 		}
+// 		else{
+// 			const currentPage= page
+// 			dataUnpacker(response.data.results)
+
+// 			if(currentPage === numOfPages){
+// 				return null;}
+
+// 			currentPage ++;
+// 			// CALL AXIOS WITH CURRENT PAGE
+// 			getObservationsByTaxon(taxon, currentPage)
+// 		}
+
+// 	} catch (err) {
+// 		console.log("ERROR!", err);
+// 	}
+// };
