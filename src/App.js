@@ -6,6 +6,8 @@ import "./App.css";
 
 function App() {
   const [observationsList, setObservationsList] = useState([]);
+  // const [borageObservations, setBorageObservations] = useState([]);
+  // const [salmonberryObservations, setSalmonberryObservations] = useState([]);
   // {latitude:47.3, longitude:-120.485, id:1}
 
   // Added by Sarah for Markers used in ReactMap
@@ -35,7 +37,38 @@ function App() {
     }
   };
 
-  const getObservationsByTaxon = async (taxon) => {
+  const dataUnpacker = (results) => {
+    const updatedObservations = [];
+
+    for (let i in results) {
+      const info = {
+        id: results[i]["id"],
+        common_name: results[i]["taxon"]["preferred_common_name"],
+        latin_name: results[i]["taxon"]["name"],
+        date: results[i]["created_at_details"]["date"],
+        image_url: results[i]["observation_photos"][0]["photo"]["url"],
+        latitude: results[i]["geojson"]["coordinates"][1],
+        longitude: results[i]["geojson"]["coordinates"][0],
+        native: results[i]["taxon"]["native"],
+      };
+
+      updatedObservations.push(info);
+    }
+
+    setObservationsList((currentObservations) => [
+      ...currentObservations,
+      ...updatedObservations,
+    ]);
+    // if you set new state muultiple times, make sure your function is not capturing data from the
+    // previous render
+    // this was uses useDSate hook to get the incremental updates that are available to you in the hooks
+    // this is the reducer pattern; supplying a less complicated reducer function to the setstate
+    // "here is a function that does "
+    // reducer = state +action produces new state --> always stateless
+    // what use state is doing under the hood
+  };
+
+  const getObservationsByTaxon = async (taxon, page = 1) => {
     try {
       const response = await axios.get(`${URL}/observations`, {
         params: {
@@ -47,38 +80,26 @@ function App() {
           captive: false,
           geoprivacy: "open",
           per_page: 200,
+          page: page,
         },
       });
 
-      console.log("success! getObservationsByTaxon");
+      const numOfPages = 1 + Math.floor(response.data.total_results / 200);
 
-      const updatedObservations = [...observationsList];
+      if (numOfPages === 1) {
+        dataUnpacker(response.data.results);
+      } else {
+        let currentPage = page;
+        dataUnpacker(response.data.results);
 
-      for (let i in response.data.results) {
-        const info = {
-          id: response.data.results[i]["id"],
-          common_name:
-            response.data.results[i]["taxon"]["preferred_common_name"],
-          latin_name: response.data.results[i]["taxon"]["name"],
-          date: response.data.results[i]["created_at_details"]["date"],
-          image_url:
-            response.data.results[i]["observation_photos"][0]["photo"]["url"],
-          latitude: response.data.results[i]["geojson"]["coordinates"][1],
-          longitude: response.data.results[i]["geojson"]["coordinates"][0],
-          native: response.data.results[i]["taxon"]["native"],
-        };
+        if (currentPage === numOfPages) {
+          return null;
+        }
 
-        updatedObservations.push(info);
+        currentPage++;
+        // CALL AXIOS WITH CURRENT PAGE
+        getObservationsByTaxon(taxon, currentPage);
       }
-      setObservationsList(updatedObservations);
-      // setObservationsList((observationsList) => [
-      //   ...observationsList,
-      //   updatedObservations,
-      // ]);
-      // setObservationsList(observationsList.concat(updatedObservations));
-      // setObservationsList((observationsList) => [
-      //   updatedObservations + observationsList,
-      // ]);
     } catch (err) {
       console.log("ERROR!", err);
     }
@@ -86,11 +107,11 @@ function App() {
 
   useEffect(() => {
     // getObservationByID(147215905);
-    getObservationsByTaxon("borage");
     getObservationsByTaxon("salmonberry");
-    // getObservationsByTaxon("wood sorrel");
-    // getObservationsByTaxon("pickleweed");
-    // getObservationsByTaxon("chanterelle");
+    getObservationsByTaxon("borage");
+    getObservationsByTaxon("wood sorrel");
+    getObservationsByTaxon("pickleweed");
+    getObservationsByTaxon("chanterelle");
 
     console.log("obs list state contains:", observationsList);
   }, []);
