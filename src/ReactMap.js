@@ -1,48 +1,59 @@
-import Map, { Marker, Popup } from "react-map-gl";
+// import Map, { Marker, Popup } from "react-map-gl";
+import Map, { Source, Layer, Popup } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import React, { useState, useMemo } from "react";
 import { FaLeaf } from "react-icons/fa";
 
-function ReactMap({ dataMarkers }) {
+function ReactMap({ dataMarkers, dataGeoJSON }) {
   const [viewState, setViewState] = useState({
     latitude: 47.31,
     longitude: -120.485,
     zoom: 6.4,
   });
 
-  
-  const [popupInfo, setPopupInfo] = useState(null);
-  
-  const markers = useMemo(
-    () =>
-    dataMarkers.map((dataMarker) => (
-      <Marker
-      key={dataMarker.id}
-      longitude={dataMarker.longitude}
-      latitude={dataMarker.latitude}
-      anchor="bottom"
-      onClick={(event) => {
-        event.originalEvent.stopPropagation();
-        setPopupInfo(dataMarker);
-      }}
-      >
-          <FaLeaf color="#265061"/>
-        </Marker>
-      )),
-      [dataMarkers]
-      );
-      
-      // Here is a function that will allow us to have a button so someone can open Google maps
-      function mapsSelector() {
-        console.log(navigator)
-      //   if /* if we're on iOS, open in Apple Maps */
-      //   ((navigator.userAgentData.vendor("iPhone") != -1) || 
-      //    (navigator.userAgentData.vendor("iPad") != -1) || 
-      //    (navigator.userAgentData.vendor("iPod") != -1))
-      //   window.open(`maps://maps.google.com/maps?daddr=${popupInfo.latitude},${popupInfo.longitude}&amp;ll=`);
-      // else /* else use Google */
-        window.open(`https://maps.google.com/maps?daddr=${popupInfo.latitude},${popupInfo.longitude}&amp;ll=`);
-      }
+  const layerStyle = {
+    id: "point",
+    type: "circle",
+    paint: {
+      "circle-radius": 10,
+      "circle-color": "#FFDB58",
+    },
+  };
+
+  // const [popupInfo, setPopupInfo] = useState(null);
+
+  // const markers = useMemo(
+  //   () =>
+  //     dataMarkers.map((dataMarker) => (
+  //       <Marker
+  //         key={dataMarker.id}
+  //         longitude={dataMarker.longitude}
+  //         latitude={dataMarker.latitude}
+  //         anchor="bottom"
+  //         onClick={(event) => {
+  //           event.originalEvent.stopPropagation();
+  //           setPopupInfo(dataMarker);
+  //         }}
+  //       >
+  //         <FaLeaf color="#265061" />
+  //       </Marker>
+  //     )),
+  //   [dataMarkers]
+  // );
+
+  // Here is a function that will allow us to have a button so someone can open Google maps
+  // function mapsSelector() {
+  //   console.log(navigator);
+  //   //   if /* if we're on iOS, open in Apple Maps */
+  //   //   ((navigator.userAgentData.vendor("iPhone") != -1) ||
+  //   //    (navigator.userAgentData.vendor("iPad") != -1) ||
+  //   //    (navigator.userAgentData.vendor("iPod") != -1))
+  //   //   window.open(`maps://maps.google.com/maps?daddr=${popupInfo.latitude},${popupInfo.longitude}&amp;ll=`);
+  //   // else /* else use Google */
+  //   window.open(
+  //     `https://maps.google.com/maps?daddr=${popupInfo.latitude},${popupInfo.longitude}&amp;ll=`
+  //   );
+  // }
 
   return (
     <div className="map-container">
@@ -54,10 +65,13 @@ function ReactMap({ dataMarkers }) {
         // mapStyle="mapbox://styles/foragingcapstone/cldj35obm000101p9dxvz40cc/draft"
         mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
       >
+        <Source id="taxa" type="geojson" data={dataGeoJSON}>
+          <Layer {...layerStyle} />
+        </Source>
         {/* <Marker longitude={-120.485} latitude={47.310} anchor="bottom" >
         <p>HERE HERE HERE</p>
       </Marker> */}
-        {markers}
+        {/* {markers}
         {popupInfo && (
           <Popup
             anchor="top"
@@ -65,8 +79,8 @@ function ReactMap({ dataMarkers }) {
             latitude={Number(popupInfo.latitude)}
             longitude={Number(popupInfo.longitude)}
             onClose={() => setPopupInfo(null)}
-          >
-            <div>
+          > */}
+        {/* <div>
               <h1>{popupInfo.common_name}</h1>
               <h2>{popupInfo.latin_name}</h2>
               <p>Date Observed: {popupInfo.date}</p>
@@ -76,8 +90,8 @@ function ReactMap({ dataMarkers }) {
                 <button onClick={() => mapsSelector()}>Get Directions</button>
               </div>
             </div>
-          </Popup>
-        )}
+          </Popup> */}
+        {/* )} */}
       </Map>
     </div>
   );

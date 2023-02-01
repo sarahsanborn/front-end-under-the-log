@@ -106,15 +106,60 @@ function App() {
   };
 
   useEffect(() => {
-    // getObservationByID(147215905);
-    getObservationsByTaxon("salmonberry");
-    getObservationsByTaxon("borage");
-    getObservationsByTaxon("wood sorrel");
-    getObservationsByTaxon("pickleweed");
-    getObservationsByTaxon("chanterelle");
+    // // getObservationByID(147215905);
+    // getObservationsByTaxon("salmonberry");
+    // getObservationsByTaxon("borage");
+    // // getObservationsByTaxon("wood sorrel");
+    // getObservationsByTaxon("pickleweed");
+    // // getObservationsByTaxon("chanterelle");
+    // getObservationsByTaxon("Cantharellus cibarius");
+    // getObservationsByTaxon("Cantharellus formosus");
+    // getObservationsByTaxon("arrowleaf balsamroot");
 
     console.log("obs list state contains:", observationsList);
   }, []);
+
+  const fakeGeoJSON = {
+    type: "FeatureCollection",
+    features: [
+      {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: [-122.0909361111, 47.2195166667],
+        },
+        properties: {
+          id: 97978216,
+          common_name: "Borage",
+          latin_name: "Borago officinalis",
+          date: "2021-10-11",
+          image_url:
+            "https://inaturalist-open-data.s3.amazonaws.com/photos/163039385/square.jpeg",
+          latitude: 47.2195166667,
+          longitude: -122.0909361111,
+          native: false,
+        },
+      },
+      {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: [-122.3088, 47.672345],
+        },
+        properties: {
+          id: 103130022,
+          common_name: "salmonberry",
+          latin_name: "Rubus spectabilis",
+          date: "2022-04-09",
+          image_url:
+            "https://inaturalist-open-data.s3.amazonaws.com/photos/172539904/square.jpg",
+          latitude: 47.672345,
+          longitude: -122.3088,
+          native: true,
+        },
+      },
+    ],
+  };
 
   return (
     <div className="grid-container">
@@ -126,7 +171,8 @@ function App() {
         </ul>
       </header>
       <main>
-        <ReactMap dataMarkers={observationsList}></ReactMap>
+        {/* <ReactMap dataMarkers={observationsList}></ReactMap> */}
+        <ReactMap dataGeoJSON={fakeGeoJSON}></ReactMap>
       </main>
     </div>
   );
