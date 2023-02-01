@@ -10,52 +10,39 @@ function ReactMap({ dataMarkers }) {
     zoom: 6.4,
   });
 
-  // Here is a function that will allow us to have a button so someone can open Google maps
-  // function mapsSelector() {
-  //   if /* if we're on iOS, open in Apple Maps */
-  //   ((navigator.platform.indexOf("iPhone") != -1) || 
-  //    (navigator.platform.indexOf("iPad") != -1) || 
-  //    (navigator.platform.indexOf("iPod") != -1))
-  //   window.open("maps://maps.google.com/maps?daddr=<lat>,<long>&amp;ll=");
-  // else /* else use Google */
-  //   window.open("https://maps.google.com/maps?daddr=<lat>,<long>&amp;ll=");
-  // }
-
+  
   const [popupInfo, setPopupInfo] = useState(null);
-  // const mapMarkers = () => {
-  //   dataMarkers.map((dataMarker) => {
-  //     console.log(dataMarker);
-  //   return (
-  //       <Marker
-  //           // key={dataMarker.id}
-  //           longitude={dataMarker.longitude}
-  //           latitude={dataMarker.latitude}
-  //           anchor="bottom"
-  //       >
-  //           <h1>HERE IS THE DOT</h1>
-  //       </Marker>
-  //       )
-  //   }
-  //   )
-  // }
+  
   const markers = useMemo(
     () =>
-      dataMarkers.map((dataMarker) => (
-        <Marker
-          key={dataMarker.id}
-          longitude={dataMarker.longitude}
-          latitude={dataMarker.latitude}
-          anchor="bottom"
-          onClick={(event) => {
-            event.originalEvent.stopPropagation();
-            setPopupInfo(dataMarker);
-          }}
-        >
-          <FaLeaf />
+    dataMarkers.map((dataMarker) => (
+      <Marker
+      key={dataMarker.id}
+      longitude={dataMarker.longitude}
+      latitude={dataMarker.latitude}
+      anchor="bottom"
+      onClick={(event) => {
+        event.originalEvent.stopPropagation();
+        setPopupInfo(dataMarker);
+      }}
+      >
+          <FaLeaf color="#265061"/>
         </Marker>
       )),
-    [dataMarkers]
-  );
+      [dataMarkers]
+      );
+      
+      // Here is a function that will allow us to have a button so someone can open Google maps
+      function mapsSelector() {
+        console.log(navigator)
+      //   if /* if we're on iOS, open in Apple Maps */
+      //   ((navigator.userAgentData.vendor("iPhone") != -1) || 
+      //    (navigator.userAgentData.vendor("iPad") != -1) || 
+      //    (navigator.userAgentData.vendor("iPod") != -1))
+      //   window.open(`maps://maps.google.com/maps?daddr=${popupInfo.latitude},${popupInfo.longitude}&amp;ll=`);
+      // else /* else use Google */
+        window.open(`https://maps.google.com/maps?daddr=${popupInfo.latitude},${popupInfo.longitude}&amp;ll=`);
+      }
 
   return (
     <div className="map-container">
@@ -85,6 +72,9 @@ function ReactMap({ dataMarkers }) {
               <p>Date Observed: {popupInfo.date}</p>
               <p>Native: {popupInfo.native.toString()}</p>
               <img src={popupInfo.image_url} alt="observed species"></img>
+              <div>
+                <button onClick={() => mapsSelector()}>Get Directions</button>
+              </div>
             </div>
           </Popup>
         )}
