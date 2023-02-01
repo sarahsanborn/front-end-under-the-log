@@ -1,8 +1,10 @@
 // import Map, { Marker, Popup } from "react-map-gl";
 import Map, { Source, Layer, Popup } from "react-map-gl";
+import MapRef from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useRef } from "react";
 import { FaLeaf } from "react-icons/fa";
+import {clusterLayer, clusterCountLayer, unclusteredPointLayer} from './Layers';
 
 function ReactMap({ dataMarkers, dataGeoJSON }) {
   const [viewState, setViewState] = useState({
@@ -11,14 +13,34 @@ function ReactMap({ dataMarkers, dataGeoJSON }) {
     zoom: 6.4,
   });
 
-  const layerStyle = {
-    id: "point",
-    type: "circle",
-    paint: {
-      "circle-radius": 10,
-      "circle-color": "#FFDB58",
-    },
+  const mapRef = useRef(null);
+
+  const onClick = event => {
+    const feature = event.features[0];
+    const clusterID = feature.properties.cluster_id;
+    const mapboxSource = mapRef.current.getSource('taxa');
+
+    mapboxSource.getClusterExpansionZoom(clusterID, (err, zoom) => {
+      if (err) {
+        return;
+      }
+
+      mapRef.current.easeTo({
+        center: feature.geometry.coordinates,
+        zoom,
+        duration: 500
+      });
+    });
   };
+
+  // const layerStyle = {
+  //   id: "point",
+  //   type: "circle",
+  //   paint: {
+  //     "circle-radius": 10,
+  //     "circle-color": "#FFDB58",
+  //   },
+  // };
 
   // const [popupInfo, setPopupInfo] = useState(null);
 
@@ -64,9 +86,21 @@ function ReactMap({ dataMarkers, dataGeoJSON }) {
         mapStyle="mapbox://styles/foragingcapstone/cldc9qo4i001m01lexygzvftr/draft"
         // mapStyle="mapbox://styles/foragingcapstone/cldj35obm000101p9dxvz40cc/draft"
         mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+        interactiveLayerIds={[clusterLayer.id]}
+        onClick={onClick}
+        ref={mapRef}
       >
-        <Source id="taxa" type="geojson" data={dataGeoJSON}>
-          <Layer {...layerStyle} />
+        <Source 
+          id="taxa"  
+          type="geojson" 
+          data={dataGeoJSON}
+          cluster={true}
+          clusterMaxZoom={14}
+          clusterRadius={50}
+        >
+          <Layer {...clusterLayer} />
+          <Layer {...clusterCountLayer} />
+          <Layer {...unclusteredPointLayer} />
         </Source>
         {/* <Marker longitude={-120.485} latitude={47.310} anchor="bottom" >
         <p>HERE HERE HERE</p>
