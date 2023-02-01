@@ -1,6 +1,5 @@
 import ReactMap from "./ReactMap";
 import axios from "axios";
-import ObservationsList from "./ObservationsList";
 import { useState, useEffect } from "react";
 import "./App.css";
 
@@ -37,19 +36,60 @@ function App() {
     }
   };
 
+  // const dataUnpacker = (results) => {
+  //   const updatedObservations = [];
+
+  //   for (let i in results) {
+  //     const info = {
+  //       id: results[i]["id"],
+  //       common_name: results[i]["taxon"]["preferred_common_name"],
+  //       latin_name: results[i]["taxon"]["name"],
+  //       date: results[i]["created_at_details"]["date"],
+  //       image_url: results[i]["observation_photos"][0]["photo"]["url"],
+  //       latitude: results[i]["geojson"]["coordinates"][1],
+  //       longitude: results[i]["geojson"]["coordinates"][0],
+  //       native: results[i]["taxon"]["native"],
+  //     };
+
+  //     updatedObservations.push(info);
+  //   }
+
+  //   setObservationsList((currentObservations) => [
+  //     ...currentObservations,
+  //     ...updatedObservations,
+  //   ]);
+  // if you set new state muultiple times, make sure your function is not capturing data from the
+  // previous render
+  // this was uses useDSate hook to get the incremental updates that are available to you in the hooks
+  // this is the reducer pattern; supplying a less complicated reducer function to the setstate
+  // "here is a function that does "
+  // reducer = state +action produces new state --> always stateless
+  // what use state is doing under the hood
+  // https://blog.logrocket.com/using-react-usestate-object/
+  // };
+
+  // DATA UNPACKER FOR GEOJSON
+
   const dataUnpacker = (results) => {
     const updatedObservations = [];
 
     for (let i in results) {
       const info = {
-        id: results[i]["id"],
-        common_name: results[i]["taxon"]["preferred_common_name"],
-        latin_name: results[i]["taxon"]["name"],
-        date: results[i]["created_at_details"]["date"],
-        image_url: results[i]["observation_photos"][0]["photo"]["url"],
-        latitude: results[i]["geojson"]["coordinates"][1],
-        longitude: results[i]["geojson"]["coordinates"][0],
-        native: results[i]["taxon"]["native"],
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: results[i]["geojson"]["coordinates"],
+        },
+        properties: {
+          id: results[i]["id"],
+          common_name: results[i]["taxon"]["preferred_common_name"],
+          latin_name: results[i]["taxon"]["name"],
+          date: results[i]["created_at_details"]["date"],
+          image_url: results[i]["observation_photos"][0]["photo"]["url"],
+          latitude: results[i]["geojson"]["coordinates"][1],
+          longitude: results[i]["geojson"]["coordinates"][0],
+          native: results[i]["taxon"]["native"],
+        },
       };
 
       updatedObservations.push(info);
@@ -59,13 +99,8 @@ function App() {
       ...currentObservations,
       ...updatedObservations,
     ]);
-    // if you set new state muultiple times, make sure your function is not capturing data from the
-    // previous render
-    // this was uses useDSate hook to get the incremental updates that are available to you in the hooks
-    // this is the reducer pattern; supplying a less complicated reducer function to the setstate
-    // "here is a function that does "
-    // reducer = state +action produces new state --> always stateless
-    // what use state is doing under the hood
+
+    console.log(observationsList);
   };
 
   const getObservationsByTaxon = async (taxon, page = 1) => {
@@ -107,59 +142,59 @@ function App() {
 
   useEffect(() => {
     // // getObservationByID(147215905);
-    // getObservationsByTaxon("salmonberry");
-    // getObservationsByTaxon("borage");
-    // // getObservationsByTaxon("wood sorrel");
-    // getObservationsByTaxon("pickleweed");
+    getObservationsByTaxon("salmonberry");
+    getObservationsByTaxon("borage");
+    getObservationsByTaxon("wood sorrel");
+    getObservationsByTaxon("pickleweed");
     // // getObservationsByTaxon("chanterelle");
-    // getObservationsByTaxon("Cantharellus cibarius");
-    // getObservationsByTaxon("Cantharellus formosus");
-    // getObservationsByTaxon("arrowleaf balsamroot");
+    getObservationsByTaxon("Cantharellus cibarius");
+    getObservationsByTaxon("Cantharellus formosus");
+    getObservationsByTaxon("arrowleaf balsamroot");
 
     console.log("obs list state contains:", observationsList);
   }, []);
 
-  const fakeGeoJSON = {
-    type: "FeatureCollection",
-    features: [
-      {
-        type: "Feature",
-        geometry: {
-          type: "Point",
-          coordinates: [-122.0909361111, 47.2195166667],
-        },
-        properties: {
-          id: 97978216,
-          common_name: "Borage",
-          latin_name: "Borago officinalis",
-          date: "2021-10-11",
-          image_url:
-            "https://inaturalist-open-data.s3.amazonaws.com/photos/163039385/square.jpeg",
-          latitude: 47.2195166667,
-          longitude: -122.0909361111,
-          native: false,
-        },
-      },
-      {
-        type: "Feature",
-        geometry: {
-          type: "Point",
-          coordinates: [-122.3088, 47.672345],
-        },
-        properties: {
-          id: 103130022,
-          common_name: "salmonberry",
-          latin_name: "Rubus spectabilis",
-          date: "2022-04-09",
-          image_url:
-            "https://inaturalist-open-data.s3.amazonaws.com/photos/172539904/square.jpg",
-          latitude: 47.672345,
-          longitude: -122.3088,
-          native: true,
-        },
-      },
-    ],
-  };
+  // const fakeGeoJSON = {
+  //   type: "FeatureCollection",
+  //   features: [
+  //     {
+  //       type: "Feature",
+  //       geometry: {
+  //         type: "Point",
+  //         coordinates: [-122.0909361111, 47.2195166667],
+  //       },
+  //       properties: {
+  //         id: 97978216,
+  //         common_name: "Borage",
+  //         latin_name: "Borago officinalis",
+  //         date: "2021-10-11",
+  //         image_url:
+  //           "https://inaturalist-open-data.s3.amazonaws.com/photos/163039385/square.jpeg",
+  //         latitude: 47.2195166667,
+  //         longitude: -122.0909361111,
+  //         native: false,
+  //       },
+  //     },
+  //     {
+  //       type: "Feature",
+  //       geometry: {
+  //         type: "Point",
+  //         coordinates: [-122.3088, 47.672345],
+  //       },
+  //       properties: {
+  //         id: 103130022,
+  //         common_name: "salmonberry",
+  //         latin_name: "Rubus spectabilis",
+  //         date: "2022-04-09",
+  //         image_url:
+  //           "https://inaturalist-open-data.s3.amazonaws.com/photos/172539904/square.jpg",
+  //         latitude: 47.672345,
+  //         longitude: -122.3088,
+  //         native: true,
+  //       },
+  //     },
+  //   ],
+  // };
 
   return (
     <div className="grid-container">
@@ -172,7 +207,12 @@ function App() {
       </header>
       <main>
         {/* <ReactMap dataMarkers={observationsList}></ReactMap> */}
-        <ReactMap dataGeoJSON={fakeGeoJSON}></ReactMap>
+        <ReactMap
+          dataGeoJSON={{
+            type: "FeatureCollection",
+            features: observationsList,
+          }}
+        ></ReactMap>
       </main>
     </div>
   );
