@@ -42,7 +42,7 @@ function ReactMap({ dataMarkers, dataGeoJSON }) {
   //   },
   // };
 
-  // const [popupInfo, setPopupInfo] = useState(null);
+  const [popupInfo, setPopupInfo] = useState(null);
 
   // const markers = useMemo(
   //   () =>
@@ -64,18 +64,18 @@ function ReactMap({ dataMarkers, dataGeoJSON }) {
   // );
 
   // Here is a function that will allow us to have a button so someone can open Google maps
-  // function mapsSelector() {
-  //   console.log(navigator);
-  //   //   if /* if we're on iOS, open in Apple Maps */
-  //   //   ((navigator.userAgentData.vendor("iPhone") != -1) ||
-  //   //    (navigator.userAgentData.vendor("iPad") != -1) ||
-  //   //    (navigator.userAgentData.vendor("iPod") != -1))
-  //   //   window.open(`maps://maps.google.com/maps?daddr=${popupInfo.latitude},${popupInfo.longitude}&amp;ll=`);
-  //   // else /* else use Google */
-  //   window.open(
-  //     `https://maps.google.com/maps?daddr=${popupInfo.latitude},${popupInfo.longitude}&amp;ll=`
-  //   );
-  // }
+  function mapsSelector() {
+    console.log(navigator);
+    //   if /* if we're on iOS, open in Apple Maps */
+    //   ((navigator.userAgentData.vendor("iPhone") != -1) ||
+    //    (navigator.userAgentData.vendor("iPad") != -1) ||
+    //    (navigator.userAgentData.vendor("iPod") != -1))
+    //   window.open(`maps://maps.google.com/maps?daddr=${popupInfo.latitude},${popupInfo.longitude}&amp;ll=`);
+    // else /* else use Google */
+    window.open(
+      `https://maps.google.com/maps?daddr=${popupInfo.latitude},${popupInfo.longitude}&amp;ll=`
+    );
+  }
 
   return (
     <div className="map-container">
@@ -86,7 +86,7 @@ function ReactMap({ dataMarkers, dataGeoJSON }) {
         mapStyle="mapbox://styles/foragingcapstone/cldc9qo4i001m01lexygzvftr/draft"
         // mapStyle="mapbox://styles/foragingcapstone/cldj35obm000101p9dxvz40cc/draft"
         mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-        interactiveLayerIds={[clusterLayer.id]}
+        interactiveLayerIds={[clusterLayer.id, unclusteredPointLayer.id]}
         onClick={onClick}
         ref={mapRef}
       >
@@ -103,7 +103,7 @@ function ReactMap({ dataMarkers, dataGeoJSON }) {
           <Layer {...unclusteredPointLayer} />
         </Source>
 
-        {/* {markers}
+        {/* {markers} */}
         {popupInfo && (
           <Popup
             anchor="top"
@@ -111,8 +111,8 @@ function ReactMap({ dataMarkers, dataGeoJSON }) {
             latitude={Number(popupInfo.latitude)}
             longitude={Number(popupInfo.longitude)}
             onClose={() => setPopupInfo(null)}
-          > */}
-        {/* <div>
+          >
+        <div>
               <h1>{popupInfo.common_name}</h1>
               <h2>{popupInfo.latin_name}</h2>
               <p>Date Observed: {popupInfo.date}</p>
@@ -122,8 +122,8 @@ function ReactMap({ dataMarkers, dataGeoJSON }) {
                 <button onClick={() => mapsSelector()}>Get Directions</button>
               </div>
             </div>
-          </Popup> */}
-        {/* )} */}
+          </Popup>
+        )}
       </Map>
     </div>
   );
