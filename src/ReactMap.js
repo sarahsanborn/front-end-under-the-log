@@ -4,7 +4,11 @@ import MapRef from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import React, { useState, useMemo, useRef } from "react";
 import { FaLeaf } from "react-icons/fa";
-import {clusterLayer, clusterCountLayer, unclusteredPointLayer} from './Layers';
+import {
+  clusterLayer,
+  clusterCountLayer,
+  unclusteredPointLayer,
+} from "./Layers";
 
 function ReactMap({ dataMarkers, dataGeoJSON }) {
   const [viewState, setViewState] = useState({
@@ -14,29 +18,37 @@ function ReactMap({ dataMarkers, dataGeoJSON }) {
   });
 
   const mapRef = useRef(null);
+  const [popupInfo, setPopupInfo] = useState(null);
 
-  const onClick = event => {
-    const feature = event.features[0];
-    const clusterID = feature.properties.cluster_id;
-    const mapboxSource = mapRef.current.getSource('taxa');
+  const onClickMap = (event) => {
+    try {
+      const feature = event.features[0];
+      let clusterID = feature.properties.cluster_id;
+      const mapboxSource = mapRef.current.getSource("taxa");
 
-    console.log(clusterID);
-    console.log(feature);
-
-    mapboxSource.getClusterExpansionZoom(clusterID, (err, zoom) => {
-      if (err) {
-        return;
+      if (feature["layer"]["id"] === "unclustered-point") {
+        clusterID = feature.properties.id;
+        setPopupInfo(feature["properties"]);
       }
-      
-      mapRef.current.easeTo({
-        center: feature.geometry.coordinates,
-        zoom,
-        duration: 500
-      });
-    });
 
-    if (feature['layer']['id'] === 'unclustered-point') {
-      setPopupInfo(feature['properties'])
+      console.log(clusterID);
+      console.log(feature);
+      console.log(event.viewState);
+
+      mapboxSource.getClusterExpansionZoom(clusterID, (err, zoom) => {
+        if (err) {
+          console.log("I'm in the error!");
+          return;
+        }
+
+        mapRef.current.easeTo({
+          center: feature.geometry.coordinates,
+          zoom,
+          duration: 500,
+        });
+      });
+    } catch (err) {
+      console.log("That's not a point!");
     }
   };
 
@@ -48,8 +60,6 @@ function ReactMap({ dataMarkers, dataGeoJSON }) {
   //     "circle-color": "#FFDB58",
   //   },
   // };
-
-  const [popupInfo, setPopupInfo] = useState(null);
 
   // const markers = useMemo(
   //   () =>
@@ -94,12 +104,12 @@ function ReactMap({ dataMarkers, dataGeoJSON }) {
         // mapStyle="mapbox://styles/foragingcapstone/cldj35obm000101p9dxvz40cc/draft"
         mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
         interactiveLayerIds={[clusterLayer.id, unclusteredPointLayer.id]}
-        onClick={onClick}
+        onClick={onClickMap}
         ref={mapRef}
       >
-        <Source 
-          id="taxa"  
-          type="geojson" 
+        <Source
+          id="taxa"
+          type="geojson"
           data={dataGeoJSON}
           cluster={true}
           clusterMaxZoom={14}
@@ -119,7 +129,7 @@ function ReactMap({ dataMarkers, dataGeoJSON }) {
             longitude={Number(popupInfo.longitude)}
             onClose={() => setPopupInfo(null)}
           >
-        <div>
+            <div>
               <h1>{popupInfo.common_name}</h1>
               <h2>{popupInfo.latin_name}</h2>
               <p>Date Observed: {popupInfo.date}</p>
