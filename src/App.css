@@ -29,13 +29,32 @@ header {
 
 .popup-container {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-direction: row;
 }
 
-/* #observation-image {
-    height: 75px;
-} */
+#observation-image {
+    height: 200px;
+    padding-right: 10px;
+}
+
+#button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#get-directions-button {
+    border-radius: 5px;
+    border: none;
+    background-color: #265061;
+    color:#FFF5F3;
+    padding: .75rem;
+}
+
+#get-directions-button:hover {
+    background-color: #30677d;
+}
 
 /* #mapboxgl-popup.mapboxgl-popup-anchor-top {
     max-width: 500px;

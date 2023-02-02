@@ -137,8 +137,8 @@ function ReactMap({ dataMarkers, dataGeoJSON }) {
                 <h2>{popupInfo.latin_name}</h2>
                 <p>Date Observed: {popupInfo.date}</p>
                 <p>Native: {popupInfo.native.toString()}</p>
-                <div>
-                  <button onClick={() => mapsSelector()}>Get Directions</button>
+                <div id="button-container">
+                  <button id="get-directions-button" onClick={() => mapsSelector()}>Get Directions</button>
                 </div>
               </div>
             </div>
