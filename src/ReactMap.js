@@ -1,5 +1,5 @@
 // import Map, { Marker, Popup } from "react-map-gl";
-import Map, { Source, Layer, Popup } from "react-map-gl";
+import Map, { Source, Layer, Popup, LngLat } from "react-map-gl";
 import MapRef from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import React, { useState, useMemo, useRef } from "react";
@@ -20,17 +20,24 @@ function ReactMap({ dataMarkers, dataGeoJSON }) {
     const clusterID = feature.properties.cluster_id;
     const mapboxSource = mapRef.current.getSource('taxa');
 
+    console.log(clusterID);
+    console.log(feature);
+
     mapboxSource.getClusterExpansionZoom(clusterID, (err, zoom) => {
       if (err) {
         return;
       }
-
+      
       mapRef.current.easeTo({
         center: feature.geometry.coordinates,
         zoom,
         duration: 500
       });
     });
+
+    if (feature['layer']['id'] === 'unclustered-point') {
+      setPopupInfo(feature['properties'])
+    }
   };
 
   // const layerStyle = {

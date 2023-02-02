@@ -33,7 +33,7 @@ const unclusteredPointLayer = {
   //   'icon-size': 0.25
   // }
   paint: {
-    'circle-color': '#265061',
+    'circle-color': '#FC6A03',
     'circle-radius': 4,
     'circle-stroke-width': 1,
     'circle-stroke-color': '#fff'
