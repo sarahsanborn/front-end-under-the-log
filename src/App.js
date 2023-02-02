@@ -74,6 +74,29 @@ function App() {
     const updatedObservations = [];
 
     for (let i in results) {
+      let newImgUrl = "";
+      if (
+        results[i]["observation_photos"][0]["photo"]["url"].slice(-3) === "jpg"
+      ) {
+        newImgUrl = `${results[i]["observation_photos"][0]["photo"][
+          "url"
+        ].slice(0, -10)}large.jpg`;
+      } else if (
+        results[i]["observation_photos"][0]["photo"]["url"].slice(-3) === "peg"
+      ) {
+        newImgUrl = `${results[i]["observation_photos"][0]["photo"][
+          "url"
+        ].slice(0, -11)}large.jpeg`;
+      } else if (
+        results[i]["observation_photos"][0]["photo"]["url"].slice(-3) === "png"
+      ) {
+        newImgUrl = `${results[i]["observation_photos"][0]["photo"][
+          "url"
+        ].slice(0, -10)}large.png`;
+      } else {
+        continue;
+      }
+
       const info = {
         type: "Feature",
         geometry: {
@@ -85,7 +108,7 @@ function App() {
           common_name: results[i]["taxon"]["preferred_common_name"],
           latin_name: results[i]["taxon"]["name"],
           date: results[i]["created_at_details"]["date"],
-          image_url: results[i]["observation_photos"][0]["photo"]["url"],
+          image_url: newImgUrl,
           latitude: results[i]["geojson"]["coordinates"][1],
           longitude: results[i]["geojson"]["coordinates"][0],
           native: results[i]["taxon"]["native"],
