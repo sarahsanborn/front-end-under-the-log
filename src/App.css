@@ -26,3 +26,17 @@ header {
 .search-filter-list li {
     margin-left: 20px;
 }
+
+.popup-container {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+}
+
+/* #observation-image {
+    height: 75px;
+} */
+
+/* #mapboxgl-popup.mapboxgl-popup-anchor-top {
+    max-width: 500px;
+} */

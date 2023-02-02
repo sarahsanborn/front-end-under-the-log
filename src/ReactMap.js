@@ -128,15 +128,18 @@ function ReactMap({ dataMarkers, dataGeoJSON }) {
             latitude={Number(popupInfo.latitude)}
             longitude={Number(popupInfo.longitude)}
             onClose={() => setPopupInfo(null)}
+            maxWidth='1000px'
           >
-            <div>
-              <h1>{popupInfo.common_name}</h1>
-              <h2>{popupInfo.latin_name}</h2>
-              <p>Date Observed: {popupInfo.date}</p>
-              <p>Native: {popupInfo.native.toString()}</p>
-              <img src={popupInfo.image_url} alt="observed species"></img>
+            <div className="popup-container">
+              <img id="observation-image" src={popupInfo.image_url} alt="observed species"></img>
               <div>
-                <button onClick={() => mapsSelector()}>Get Directions</button>
+                <h1>{popupInfo.common_name}</h1>
+                <h2>{popupInfo.latin_name}</h2>
+                <p>Date Observed: {popupInfo.date}</p>
+                <p>Native: {popupInfo.native.toString()}</p>
+                <div>
+                  <button onClick={() => mapsSelector()}>Get Directions</button>
+                </div>
               </div>
             </div>
           </Popup>
