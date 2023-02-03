@@ -27,26 +27,36 @@ function ReactMap({ dataMarkers, dataGeoJSON }) {
       const mapboxSource = mapRef.current.getSource("taxa");
 
       if (feature["layer"]["id"] === "unclustered-point") {
+        console.log(feature);
         clusterID = feature.properties.id;
         setPopupInfo(feature["properties"]);
-      }
-
-      console.log(clusterID);
-      console.log(feature);
-      console.log(event.viewState);
-
-      mapboxSource.getClusterExpansionZoom(clusterID, (err, zoom) => {
-        if (err) {
-          console.log("I'm in the error!");
-          return;
-        }
-
         mapRef.current.easeTo({
           center: feature.geometry.coordinates,
-          zoom,
+          zoom: 15,
           duration: 500,
         });
-      });
+      }
+      else {
+        mapboxSource.getClusterExpansionZoom(clusterID, (err, zoom) => {
+          if (err) {
+            console.log("I'm in the error!");
+            return;
+          }
+  
+          mapRef.current.easeTo({
+            center: feature.geometry.coordinates,
+            zoom,
+            duration: 500,
+          });
+        });
+      }
+
+      // console.log(clusterID);
+      // console.log(feature);
+      // console.log(event.viewState);
+
+      
+
     } catch (err) {
       console.log("That's not a point!");
     }
