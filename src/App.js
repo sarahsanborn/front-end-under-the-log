@@ -1,6 +1,7 @@
-import ReactMap from "./ReactMap";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import ReactMap from "./ReactMap";
+import SearchBar from "./SearchBar";
 import "./App.css";
 
 function App() {
@@ -245,7 +246,7 @@ function App() {
       <header>
         <h1>under the log</h1>
         <ul className="search-filter-list">
-          <li>search bar</li>
+          <li><SearchBar searchByTaxon={getObservationsByTaxon} /></li>
           <li>dropdown filter</li>
         </ul>
       </header>
