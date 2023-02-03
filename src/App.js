@@ -5,6 +5,22 @@ import "./App.css";
 
 function App() {
   const [observationsList, setObservationsList] = useState([]);
+  const MONTHS = [
+    "null",
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
   // const [borageObservations, setBorageObservations] = useState([]);
   // const [salmonberryObservations, setSalmonberryObservations] = useState([]);
   // {latitude:47.3, longitude:-120.485, id:1}
@@ -97,6 +113,11 @@ function App() {
         continue;
       }
 
+      const initialDate = results[i]["created_at_details"]["date"];
+      const newDate = `${
+        MONTHS[parseInt(initialDate.slice(5, 7))]
+      } ${initialDate.slice(8)}, ${initialDate.slice(0, 4)}`;
+
       const info = {
         type: "Feature",
         geometry: {
@@ -107,7 +128,7 @@ function App() {
           id: results[i]["id"],
           common_name: results[i]["taxon"]["preferred_common_name"],
           latin_name: results[i]["taxon"]["name"],
-          date: results[i]["created_at_details"]["date"],
+          date: newDate,
           image_url: newImgUrl,
           latitude: results[i]["geojson"]["coordinates"][1],
           longitude: results[i]["geojson"]["coordinates"][0],
