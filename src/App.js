@@ -301,7 +301,10 @@ function App() {
   return (
     <div className="grid-container">
       <header>
-        <h1>under the log</h1>
+        <div>
+          <h1 className="title">Under The Log</h1>
+          <p className="tagline">Your Washington State foraging companion</p>
+        </div>
         <ul className="search-filter-list">
           <li>
             <SearchBar searchByTaxon={getObservationsByTaxon} />
