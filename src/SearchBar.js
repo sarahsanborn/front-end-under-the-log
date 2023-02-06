@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { GoSearch } from 'react-icons/go'
+import { BsSearch } from 'react-icons/bs'
 
 
 const SearchBar = ( { searchByTaxon }) => {
@@ -25,7 +27,8 @@ const SearchBar = ( { searchByTaxon }) => {
         onChange={handleChange}
         placeholder='Search by name'
       />
-      <input className="submit" type='submit' value='Submit'></input>
+      <button type="submit" className="submit"><BsSearch /></button>
+      {/* <input className="submit" type='submit' value="Submit" /> */}
       </form>
   );
 };

@@ -5,7 +5,7 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Whitney,"Trebuchet MS", Arial, sans-serif;
 }
 
 header {
@@ -34,6 +34,12 @@ header {
 
 .search-filter-list li {
     margin-left: 20px;
+}
+
+.submit {
+    border-radius: 35px;
+    border: none;
+    height: 1.5rem;
 }
 
 .popup-container {
