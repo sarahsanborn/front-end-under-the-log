@@ -1,11 +1,16 @@
+import ReactMap from "./ReactMap";
+import Dropdown from "./Dropdown";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import ReactMap from "./ReactMap";
 import SearchBar from "./SearchBar";
 import "./App.css";
 
+import edibleList from "./edibleList";
+import edibleListCommon from "./edibleList";
+
 function App() {
   const [observationsList, setObservationsList] = useState([]);
+  const [filteredObservationsList, setFilteredObservationsList] = useState([]);
   const MONTHS = [
     "null",
     "January",
@@ -84,6 +89,58 @@ function App() {
   // what use state is doing under the hood
   // https://blog.logrocket.com/using-react-usestate-object/
   // };
+
+  // filter list comes from dropdown (and search bar??)
+  const getLatinFilterResults = (filterList) => {
+    //  input authentication, lowercase?
+    const dbSearchTaxa = [];
+    const apiSearchTaxa = [];
+
+    // takes list of common names
+    // loops through, and for each adds latin to return list:
+    for (let item in edibleList) {
+      for (let filter in filterList) {
+        if (item.label.toLowerCase === filter.toLowerCase)
+          dbSearchTaxa.concat(item.value);
+        else {
+          apiSearchTaxa.push(filter);
+        }
+      }
+    }
+    // but what happens if they plug in latin names? --> goes to api
+    // what if name doesn't exist in db???
+
+    return [dbSearchTaxa, apiSearchTaxa];
+  };
+
+  // USING LATIN NAMES i(in dbSearchTaxa) ONLY
+  const pullFilteredObservations = (filterList) => {
+    const results = getLatinFilterResults(filterList);
+    const dbSearchTaxa = results[0];
+    const apiSearchTaxa = results[1];
+
+    const updatedObservations = [];
+
+    if (apiSearchTaxa) {
+      for (let taxa in apiSearchTaxa) {
+        // getObservationsByTaxon(taxa);
+        // BUT NEED TO CHANGE DATAUNPACKER TO SAVE TO DIFFENT STATE PIECES
+        // in this case, we want it to save to filterobservationlist
+      }
+    }
+
+    for (let observation in observationsList) {
+      for (let filter in dbSearchTaxa) {
+        if (filter === observation.properties.latin_name) {
+          updatedObservations.push(observation);
+        }
+      }
+    }
+    setFilteredObservationsList((currentObservations) => [
+      ...currentObservations,
+      ...updatedObservations,
+    ]);
+  };
 
   // DATA UNPACKER FOR GEOJSON
 
@@ -249,10 +306,14 @@ function App() {
           <p className="tagline">Your Washington State foraging companion</p>
         </div>
         <ul className="search-filter-list">
-          <li><SearchBar searchByTaxon={getObservationsByTaxon} /></li>
-          <li>dropdown filter</li>
+          <li>
+            <SearchBar searchByTaxon={getObservationsByTaxon} />
+          </li>
+          <li></li>
         </ul>
       </header>
+      <Dropdown>dropdown filter</Dropdown>
+
       <main>
         {/* <ReactMap dataMarkers={observationsList}></ReactMap> */}
         <ReactMap
