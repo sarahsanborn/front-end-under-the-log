@@ -92,6 +92,9 @@ function App() {
 
   // filter list comes from dropdown (and search bar??)
   const getLatinFilterResults = (filterList) => {
+    if (typeof filterList === "string") {
+      filterList = [filterList];
+    }
     //  input authentication, lowercase?
     const dbSearchTaxa = [];
     const apiSearchTaxa = [];
@@ -136,6 +139,7 @@ function App() {
         }
       }
     }
+
     setFilteredObservationsList((currentObservations) => [
       ...currentObservations,
       ...updatedObservations,
