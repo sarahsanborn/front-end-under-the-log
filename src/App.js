@@ -306,13 +306,12 @@ function App() {
           <p className="tagline">Your Washington State foraging companion</p>
         </div>
         <ul className="search-filter-list">
+          <Dropdown></Dropdown>
           <li>
             <SearchBar searchByTaxon={getObservationsByTaxon} />
           </li>
-          <li></li>
         </ul>
       </header>
-      <Dropdown>dropdown filter</Dropdown>
 
       <main>
         {/* <ReactMap dataMarkers={observationsList}></ReactMap> */}

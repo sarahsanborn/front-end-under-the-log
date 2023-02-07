@@ -13,7 +13,7 @@ const Dropdown = () => {
   const customValueRenderer = (selectedOptions) => {
     return selectedOptions.length
       ? selectedOptions.map(({ label }) => label + ", ")
-      : "Select taxa or input your own...";
+      : "Select a species";
   };
 
   // useEffect(() => {
@@ -52,7 +52,7 @@ const Dropdown = () => {
   // };
 
   return (
-    <div>
+    <li>
       <MultiSelect
         // edibleList={[{ label: "All", value: "*" }, ...edibleList]}
         // placeholderButtonLabel="Colors"
@@ -78,7 +78,7 @@ const Dropdown = () => {
       {/* <Button variant="Contained" onClick={retrieveRelevantResults}> */}
       {/* Submit
       </Button> */}
-    </div>
+    </li>
   );
 };
 
