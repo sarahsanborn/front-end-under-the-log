@@ -14,7 +14,7 @@ function ReactMap({ dataMarkers, dataGeoJSON }) {
   const [viewState, setViewState] = useState({
     latitude: 47.31,
     longitude: -120.485,
-    zoom: 6.4,
+    zoom: 6.2,
   });
 
   const mapRef = useRef(null);
@@ -109,7 +109,7 @@ function ReactMap({ dataMarkers, dataGeoJSON }) {
       <Map
         {...viewState}
         onMove={(event) => setViewState(event.viewState)}
-        style={{ width: "100vw", height: "90vh" }}
+        style={{ width: "100vw", height: "85vh" }}
         mapStyle="mapbox://styles/foragingcapstone/cldc9qo4i001m01lexygzvftr/draft"
         // mapStyle="mapbox://styles/foragingcapstone/cldj35obm000101p9dxvz40cc/draft"
         mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
