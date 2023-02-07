@@ -71,6 +71,20 @@ header {
     background-color: #30677d;
 }
 
-/* #mapboxgl-popup.mapboxgl-popup-anchor-top {
-    max-width: 500px;
+/* .e-multiselect .e-delim-values {
+    -webkit-text-fill-color: blue;
+    font-size: 16px;
+    font-family: Whitney,"Trebuchet MS", Arial, sans-serif;
 } */
+
+/* search-bar {
+    font-size: 16px;
+} */
+
+.dropdown {
+    font-family: Whitney,"Trebuchet MS", Arial, sans-serif !important;
+}
+
+.gray {
+    font-family: Whitney,"Trebuchet MS", Arial, sans-serif !important;
+}

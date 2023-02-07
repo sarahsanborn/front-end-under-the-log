@@ -32,7 +32,7 @@ function ReactMap({ dataMarkers, dataGeoJSON }) {
         setPopupInfo(feature["properties"]);
         mapRef.current.easeTo({
           center: feature.geometry.coordinates,
-          zoom: 15,
+          zoom: 10,
           duration: 500,
         });
       }

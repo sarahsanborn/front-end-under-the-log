@@ -312,7 +312,7 @@ function App() {
         </div>
         <ul className="search-filter-list">
           <li>
-            <SearchBar searchByTaxon={getObservationsByTaxon} />
+            <SearchBar className='search-bar' searchByTaxon={getObservationsByTaxon} />
           </li>
           <li></li>
         </ul>
