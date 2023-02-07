@@ -306,7 +306,7 @@ function App() {
           <p className="tagline">Your Washington State foraging companion</p>
         </div>
         <ul className="search-filter-list">
-          <Dropdown></Dropdown>
+          <Dropdown>test</Dropdown>
           <li>
             <SearchBar className='search-bar' searchByTaxon={getObservationsByTaxon} />
           </li>
