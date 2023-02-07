@@ -123,9 +123,7 @@ function App() {
 
     if (apiSearchTaxa) {
       for (let taxa in apiSearchTaxa) {
-        // getObservationsByTaxon(taxa);
-        // BUT NEED TO CHANGE DATAUNPACKER TO SAVE TO DIFFENT STATE PIECES
-        // in this case, we want it to save to filterobservationlist
+        getObservationsByTaxon(taxa, true);
       }
     }
 
@@ -144,7 +142,7 @@ function App() {
 
   // DATA UNPACKER FOR GEOJSON
 
-  const dataUnpacker = (results) => {
+  const dataUnpacker = (results, filter) => {
     const updatedObservations = [];
 
     for (let i in results) {
@@ -197,15 +195,22 @@ function App() {
       updatedObservations.push(info);
     }
 
-    setObservationsList((currentObservations) => [
-      ...currentObservations,
-      ...updatedObservations,
-    ]);
+    if (filter === false) {
+      setObservationsList((currentObservations) => [
+        ...currentObservations,
+        ...updatedObservations,
+      ]);
+    } else {
+      setFilteredObservationsList((currentObservations) => [
+        ...currentObservations,
+        ...updatedObservations,
+      ]);
+    }
 
     console.log(observationsList);
   };
 
-  const getObservationsByTaxon = async (taxon, page = 1) => {
+  const getObservationsByTaxon = async (taxon, filter = false, page = 1) => {
     try {
       const response = await axios.get(`${URL}/observations`, {
         params: {
@@ -224,10 +229,10 @@ function App() {
       const numOfPages = 1 + Math.floor(response.data.total_results / 200);
 
       if (numOfPages === 1) {
-        dataUnpacker(response.data.results);
+        dataUnpacker(response.data.results, filter);
       } else {
         let currentPage = page;
-        dataUnpacker(response.data.results);
+        dataUnpacker(response.data.results, filter);
 
         if (currentPage === numOfPages) {
           return null;
@@ -235,7 +240,7 @@ function App() {
 
         currentPage++;
         // CALL AXIOS WITH CURRENT PAGE
-        getObservationsByTaxon(taxon, currentPage);
+        getObservationsByTaxon(taxon, filter, currentPage);
       }
     } catch (err) {
       console.log("ERROR!", err);
@@ -306,12 +311,13 @@ function App() {
           <p className="tagline">Your Washington State foraging companion</p>
         </div>
         <ul className="search-filter-list">
-          <Dropdown></Dropdown>
           <li>
             <SearchBar searchByTaxon={getObservationsByTaxon} />
           </li>
+          <li></li>
         </ul>
       </header>
+      <Dropdown>dropdown filter</Dropdown>
 
       <main>
         {/* <ReactMap dataMarkers={observationsList}></ReactMap> */}
