@@ -320,6 +320,8 @@ function App() {
           dataGeoJSON={{
             type: "FeatureCollection",
             features: observationsList,
+            // eventually want to replace w/this for filtering:
+            // filteredObservationsList ? filteredObservationsList: observationsList,
           }}
         ></ReactMap>
       </main>
