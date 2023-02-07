@@ -101,7 +101,7 @@ function App() {
     for (let item in edibleList) {
       for (let filter in filterList) {
         if (item.label.toLowerCase === filter.toLowerCase)
-          dbSearchTaxa.concat(item.value);
+          dbSearchTaxa.concat(item[value]);
         else {
           apiSearchTaxa.push(filter);
         }
@@ -127,10 +127,12 @@ function App() {
       }
     }
 
-    for (let observation in observationsList) {
-      for (let filter in dbSearchTaxa) {
-        if (filter === observation.properties.latin_name) {
-          updatedObservations.push(observation);
+    if (dbSearchTaxa) {
+      for (let observation in observationsList) {
+        for (let filter in dbSearchTaxa) {
+          if (filter === observation.properties.latin_name) {
+            updatedObservations.push(observation);
+          }
         }
       }
     }
@@ -313,7 +315,10 @@ function App() {
         <ul className="search-filter-list">
           <Dropdown></Dropdown>
           <li>
-            <SearchBar className='search-bar' searchByTaxon={getObservationsByTaxon} />
+            <SearchBar
+              className="search-bar"
+              searchByTaxon={getObservationsByTaxon}
+            />
           </li>
           <li></li>
         </ul>
