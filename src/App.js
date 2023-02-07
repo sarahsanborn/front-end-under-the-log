@@ -302,7 +302,7 @@ function App() {
     <div className="grid-container">
       <header>
         <div>
-          <h1 className="title">Under The Logs</h1>
+          <h1 className="title">Under The Log</h1>
           <p className="tagline">Your Washington State foraging companion</p>
         </div>
         <ul className="search-filter-list">
