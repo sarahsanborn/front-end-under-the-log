@@ -308,7 +308,7 @@ function App() {
         <ul className="search-filter-list">
           <Dropdown></Dropdown>
           <li>
-            <SearchBar searchByTaxon={getObservationsByTaxon} />
+            <SearchBar className='search-bar' searchByTaxon={getObservationsByTaxon} />
           </li>
         </ul>
       </header>
