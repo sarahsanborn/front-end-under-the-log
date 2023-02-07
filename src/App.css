@@ -14,17 +14,18 @@ header {
     justify-content: space-between;
     align-items: center;
     background-color: #265061;
-    color: #FFF5F3;
     height: 15vh;
 }
 
 .title {
     margin-block-end: 0;
+    color: #FFF5F3;
 }
 
 .tagline {
     margin-block-start: 0;
     font-style: italic;
+    color: #FFF5F3;
 }
 
 .search-filter-list {
