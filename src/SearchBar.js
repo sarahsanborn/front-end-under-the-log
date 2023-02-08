@@ -6,14 +6,17 @@ const SearchBar = ({ searchByTaxon }) => {
 
   const handleChange = (event) => {
     setFormData(event.target.value);
+    console.log('handlin some change')
   };
 
   const handleSearchSubmit = (event) => {
+    console.log('something was submitted!')
     event.preventDefault();
     searchByTaxon(formData);
   };
 
   const handleClear = () => {
+    console.log('We are in the clear');
     setFormData('');
   };
 
