@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { MultiSelect } from "react-multi-select-component";
 import Button from "@mui/material/Button";
 import Multiselect from "react-widgets/Multiselect";
-import { AiOutlineDown } from 'react-icons/ai'
+import { AiOutlineDown } from "react-icons/ai";
 
 import edibleList from "./edibleList";
 
@@ -11,9 +11,11 @@ const Dropdown = () => {
   const [selectedPlants, setSelectedPlants] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleSelection = plant => {
+  const handleSelection = (plant) => {
     if (selectedPlants.includes(plant)) {
-      setSelectedPlants(selectedPlants.filter(selectedPlant => selectedPlant !== plant));
+      setSelectedPlants(
+        selectedPlants.filter((selectedPlant) => selectedPlant !== plant)
+      );
     } else {
       setSelectedPlants([...selectedPlants, plant]);
     }
@@ -21,18 +23,21 @@ const Dropdown = () => {
 
   return (
     <div className="dropdown-container">
-      <Button className="dropdown-button"  onClick={() => setIsOpen(!isOpen)}>
-        <span className="select-species-button"> Select a species... <AiOutlineDown /> </span>
+      <Button className="dropdown-button" onClick={() => setIsOpen(!isOpen)}>
+        <span className="select-species-button">
+          {" "}
+          Select a species... <AiOutlineDown />{" "}
+        </span>
       </Button>
       {isOpen && (
         <ul className="dropdown-list">
-          {edibleList.map(plant => (
+          {edibleList.map((plant) => (
             <li key={plant.id} className="dropdown-list-item">
               <label>
                 <input
                   type="checkbox"
-                  checked={selectedPlants.includes(plant)}
-                  onChange={() => handleSelection(plant)}
+                  checked={selectedPlants.includes(plant.label)}
+                  onChange={() => handleSelection(plant.label)}
                 />
                 {plant.label}
               </label>
