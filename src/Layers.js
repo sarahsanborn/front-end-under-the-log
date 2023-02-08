@@ -1,6 +1,3 @@
-import { FaLeaf } from "react-icons/fa";
-const leaf = <FaLeaf></FaLeaf>
-
 const clusterLayer = {
   id: 'clusters',
   type: 'circle',
@@ -29,14 +26,6 @@ const unclusteredPointLayer = {
   type: 'circle',
   source: 'taxa',
   filter: ['!', ['has', 'point_count']],
-  // layout: {
-  //   'icon-image': "{leaf}",
-  //   'icon-size': 0.25
-  // }
-  // layout: {
-  //   'icon-image': <FaLeaf></FaLeaf>,
-  //   'icon-size': 0.25
-  // }
   paint: {
     'circle-color': '#FC6A03',
     'circle-radius': 5,

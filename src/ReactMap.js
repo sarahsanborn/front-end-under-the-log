@@ -1,9 +1,7 @@
 // import Map, { Marker, Popup } from "react-map-gl";
-import Map, { Source, Layer, Popup, LngLat } from "react-map-gl";
-import MapRef from "react-map-gl";
+import Map, { Source, Layer, Popup } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import React, { useState, useMemo, useRef } from "react";
-import { FaLeaf } from "react-icons/fa";
+import React, { useState, useRef } from "react";
 import {
   clusterLayer,
   clusterCountLayer,
@@ -27,7 +25,6 @@ function ReactMap({ dataMarkers, dataGeoJSON }) {
       const mapboxSource = mapRef.current.getSource("taxa");
 
       if (feature["layer"]["id"] === "unclustered-point") {
-        console.log(feature);
         clusterID = feature.properties.id;
         setPopupInfo(feature["properties"]);
         mapRef.current.easeTo({
@@ -50,11 +47,6 @@ function ReactMap({ dataMarkers, dataGeoJSON }) {
           });
         });
       }
-
-      // console.log(clusterID);
-      // console.log(feature);
-      // console.log(event.viewState);
-
       
 
     } catch (err) {
@@ -62,43 +54,7 @@ function ReactMap({ dataMarkers, dataGeoJSON }) {
     }
   };
 
-  // const layerStyle = {
-  //   id: "point",
-  //   type: "circle",
-  //   paint: {
-  //     "circle-radius": 10,
-  //     "circle-color": "#FFDB58",
-  //   },
-  // };
-
-  // const markers = useMemo(
-  //   () =>
-  //     dataMarkers.map((dataMarker) => (
-  //       <Marker
-  //         key={dataMarker.id}
-  //         longitude={dataMarker.longitude}
-  //         latitude={dataMarker.latitude}
-  //         anchor="bottom"
-  //         onClick={(event) => {
-  //           event.originalEvent.stopPropagation();
-  //           setPopupInfo(dataMarker);
-  //         }}
-  //       >
-  //         <FaLeaf color="#265061" />
-  //       </Marker>
-  //     )),
-  //   [dataMarkers]
-  // );
-
-  // Here is a function that will allow us to have a button so someone can open Google maps
   function mapsSelector() {
-    console.log(navigator);
-    //   if /* if we're on iOS, open in Apple Maps */
-    //   ((navigator.userAgentData.vendor("iPhone") != -1) ||
-    //    (navigator.userAgentData.vendor("iPad") != -1) ||
-    //    (navigator.userAgentData.vendor("iPod") != -1))
-    //   window.open(`maps://maps.google.com/maps?daddr=${popupInfo.latitude},${popupInfo.longitude}&amp;ll=`);
-    // else /* else use Google */
     window.open(
       `https://maps.google.com/maps?daddr=${popupInfo.latitude},${popupInfo.longitude}&amp;ll=`
     );
@@ -130,7 +86,6 @@ function ReactMap({ dataMarkers, dataGeoJSON }) {
           <Layer {...unclusteredPointLayer} />
         </Source>
 
-        {/* {markers} */}
         {popupInfo && (
           <Popup
             anchor="top"

@@ -72,40 +72,6 @@ header {
     background-color: #30677d;
 }
 
-/* .e-multiselect .e-delim-values {
-    -webkit-text-fill-color: blue;
-    font-size: 16px;
-    font-family: Whitney,"Trebuchet MS", Arial, sans-serif;
-} */
-
-/* search-bar {
-    font-size: 16px;
-} */
-
-/* .dropdown {
-    font-family: Whitney,"Trebuchet MS", Arial, sans-serif !important;
-}
-
-.dropdown-ul {
-    position: absolute;
-    z-index: 1;
-}
-
-.dropdown-button {
-    background-color: #FFF5F3;
-    font-size: 16px;
-    list-style: none;
-    font-family: Whitney,"Trebuchet MS", Arial, sans-serif;
-} */
-
-/* .gray {
-    font-family: Whitney,"Trebuchet MS", Arial, sans-serif !important;
-}
-
-.rmsc {
-    font-family: Whitney,"Trebuchet MS", Arial, sans-serif;
-} */
-
 .dropdown-container {
     position: relative;
 }
@@ -141,12 +107,6 @@ header {
 .dropdown-list-item input[type="checkbox"] {
     margin-right: 8px;
 }
-
-/* .done-button-list-item {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
 
 .done-button {
     background-color: #FFF5F3;
