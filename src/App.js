@@ -6,7 +6,7 @@ import SearchBar from "./SearchBar";
 import "./App.css";
 
 import edibleList from "./edibleList";
-import edibleListCommon from "./edibleList";
+// import edibleListCommon from "./edibleList";
 
 function App() {
   const [observationsList, setObservationsList] = useState([]);
@@ -44,19 +44,19 @@ function App() {
 
   // BELOW WILL CHANGE TO RETRIEVE FROM STATE ONCE
   // LARGER GET CALL IS SET UP
-  const getObservationByID = async (id) => {
-    try {
-      const response = await axios.get(`${URL}/identifications`, {
-        params: {
-          id: id,
-        },
-      });
-      setObservationsList(response.data.results);
-      console.log("success!", response.data.results);
-    } catch (err) {
-      console.log("ERROR!", err);
-    }
-  };
+  // const getObservationByID = async (id) => {
+  //   try {
+  //     const response = await axios.get(`${URL}/identifications`, {
+  //       params: {
+  //         id: id,
+  //       },
+  //     });
+  //     setObservationsList(response.data.results);
+  //     console.log("success!", response.data.results);
+  //   } catch (err) {
+  //     console.log("ERROR!", err);
+  //   }
+  // };
 
   // const dataUnpacker = (results) => {
   //   const updatedObservations = [];
@@ -255,16 +255,13 @@ function App() {
 
   useEffect(() => {
     // // getObservationByID(147215905);
-    // getObservationsByTaxon("salmonberry");
-    getObservationsByTaxon("borage");
-    // getObservationsByTaxon("wood sorrel");
-    // getObservationsByTaxon("pickleweed");
-    // // getObservationsByTaxon("chanterelle");
-    // getObservationsByTaxon("Cantharellus cibarius");
-    // getObservationsByTaxon("Cantharellus formosus");
-    // getObservationsByTaxon("arrowleaf balsamroot");
-
-    console.log("obs list state contains:", observationsList);
+    for (let item of edibleList) {
+      for (let taxa of item.value) {
+        getObservationsByTaxon(taxa);
+      }
+    }
+    // getObservationsByTaxon does not have any dependencies that change
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // const fakeGeoJSON = {
@@ -333,7 +330,10 @@ function App() {
         <ReactMap
           dataGeoJSON={{
             type: "FeatureCollection",
-            features: filteredObservationsList,
+            features:
+              filteredObservationsList.length !== 0
+                ? filteredObservationsList
+                : observationsList,
             // eventually want to replace w/this for filtering:
             // filteredObservationsList ? filteredObservationsList: observationsList,
           }}
