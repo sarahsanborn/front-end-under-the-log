@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { GoSearch } from 'react-icons/go'
-import { BsSearch } from 'react-icons/bs'
+import { GoSearch } from "react-icons/go";
+import { BsSearch } from "react-icons/bs";
 
-
-const SearchBar = ( { searchByTaxon }) => {
+const SearchBar = ({ searchByTaxon }) => {
   const [formData, setFormData] = useState("");
 
   const handleChange = (event) => {
@@ -14,23 +13,25 @@ const SearchBar = ( { searchByTaxon }) => {
     event.preventDefault();
     searchByTaxon(formData);
 
-    setFormData('Search by name')
+    // setFormData('Search by name')
   };
 
   return (
     <form onSubmit={handleSearchSubmit}>
       <input
-        type='text'
-        id='search'
-        name='search'
+        type="text"
+        id="search"
+        name="search"
         value={formData}
         onChange={handleChange}
         placeholder='Search by name'
         className="search-input"
       />
-      <button type="submit" className="submit">Search <BsSearch /></button>
+      <button type="submit" className="submit">
+        Search <BsSearch />
+      </button>
       {/* <input className="submit" type='submit' value="Submit" /> */}
-      </form>
+    </form>
   );
 };
 

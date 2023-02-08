@@ -92,17 +92,20 @@ function App() {
 
   // filter list comes from dropdown (and search bar??)
   const getLatinFilterResults = (filterList) => {
+    if (typeof filterList === "string") {
+      filterList = [filterList];
+    }
     //  input authentication, lowercase?
     const dbSearchTaxa = [];
     const apiSearchTaxa = [];
 
     // takes list of common names
     // loops through, and for each adds latin to return list:
-    for (let item in edibleList) {
-      for (let filter in filterList) {
-        if (item.label.toLowerCase === filter.toLowerCase)
+    for (let item of edibleList) {
+      for (let filter of filterList) {
+        if (item.label.toLowerCase() === filter.toLowerCase()) {
           dbSearchTaxa.concat(item.value);
-        else {
+        } else if (!apiSearchTaxa.includes(filter)) {
           apiSearchTaxa.push(filter);
         }
       }
@@ -122,18 +125,21 @@ function App() {
     const updatedObservations = [];
 
     if (apiSearchTaxa) {
-      for (let taxa in apiSearchTaxa) {
+      for (let taxa of apiSearchTaxa) {
         getObservationsByTaxon(taxa, true);
       }
     }
 
-    for (let observation in observationsList) {
-      for (let filter in dbSearchTaxa) {
-        if (filter === observation.properties.latin_name) {
-          updatedObservations.push(observation);
+    if (dbSearchTaxa) {
+      for (let observation in observationsList) {
+        for (let filter in dbSearchTaxa) {
+          if (filter === observation.properties.latin_name) {
+            updatedObservations.push(observation);
+          }
         }
       }
     }
+
     setFilteredObservationsList((currentObservations) => [
       ...currentObservations,
       ...updatedObservations,
@@ -249,14 +255,14 @@ function App() {
 
   useEffect(() => {
     // // getObservationByID(147215905);
-    getObservationsByTaxon("salmonberry");
+    // getObservationsByTaxon("salmonberry");
     getObservationsByTaxon("borage");
-    getObservationsByTaxon("wood sorrel");
-    getObservationsByTaxon("pickleweed");
+    // getObservationsByTaxon("wood sorrel");
+    // getObservationsByTaxon("pickleweed");
     // // getObservationsByTaxon("chanterelle");
-    getObservationsByTaxon("Cantharellus cibarius");
-    getObservationsByTaxon("Cantharellus formosus");
-    getObservationsByTaxon("arrowleaf balsamroot");
+    // getObservationsByTaxon("Cantharellus cibarius");
+    // getObservationsByTaxon("Cantharellus formosus");
+    // getObservationsByTaxon("arrowleaf balsamroot");
 
     console.log("obs list state contains:", observationsList);
   }, []);
@@ -313,7 +319,10 @@ function App() {
         <ul className="search-filter-list">
           <Dropdown></Dropdown>
           <li>
-            <SearchBar className='search-bar' searchByTaxon={getObservationsByTaxon} />
+            <SearchBar
+              className="search-bar"
+              searchByTaxon={pullFilteredObservations}
+            />
           </li>
           <li></li>
         </ul>
@@ -324,7 +333,7 @@ function App() {
         <ReactMap
           dataGeoJSON={{
             type: "FeatureCollection",
-            features: observationsList,
+            features: filteredObservationsList,
             // eventually want to replace w/this for filtering:
             // filteredObservationsList ? filteredObservationsList: observationsList,
           }}
