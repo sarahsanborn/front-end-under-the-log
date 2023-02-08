@@ -101,11 +101,11 @@ function App() {
 
     // takes list of common names
     // loops through, and for each adds latin to return list:
-    for (let item in edibleList) {
-      for (let filter in filterList) {
-        if (item.label.toLowerCase === filter.toLowerCase)
-          dbSearchTaxa.concat(item[value]);
-        else {
+    for (let item of edibleList) {
+      for (let filter of filterList) {
+        if (item.label.toLowerCase() === filter.toLowerCase()) {
+          dbSearchTaxa.concat(item.value);
+        } else if (!apiSearchTaxa.includes(filter)) {
           apiSearchTaxa.push(filter);
         }
       }
@@ -125,7 +125,7 @@ function App() {
     const updatedObservations = [];
 
     if (apiSearchTaxa) {
-      for (let taxa in apiSearchTaxa) {
+      for (let taxa of apiSearchTaxa) {
         getObservationsByTaxon(taxa, true);
       }
     }
@@ -255,14 +255,14 @@ function App() {
 
   useEffect(() => {
     // // getObservationByID(147215905);
-    getObservationsByTaxon("salmonberry");
+    // getObservationsByTaxon("salmonberry");
     getObservationsByTaxon("borage");
-    getObservationsByTaxon("wood sorrel");
-    getObservationsByTaxon("pickleweed");
+    // getObservationsByTaxon("wood sorrel");
+    // getObservationsByTaxon("pickleweed");
     // // getObservationsByTaxon("chanterelle");
-    getObservationsByTaxon("Cantharellus cibarius");
-    getObservationsByTaxon("Cantharellus formosus");
-    getObservationsByTaxon("arrowleaf balsamroot");
+    // getObservationsByTaxon("Cantharellus cibarius");
+    // getObservationsByTaxon("Cantharellus formosus");
+    // getObservationsByTaxon("arrowleaf balsamroot");
 
     console.log("obs list state contains:", observationsList);
   }, []);
@@ -321,7 +321,7 @@ function App() {
           <li>
             <SearchBar
               className="search-bar"
-              searchByTaxon={getObservationsByTaxon}
+              searchByTaxon={pullFilteredObservations}
             />
           </li>
           <li></li>
@@ -333,7 +333,7 @@ function App() {
         <ReactMap
           dataGeoJSON={{
             type: "FeatureCollection",
-            features: observationsList,
+            features: filteredObservationsList,
             // eventually want to replace w/this for filtering:
             // filteredObservationsList ? filteredObservationsList: observationsList,
           }}
