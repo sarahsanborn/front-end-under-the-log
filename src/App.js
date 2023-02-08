@@ -214,11 +214,13 @@ function App() {
     <div className="grid-container">
       <header>
         <div>
-          <h1 className="title">Under The Log</h1>
+          <h1 className="title">UNDER THE LOG</h1>
           <p className="tagline">Your Washington State foraging companion</p>
         </div>
         <ul className="search-filter-list">
-          <Dropdown filterByTaxon={pullFilteredObservations}></Dropdown>
+          <li>
+            <Dropdown filterByTaxon={pullFilteredObservations}></Dropdown>
+          </li>
           <li>
             <SearchBar
               className="search-bar"

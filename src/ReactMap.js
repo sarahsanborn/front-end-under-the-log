@@ -66,7 +66,7 @@ function ReactMap({ dataMarkers, dataGeoJSON }) {
         {...viewState}
         onMove={(event) => setViewState(event.viewState)}
         style={{ width: "100vw", height: "85vh" }}
-        mapStyle="mapbox://styles/foragingcapstone/cldc9qo4i001m01lexygzvftr/draft"
+        mapStyle="mapbox://styles/foragingcapstone/cldc9qo4i001m01lexygzvftr"
         // mapStyle="mapbox://styles/foragingcapstone/cldj35obm000101p9dxvz40cc/draft"
         mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
         interactiveLayerIds={[clusterLayer.id, unclusteredPointLayer.id]}

@@ -20,6 +20,7 @@ header {
 .title {
     margin-block-end: 0;
     color: #FFF5F3;
+    font-family: CenturyGothic, Gill Sans, sans-serif;
 }
 
 .tagline {
@@ -28,21 +29,7 @@ header {
     color: #FFF5F3;
 }
 
-.search-filter-list {
-    display: flex;
-    list-style: none;
-}
-
-.search-filter-list li {
-    margin-left: 20px;
-}
-
-.submit {
-    border-radius: 35px;
-    border: none;
-    height: 1.5rem;
-}
-
+/* Map */
 .popup-container {
     display: flex;
     justify-content: space-between;
@@ -72,6 +59,57 @@ header {
     background-color: #30677d;
 }
 
+
+/* Search */
+.search-filter-list {
+    display: flex;
+    list-style: none;
+}
+
+.search-filter-list li {
+    margin-left: 20px;
+}
+
+.search-container {
+    background-color: #FFF5F3;
+}
+
+/* .submit {
+    background-color: #FFF5F3;
+    padding: 0.5em 1em;
+    font-size: 16px;
+    font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+} */
+
+.search-input {
+    padding: 0.5em;
+    font-size: 16px;
+    font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
+    margin-right: 0.5em;
+    border: none;
+    /* border-bottom: 1px solid #999; */
+    outline: none;
+    background-color: #FFF5F3;
+    height: 14px;
+}
+
+.clear-input {
+    border: none;
+    outline: none;
+    background-color: #FFF5F3;
+    color: #7a8082;
+    /* margin-top: 5px; */
+    padding-top: 6px;
+    padding-bottom: 0;
+}
+
+
+/* Dropdown filter */
 .dropdown-container {
     position: relative;
 }
@@ -108,7 +146,7 @@ header {
     margin-right: 8px;
 }
 
-.done-button {
+.dropdown-button {
     background-color: #FFF5F3;
     margin-bottom: 10px;
     border: 1px solid;
@@ -118,8 +156,12 @@ header {
     font-family: "Whitney", "Trebuchet MS", Arial, sans-serif;
 }
 
-.search-input {
-    font-size: 16px;
-    top: 100%;
-    left: 0;
+.rotated-up {
+    transform: rotate(180deg);
+    transition: transform .10s linear;
+}  
+
+.rotated-down {
+    transform: rotate(0deg);
+    transition: transform .10s linear;
 }
