@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BsSearch } from "react-icons/bs";
+// import { BsSearch } from "react-icons/bs";
 
 const SearchBar = ({ searchByTaxon }) => {
   const [formData, setFormData] = useState("");
@@ -14,7 +14,7 @@ const SearchBar = ({ searchByTaxon }) => {
   };
 
   return (
-    <form onSubmit={handleSearchSubmit}>
+    <form className="search-bar-list-item" onSubmit={handleSearchSubmit}>
       <input
         type="text"
         id="search"
@@ -25,7 +25,7 @@ const SearchBar = ({ searchByTaxon }) => {
         className="search-input"
       />
       <button type="submit" className="submit">
-        Search <BsSearch />
+        Search
       </button>
     </form>
   );

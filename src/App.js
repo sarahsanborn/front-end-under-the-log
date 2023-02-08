@@ -218,7 +218,9 @@ function App() {
           <p className="tagline">Your Washington State foraging companion</p>
         </div>
         <ul className="search-filter-list">
-          <Dropdown filterByTaxon={pullFilteredObservations}></Dropdown>
+          <li>
+            <Dropdown filterByTaxon={pullFilteredObservations}></Dropdown>
+          </li>
           <li>
             <SearchBar
               className="search-bar"

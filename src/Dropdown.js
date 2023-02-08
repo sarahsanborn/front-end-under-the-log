@@ -4,10 +4,12 @@ import { AiOutlineDown } from "react-icons/ai";
 import edibleList from "./edibleList";
 
 const Dropdown = ({ filterByTaxon }) => {
+  const [allSelected, setAllSelected] = useState(false);
   const [selectedSpecies, setSelectedSpecies] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
 
   const handleSelection = (species) => {
+    setAllSelected(false);
     if (selectedSpecies.includes(species)) {
       setSelectedSpecies(
         selectedSpecies.filter((selectedPlant) => selectedPlant !== species)
@@ -21,6 +23,17 @@ const Dropdown = ({ filterByTaxon }) => {
     setIsOpen(false);
     filterByTaxon(selectedSpecies);
   };
+
+  const handleSelectAll = () => {
+    setAllSelected(true);
+    const allSpecies = edibleList.map(species => species.label);
+    setSelectedSpecies(allSpecies);
+  }
+
+  const handleClear = () => {
+    setAllSelected(false);
+    setSelectedSpecies([]);
+  }
 
   return (
     <div className="dropdown-container">
@@ -39,14 +52,20 @@ const Dropdown = ({ filterByTaxon }) => {
             <li key={species.id} className="dropdown-list-item">
               <input
                 type="checkbox"
-                checked={selectedSpecies.includes(species.label)}
+                checked={allSelected || selectedSpecies.includes(species.label)}
                 onChange={() => handleSelection(species.label)}
               />
               {species.label}
             </li>
           ))}
           <li>
-            <button className="done-button" onClick={handleDone}>
+            <button className="dropdown-button" onClick={handleSelectAll}>Select All</button>
+          </li>
+          <li>
+            <button className="dropdown-button" onClick={handleClear}>Clear</button>
+          </li>
+          <li>
+            <button className="dropdown-button" onClick={handleDone}>
               Done
             </button>
           </li>
