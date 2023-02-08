@@ -169,7 +169,7 @@ function App() {
         params: {
           taxon_name: taxon,
           place_id: 46,
-          year: [2021, 2023],
+          year: [2021, 2022, 2023],
           photos: true,
           quality_grade: "research",
           captive: false,
