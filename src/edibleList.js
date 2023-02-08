@@ -1,12 +1,3 @@
-// const edibleListCommon = [
-//   "salmonberry",
-//   "borage",
-//   "wood sorrel",
-//   "pickleweed",
-//   "chanterelle",
-//   "arrowleaf balsamroot",
-// ];
-
 const edibleList = [
   {
     id: 1,
