@@ -27,19 +27,18 @@ function ReactMap({ dataMarkers, dataGeoJSON }) {
       if (feature["layer"]["id"] === "unclustered-point") {
         clusterID = feature.properties.id;
         setPopupInfo(feature["properties"]);
-        mapRef.current.easeTo({
-          center: feature.geometry.coordinates,
-          zoom: 10,
-          duration: 500,
-        });
-      }
-      else {
+        // mapRef.current.easeTo({
+        //   center: feature.geometry.coordinates,
+        //   zoom: 10,
+        //   duration: 500,
+        // });
+      } else {
         mapboxSource.getClusterExpansionZoom(clusterID, (err, zoom) => {
           if (err) {
             console.log("I'm in the error!");
             return;
           }
-  
+
           mapRef.current.easeTo({
             center: feature.geometry.coordinates,
             zoom,
@@ -47,8 +46,6 @@ function ReactMap({ dataMarkers, dataGeoJSON }) {
           });
         });
       }
-      
-
     } catch (err) {
       console.log("That's not a point!");
     }
@@ -93,17 +90,26 @@ function ReactMap({ dataMarkers, dataGeoJSON }) {
             latitude={Number(popupInfo.latitude)}
             longitude={Number(popupInfo.longitude)}
             onClose={() => setPopupInfo(null)}
-            maxWidth='1000px'
+            maxWidth="1000px"
           >
             <div className="popup-container">
-              <img id="observation-image" src={popupInfo.image_url} alt="observed species"></img>
+              <img
+                id="observation-image"
+                src={popupInfo.image_url}
+                alt="observed species"
+              ></img>
               <div>
                 <h1>{popupInfo.common_name}</h1>
                 <h2>{popupInfo.latin_name}</h2>
                 <p>Date Observed: {popupInfo.date}</p>
                 <p>Native: {popupInfo.native.toString()}</p>
                 <div id="button-container">
-                  <button id="get-directions-button" onClick={() => mapsSelector()}>Get Directions</button>
+                  <button
+                    id="get-directions-button"
+                    onClick={() => mapsSelector()}
+                  >
+                    Get Directions
+                  </button>
                 </div>
               </div>
             </div>
