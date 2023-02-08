@@ -26,6 +26,7 @@ const SearchBar = ( { searchByTaxon }) => {
         value={formData}
         onChange={handleChange}
         placeholder='Search by name'
+        className="search-input"
       />
       <button type="submit" className="submit">Search <BsSearch /></button>
       {/* <input className="submit" type='submit' value="Submit" /> */}

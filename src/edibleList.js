@@ -26,17 +26,17 @@ const edibleList = [
   {
     id: 4,
     value: "34b2b58a-0123-49e2-b2de-1eef0922139b",
-    label: "pickleweed",
+    label: "Pickleweed",
   },
   {
     id: 5,
     value: ["Cantharellus cibarius", "Cantharellus formosus"],
-    label: "chanterelle",
+    label: "Chanterelle",
   },
   {
     id: 6,
     value: "b68c6b76-bbe0-49a6-8a90-209b8d88d353",
-    label: "arrowleaf balsamroot",
+    label: "Arrowleaf balsamroot",
   },
 ];
 
