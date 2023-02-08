@@ -41,9 +41,9 @@ const Dropdown = ({ filterByTaxon }) => {
         className={`select-species-button ${isOpen ? "open" : ""}`}
         onClick={() => setIsOpen(!isOpen)}
       >
-        Select a Species...
-        <span>
-          <AiOutlineDown></AiOutlineDown>
+        Select a Species
+        <span> 
+          <AiOutlineDown className={isOpen ? "rotated-up" : "rotated-down"}></AiOutlineDown>
         </span>
       </button>
       {isOpen && (
