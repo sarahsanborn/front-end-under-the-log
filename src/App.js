@@ -6,7 +6,6 @@ import SearchBar from "./SearchBar";
 import "./App.css";
 
 import edibleList from "./edibleList";
-// import edibleListCommon from "./edibleList";
 
 function App() {
   const [observationsList, setObservationsList] = useState([]);
@@ -27,60 +26,9 @@ function App() {
     "December",
   ];
 
-  // const [borageObservations, setBorageObservations] = useState([]);
-  // const [salmonberryObservations, setSalmonberryObservations] = useState([]);
-  // {latitude:47.3, longitude:-120.485, id:1}
-
-  // Added by Sarah for Markers used in ReactMap
-  // const [dataMarkers, setDataMarkers] = useState([]) // Does this need to be passed into ReactMap?
-
-  //   useEffect(() => {
-  //       fetch('/markers') // This needs to be updated to gather marker data
-  //       .then(res => res.json())
-  //       .then(data => setDataMarkers(data))
-  //   }, []);
-
   const URL = "https://api.inaturalist.org/v1";
 
-  // BELOW WILL CHANGE TO RETRIEVE FROM STATE ONCE
-  // LARGER GET CALL IS SET UP
-  // const getObservationByID = async (id) => {
-  //   try {
-  //     const response = await axios.get(`${URL}/identifications`, {
-  //       params: {
-  //         id: id,
-  //       },
-  //     });
-  //     setObservationsList(response.data.results);
-  //     console.log("success!", response.data.results);
-  //   } catch (err) {
-  //     console.log("ERROR!", err);
-  //   }
-  // };
-
-  // const dataUnpacker = (results) => {
-  //   const updatedObservations = [];
-
-  //   for (let i in results) {
-  //     const info = {
-  //       id: results[i]["id"],
-  //       common_name: results[i]["taxon"]["preferred_common_name"],
-  //       latin_name: results[i]["taxon"]["name"],
-  //       date: results[i]["created_at_details"]["date"],
-  //       image_url: results[i]["observation_photos"][0]["photo"]["url"],
-  //       latitude: results[i]["geojson"]["coordinates"][1],
-  //       longitude: results[i]["geojson"]["coordinates"][0],
-  //       native: results[i]["taxon"]["native"],
-  //     };
-
-  //     updatedObservations.push(info);
-  //   }
-
-  //   setObservationsList((currentObservations) => [
-  //     ...currentObservations,
-  //     ...updatedObservations,
-  //   ]);
-  // if you set new state muultiple times, make sure your function is not capturing data from the
+  // if you set new state multiple times, make sure your function is not capturing data from the
   // previous render
   // this was uses useDSate hook to get the incremental updates that are available to you in the hooks
   // this is the reducer pattern; supplying a less complicated reducer function to the setstate
@@ -90,12 +38,11 @@ function App() {
   // https://blog.logrocket.com/using-react-usestate-object/
   // };
 
-  // filter list comes from dropdown (and search bar??)
+  // filter list comes from dropdown and search bar
   const getLatinFilterResults = (filterList) => {
     if (typeof filterList === "string") {
       filterList = [filterList];
     }
-    //  input authentication, lowercase?
     const dbSearchTaxa = [];
     const apiSearchTaxa = [];
 
@@ -111,12 +58,12 @@ function App() {
       }
     }
     // but what happens if they plug in latin names? --> goes to api
-    // what if name doesn't exist in db???
+    // what if name doesn't exist in db??? --> same
 
     return [dbSearchTaxa, apiSearchTaxa];
   };
 
-  // USING LATIN NAMES i(in dbSearchTaxa) ONLY
+  // USING LATIN NAMES ONLY
   const pullFilteredObservations = (filterList) => {
     const results = getLatinFilterResults(filterList);
     const dbSearchTaxa = results[0];
@@ -245,7 +192,7 @@ function App() {
         }
 
         currentPage++;
-        // CALL AXIOS WITH CURRENT PAGE
+        // CALL FUNCTION RECURSIVELY WITH CURRENT PAGE
         getObservationsByTaxon(taxon, filter, currentPage);
       }
     } catch (err) {
@@ -254,7 +201,6 @@ function App() {
   };
 
   useEffect(() => {
-    // // getObservationByID(147215905);
     for (let item of edibleList) {
       for (let taxa of item.value) {
         getObservationsByTaxon(taxa);
@@ -263,48 +209,6 @@ function App() {
     // getObservationsByTaxon does not have any dependencies that change
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  // const fakeGeoJSON = {
-  //   type: "FeatureCollection",
-  //   features: [
-  //     {
-  //       type: "Feature",
-  //       geometry: {
-  //         type: "Point",
-  //         coordinates: [-122.0909361111, 47.2195166667],
-  //       },
-  //       properties: {
-  //         id: 97978216,
-  //         common_name: "Borage",
-  //         latin_name: "Borago officinalis",
-  //         date: "2021-10-11",
-  //         image_url:
-  //           "https://inaturalist-open-data.s3.amazonaws.com/photos/163039385/square.jpeg",
-  //         latitude: 47.2195166667,
-  //         longitude: -122.0909361111,
-  //         native: false,
-  //       },
-  //     },
-  //     {
-  //       type: "Feature",
-  //       geometry: {
-  //         type: "Point",
-  //         coordinates: [-122.3088, 47.672345],
-  //       },
-  //       properties: {
-  //         id: 103130022,
-  //         common_name: "salmonberry",
-  //         latin_name: "Rubus spectabilis",
-  //         date: "2022-04-09",
-  //         image_url:
-  //           "https://inaturalist-open-data.s3.amazonaws.com/photos/172539904/square.jpg",
-  //         latitude: 47.672345,
-  //         longitude: -122.3088,
-  //         native: true,
-  //       },
-  //     },
-  //   ],
-  // };
 
   return (
     <div className="grid-container">
@@ -326,7 +230,6 @@ function App() {
       </header>
 
       <main>
-        {/* <ReactMap dataMarkers={observationsList}></ReactMap> */}
         <ReactMap
           dataGeoJSON={{
             type: "FeatureCollection",
@@ -334,8 +237,6 @@ function App() {
               filteredObservationsList.length !== 0
                 ? filteredObservationsList
                 : observationsList,
-            // eventually want to replace w/this for filtering:
-            // filteredObservationsList ? filteredObservationsList: observationsList,
           }}
         ></ReactMap>
       </main>
