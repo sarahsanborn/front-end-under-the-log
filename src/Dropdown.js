@@ -68,14 +68,16 @@ const Dropdown = ({ filterByTaxon, resetSearch }) => {
       </button>
       {isOpen && (
         <ul className="dropdown-list">
-                    <li>
-            <button className="dropdown-button" onClick={handleSelectAll}>
+          <li className="dropdown-list-item">
+            <input type='checkbox' checked={allSelected} onChange={handleSelectAll} />
+            Select All
+            {/* <button className="dropdown-button" onClick={handleSelectAll}>
               Select All
             </button>
             <span> </span>
             <button className="dropdown-button" onClick={handleClear}>
               Clear
-            </button>
+            </button> */}
           </li>
           {edibleList.map((species) => (
             <li key={species.id} className="dropdown-list-item">
