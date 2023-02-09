@@ -8,6 +8,13 @@ body {
     font-family: Whitney,"Trebuchet MS", Arial, sans-serif;
 }
 
+.loading-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
 header {
     padding: 0 45px;
     display: flex;

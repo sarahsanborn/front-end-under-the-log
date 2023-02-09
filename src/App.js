@@ -3,6 +3,7 @@ import Dropdown from "./Dropdown";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import SearchBar from "./SearchBar";
+import Loading from "./Loading";
 import "./App.css";
 
 import edibleList from "./edibleList";
@@ -10,6 +11,7 @@ import edibleList from "./edibleList";
 function App() {
   const [observationsList, setObservationsList] = useState([]);
   const [filteredObservationsList, setFilteredObservationsList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const MONTHS = [
     "null",
     "January",
@@ -225,6 +227,9 @@ function App() {
         getObservationsByTaxon(taxa);
       }
     }
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000); 
     // getObservationsByTaxon does not have any dependencies that change
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -255,15 +260,19 @@ function App() {
       </header>
 
       <main>
-        <ReactMap
-          dataGeoJSON={{
-            type: "FeatureCollection",
-            features:
-              filteredObservationsList.length !== 0
-                ? filteredObservationsList
-                : observationsList,
-          }}
-        ></ReactMap>
+        {isLoading? (
+          <Loading />
+        ) : (
+          <ReactMap
+            dataGeoJSON={{
+              type: "FeatureCollection",
+              features:
+                filteredObservationsList.length !== 0
+                  ? filteredObservationsList
+                  : observationsList,
+            }}
+          ></ReactMap>
+        )}
       </main>
     </div>
   );
