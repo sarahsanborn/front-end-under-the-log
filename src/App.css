@@ -164,9 +164,13 @@ header {
 .rotated-up {
     transform: rotate(180deg);
     transition: transform .10s linear;
+    padding-left: .5rem;
+    padding-right: .5rem;
 }  
 
 .rotated-down {
     transform: rotate(0deg);
     transition: transform .10s linear;
+    padding-left: .5rem;
+    padding-right: .5rem;
 }
