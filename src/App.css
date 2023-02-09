@@ -19,14 +19,14 @@ header {
 
 .title {
     margin-block-end: 0;
-    color: #FFF5F3;
+    color: #FFF;
     font-family: CenturyGothic, Gill Sans, sans-serif;
 }
 
 .tagline {
     margin-block-start: 0;
     font-style: italic;
-    color: #FFF5F3;
+    color: #FFF;
 }
 
 /* Map */
@@ -51,7 +51,7 @@ header {
     border-radius: 5px;
     border: none;
     background-color: #265061;
-    color:#FFF5F3;
+    color:#FFF;
     padding: .75rem;
 }
 
@@ -71,11 +71,11 @@ header {
 }
 
 .search-container {
-    background-color: #FFF5F3;
+    background-color: #FFF;
 }
 
 /* .submit {
-    background-color: #FFF5F3;
+    background-color: #FFF;
     padding: 0.5em 1em;
     font-size: 16px;
     font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
@@ -94,14 +94,14 @@ header {
     border: none;
     /* border-bottom: 1px solid #999; */
     outline: none;
-    background-color: #FFF5F3;
+    background-color: #FFF;
     height: 14px;
 }
 
 .clear-input {
     border: none;
     outline: none;
-    background-color: #FFF5F3;
+    background-color: #FFF;
     color: #7a8082;
     /* margin-top: 5px; */
     padding-top: 6px;
@@ -112,16 +112,22 @@ header {
 /* Dropdown filter */
 .dropdown-container {
     position: relative;
+    width: 250px;
 }
 
 .select-species-button {
-    background-color: #FFF5F3;
+    background-color: #FFF;
     font-size: 16px;
     color: #7a8082;
     text-transform: none;
     font-family: "Whitney", "Trebuchet MS", Arial, sans-serif;
     padding: 5px;
     border: none;
+    width: 250px;
+}
+
+.select-species-button:hover {
+    background-color: #e8e2e0;
 }
 
 .dropdown-list {
@@ -129,8 +135,8 @@ header {
     top: 100%;
     left: 0;
     z-index: 1;
-    background-color: #FFF5F3;
-    width: 100%;
+    background-color: #FFF;
+    width: 250px;
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -147,13 +153,17 @@ header {
 }
 
 .dropdown-button {
-    background-color: #FFF5F3;
+    background-color: #FFF;
     margin-bottom: 10px;
     border: 1px solid;
     color: #333;
     padding: 8px 16px;
     font-size: 16px;
     font-family: "Whitney", "Trebuchet MS", Arial, sans-serif;
+}
+
+.dropdown-button:hover {
+    background-color: #e8e2e0;
 }
 
 .rotated-up {
