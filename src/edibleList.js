@@ -34,6 +34,11 @@ const edibleList = [
     value: ["Balsamorhiza sagittata"],
     label: "Arrowleaf balsamroot",
   },
+    {
+    id: 51,
+    value: ["Montia perfoliata"],
+    label: "Miner's Lettuce",
+  },
   // {
   //   id: 7,
   //   value: ["Agoseris aurantiaca", "Agoseris glauca"],
