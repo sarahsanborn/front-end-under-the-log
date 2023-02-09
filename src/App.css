@@ -144,6 +144,12 @@ header {
     font-family: "Whitney", "Trebuchet MS", Arial, sans-serif;
 }
 
+.dropdown-species-list-with-scroll {
+    max-height: 300px;
+    overflow: scroll; 
+    overflow-y:scroll;
+}
+
 .dropdown-list-item {
     padding: 8px 10px;
     }

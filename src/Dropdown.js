@@ -68,25 +68,35 @@ const Dropdown = ({ filterByTaxon, resetSearch }) => {
       </button>
       {isOpen && (
         <ul className="dropdown-list">
-          <li>
-            <button className="dropdown-button" onClick={handleSelectAll}>
-              Select All
-            </button>
-            <span> </span>
-            <button className="dropdown-button" onClick={handleClear}>
-              Clear
-            </button>
-          </li>
-          {edibleList.map((species) => (
-            <li key={species.id} className="dropdown-list-item">
+          <li className="dropdown-species-list-with-scroll">
+            <li className="dropdown-list-item">
               <input
                 type="checkbox"
-                checked={allSelected || selectedSpecies.includes(species.label)}
-                onChange={() => handleSelection(species.label)}
+                checked={allSelected}
+                onChange={handleSelectAll}
               />
-              {species.label}
+              Select All
+              {/* <button className="dropdown-button" onClick={handleSelectAll}>
+                Select All
+              </button>
+              <span> </span>
+              <button className="dropdown-button" onClick={handleClear}>
+                Clear
+              </button> */}
             </li>
-          ))}
+            {edibleList.map((species) => (
+              <li key={species.id} className="dropdown-list-item">
+                <input
+                  type="checkbox"
+                  checked={
+                    allSelected || selectedSpecies.includes(species.label)
+                  }
+                  onChange={() => handleSelection(species.label)}
+                />
+                {species.label}
+              </li>
+            ))}
+          </li>
           <li>
             <button className="dropdown-button" onClick={handleDone}>
               Done
