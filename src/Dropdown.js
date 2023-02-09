@@ -25,15 +25,20 @@ const Dropdown = ({ filterByTaxon }) => {
   };
 
   const handleSelectAll = () => {
-    setAllSelected(true);
-    const allSpecies = edibleList.map(species => species.label);
-    setSelectedSpecies(allSpecies);
-  }
+    if (allSelected === false) {
+      setAllSelected(true);
+      const allSpecies = edibleList.map((species) => species.label);
+      setSelectedSpecies(allSpecies);
+    } else if (allSelected === true) {
+      setAllSelected(false);
+      setSelectedSpecies([]);
+    }
+  };
 
   const handleClear = () => {
     setAllSelected(false);
     setSelectedSpecies([]);
-  }
+  };
 
   return (
     <div className="dropdown-container">
@@ -42,8 +47,10 @@ const Dropdown = ({ filterByTaxon }) => {
         onClick={() => setIsOpen(!isOpen)}
       >
         Select a Species
-        <span> 
-          <AiOutlineDown className={isOpen ? "rotated-up" : "rotated-down"}></AiOutlineDown>
+        <span>
+          <AiOutlineDown
+            className={isOpen ? "rotated-up" : "rotated-down"}
+          ></AiOutlineDown>
         </span>
       </button>
       {isOpen && (
@@ -59,10 +66,14 @@ const Dropdown = ({ filterByTaxon }) => {
             </li>
           ))}
           <li>
-            <button className="dropdown-button" onClick={handleSelectAll}>Select All</button>
+            <button className="dropdown-button" onClick={handleSelectAll}>
+              Select All
+            </button>
           </li>
           <li>
-            <button className="dropdown-button" onClick={handleClear}>Clear</button>
+            <button className="dropdown-button" onClick={handleClear}>
+              Clear
+            </button>
           </li>
           <li>
             <button className="dropdown-button" onClick={handleDone}>
