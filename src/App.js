@@ -38,6 +38,10 @@ function App() {
   // https://blog.logrocket.com/using-react-usestate-object/
   // };
 
+  const resetFilteredObservations = () => {
+    setFilteredObservationsList([]);
+  };
+
   // filter list comes from dropdown and search bar
   const getLatinFilterResults = (filterList) => {
     if (typeof filterList === "string") {
@@ -159,8 +163,6 @@ function App() {
         ...updatedObservations,
       ]);
     }
-
-    console.log(observationsList);
   };
 
   const getObservationsByTaxon = async (taxon, filter = false, page = 1) => {
@@ -225,6 +227,7 @@ function App() {
             <SearchBar
               className="search-bar"
               searchByTaxon={pullFilteredObservations}
+              resetSearch={resetFilteredObservations}
             />
           </li>
           <li></li>
