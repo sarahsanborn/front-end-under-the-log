@@ -38,6 +38,14 @@ function App() {
   // https://blog.logrocket.com/using-react-usestate-object/
   // };
 
+  const resetFilteredObservations = (temp = false) => {
+    if (temp) {
+      setFilteredObservationsList([{}]);
+    } else {
+      setFilteredObservationsList([]);
+    }
+  };
+
   // filter list comes from dropdown and search bar
   const getLatinFilterResults = (filterList) => {
     if (typeof filterList === "string") {
@@ -65,6 +73,7 @@ function App() {
 
   // USING LATIN NAMES ONLY
   const pullFilteredObservations = (filterList) => {
+    console.log(filterList);
     const results = getLatinFilterResults(filterList);
     const dbSearchTaxa = results[0];
     const apiSearchTaxa = results[1];
@@ -159,8 +168,6 @@ function App() {
         ...updatedObservations,
       ]);
     }
-
-    console.log(observationsList);
   };
 
   const getObservationsByTaxon = async (taxon, filter = false, page = 1) => {
@@ -219,12 +226,16 @@ function App() {
         </div>
         <ul className="search-filter-list">
           <li>
-            <Dropdown filterByTaxon={pullFilteredObservations}></Dropdown>
+            <Dropdown
+              filterByTaxon={pullFilteredObservations}
+              resetSearch={resetFilteredObservations}
+            ></Dropdown>
           </li>
           <li>
             <SearchBar
               className="search-bar"
               searchByTaxon={pullFilteredObservations}
+              resetSearch={resetFilteredObservations}
             />
           </li>
           <li></li>
