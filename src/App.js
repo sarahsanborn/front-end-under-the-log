@@ -41,30 +41,39 @@ function App() {
   const resetFilteredObservations = (temp = false) => {
     if (temp) {
       setFilteredObservationsList([{}]);
+      console.log("we're in temp");
     } else {
       setFilteredObservationsList([]);
     }
   };
 
   // filter list comes from dropdown and search bar
-  const getLatinFilterResults = (filterList) => {
+  const sortFilterParameters = (filterList) => {
     if (typeof filterList === "string") {
       filterList = [filterList];
     }
-    const dbSearchTaxa = [];
-    const apiSearchTaxa = [];
+    let dbSearchTaxa = [];
+    let apiSearchTaxa = [];
 
     // takes list of common names
     // loops through, and for each adds latin to return list:
+    const filtersAccountedFor = [];
+
     for (let item of edibleList) {
       for (let filter of filterList) {
         if (item.label.toLowerCase() === filter.toLowerCase()) {
-          dbSearchTaxa.concat(item.value);
-        } else if (!apiSearchTaxa.includes(filter)) {
-          apiSearchTaxa.push(filter);
+          dbSearchTaxa = dbSearchTaxa.concat(item.value);
+          filtersAccountedFor.push(filter);
         }
       }
     }
+
+    for (let filter of filterList) {
+      if (!filtersAccountedFor.includes(filter)) {
+        apiSearchTaxa.push(filter);
+      }
+    }
+
     // but what happens if they plug in latin names? --> goes to api
     // what if name doesn't exist in db??? --> same
 
@@ -73,23 +82,26 @@ function App() {
 
   // USING LATIN NAMES ONLY
   const pullFilteredObservations = (filterList) => {
-    console.log(filterList);
-    const results = getLatinFilterResults(filterList);
+    const results = sortFilterParameters(filterList);
     const dbSearchTaxa = results[0];
     const apiSearchTaxa = results[1];
+    console.log(results);
 
     const updatedObservations = [];
 
-    if (apiSearchTaxa) {
+    if (apiSearchTaxa.length !== 0) {
       for (let taxa of apiSearchTaxa) {
         getObservationsByTaxon(taxa, true);
       }
+      console.log("Im in the apiSearchTaxa handler");
     }
 
-    if (dbSearchTaxa) {
-      for (let observation in observationsList) {
-        for (let filter in dbSearchTaxa) {
-          if (filter === observation.properties.latin_name) {
+    if (dbSearchTaxa.length !== 0) {
+      console.log("Im in the dbSearchTaxa handler");
+
+      for (let observation of observationsList) {
+        for (let latin of dbSearchTaxa) {
+          if (latin === observation.properties.latin_name) {
             updatedObservations.push(observation);
           }
         }

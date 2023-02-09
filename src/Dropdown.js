@@ -68,7 +68,7 @@ const Dropdown = ({ filterByTaxon, resetSearch }) => {
       </button>
       {isOpen && (
         <ul className="dropdown-list">
-                    <li>
+          <li>
             <button className="dropdown-button" onClick={handleSelectAll}>
               Select All
             </button>
