@@ -31,7 +31,7 @@ const Dropdown = ({ filterByTaxon, resetSearch }) => {
   const handleDone = () => {
     setIsOpen(false);
 
-    resetSearch();
+    resetSearch(true);
 
     if (selectedSpecies) {
       filterByTaxon(selectedSpecies);
