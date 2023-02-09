@@ -6,18 +6,18 @@ const SearchBar = ({ searchByTaxon, resetSearch }) => {
 
   const handleChange = (event) => {
     setFormData(event.target.value);
-    console.log("handlin some change");
+    // console.log("handlin some change");
   };
 
   const handleSearchSubmit = (event) => {
-    console.log("something was submitted!");
+    // console.log("something was submitted!");
     event.preventDefault();
     resetSearch(true);
     searchByTaxon(formData);
   };
 
   const handleClear = () => {
-    console.log("We are in the clear");
+    // console.log("We are in the clear");
     setFormData("");
     resetSearch();
   };
@@ -34,11 +34,6 @@ const SearchBar = ({ searchByTaxon, resetSearch }) => {
           placeholder="Search by name"
           className="search-input"
         />
-
-        {/* <input type="button" value={<MdOutlineClear/>} onClick={handleClear} className='clear-input' /> */}
-        {/* <button type="submit" className="submit">
-          X
-        </button> */}
       </form>
       <button className="clear-input" onClick={handleClear}>
         <MdOutlineClear />
