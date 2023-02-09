@@ -12,6 +12,7 @@ const SearchBar = ({ searchByTaxon, resetSearch }) => {
   const handleSearchSubmit = (event) => {
     console.log("something was submitted!");
     event.preventDefault();
+    resetSearch(true);
     searchByTaxon(formData);
   };
 

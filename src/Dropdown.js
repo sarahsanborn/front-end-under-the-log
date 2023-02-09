@@ -3,25 +3,39 @@ import { AiOutlineDown } from "react-icons/ai";
 
 import edibleList from "./edibleList";
 
-const Dropdown = ({ filterByTaxon }) => {
+const Dropdown = ({ filterByTaxon, resetSearch }) => {
   const [allSelected, setAllSelected] = useState(false);
   const [selectedSpecies, setSelectedSpecies] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
 
   const handleSelection = (species) => {
+    console.log("handling the selction");
     setAllSelected(false);
     if (selectedSpecies.includes(species)) {
       setSelectedSpecies(
         selectedSpecies.filter((selectedPlant) => selectedPlant !== species)
       );
+
+      // setSelectedSpecies((currentSpecies) =>
+      //   currentSpecies.filter((selectedPlant) => selectedPlant !== species)
+      // );
     } else {
       setSelectedSpecies([...selectedSpecies, species]);
+
+      // setSelectedSpecies((currentSpecies) => [...currentSpecies, species]);
     }
+    // resetSearch();
+    // filterByTaxon(selectedSpecies);
   };
 
   const handleDone = () => {
     setIsOpen(false);
-    filterByTaxon(selectedSpecies);
+
+    resetSearch();
+
+    if (selectedSpecies) {
+      filterByTaxon(selectedSpecies);
+    }
   };
 
   const handleSelectAll = () => {
@@ -29,9 +43,8 @@ const Dropdown = ({ filterByTaxon }) => {
       setAllSelected(true);
       const allSpecies = edibleList.map((species) => species.label);
       setSelectedSpecies(allSpecies);
-    } else if (allSelected === true) {
-      setAllSelected(false);
-      setSelectedSpecies([]);
+    } else {
+      handleClear();
     }
   };
 
