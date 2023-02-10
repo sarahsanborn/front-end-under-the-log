@@ -27,7 +27,7 @@ const Dropdown = ({
       </button>
       {isOpen && (
         <ul className="dropdown-list">
-          <li className="dropdown-species-list-with-scroll">
+          <ul className="dropdown-species-list-with-scroll">
             <li className="dropdown-list-item">
               <input
                 type="checkbox"
@@ -55,7 +55,7 @@ const Dropdown = ({
                 {species.label}
               </li>
             ))}
-          </li>
+          </ul>
           <li>
             <button className="dropdown-button" onClick={handleDone}>
               Done

@@ -144,6 +144,7 @@ header {
     max-height: 300px;
     overflow: scroll; 
     overflow-y:scroll;
+    list-style-type: none;
 }
 
 .dropdown-list-item {
