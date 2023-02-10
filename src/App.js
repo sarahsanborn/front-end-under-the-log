@@ -12,6 +12,12 @@ function App() {
   const [observationsList, setObservationsList] = useState([]);
   const [filteredObservationsList, setFilteredObservationsList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  // MAP STATE
+  const [viewState, setViewState] = useState({
+    latitude: 47.31,
+    longitude: -120.485,
+    zoom: 6.2,
+  });
   // SEARCH BAR STATE
   const [formData, setFormData] = useState("");
   // DROPDOWN STATE
@@ -47,6 +53,31 @@ function App() {
   // https://blog.logrocket.com/using-react-usestate-object/
   // };
 
+  // *********************************************MAP FUNCTIONS START***********************************************
+
+  const changeMapView = (newview) => {
+    setViewState(newview);
+  };
+
+  const resetMapView = () => {
+    setViewState({
+      latitude: 47.31,
+      longitude: -120.485,
+      zoom: 6.2,
+    });
+  };
+
+  // const popupSetter = (info) => {
+  //   setPopupInfo(info);
+  // };
+
+  // const mapsSelector = () => {
+  //   window.open(
+  //     `https://maps.google.com/maps?daddr=${popupInfo.latitude},${popupInfo.longitude}&amp;ll=`
+  //   );
+  // }
+
+  // *********************************************MAP FUNCTIONS END***********************************************
   // *********************************************SEARCH BAR FUNCTIONS START***********************************************
 
   const handleChange = (event) => {
@@ -61,6 +92,7 @@ function App() {
     handleDropdownClear();
     resetFilteredObservations(true);
     pullFilteredObservations(formData);
+    resetMapView();
   };
 
   const handleSearchClear = () => {
@@ -100,6 +132,7 @@ function App() {
     if (selectedSpecies) {
       pullFilteredObservations(selectedSpecies);
       setFormData("");
+      resetMapView();
     }
   };
 
@@ -358,6 +391,8 @@ function App() {
           <Loading />
         ) : (
           <ReactMap
+            viewState={viewState}
+            changeMapView={changeMapView}
             dataGeoJSON={{
               type: "FeatureCollection",
               features:

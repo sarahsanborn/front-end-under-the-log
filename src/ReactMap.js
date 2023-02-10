@@ -8,12 +8,12 @@ import {
   unclusteredPointLayer,
 } from "./Layers";
 
-function ReactMap({ dataGeoJSON }) {
-  const [viewState, setViewState] = useState({
-    latitude: 47.31,
-    longitude: -120.485,
-    zoom: 6.2,
-  });
+function ReactMap({ viewState, changeMapView, dataGeoJSON }) {
+  // const [viewState, setViewState] = useState({
+  //   latitude: 47.31,
+  //   longitude: -120.485,
+  //   zoom: 6.2,
+  // });
 
   const mapRef = useRef(null);
   const [popupInfo, setPopupInfo] = useState(null);
@@ -61,7 +61,7 @@ function ReactMap({ dataGeoJSON }) {
     <div className="map-container">
       <Map
         {...viewState}
-        onMove={(event) => setViewState(event.viewState)}
+        onMove={(event) => changeMapView(event.viewState)}
         style={{ width: "100vw", height: "85vh" }}
         mapStyle="mapbox://styles/foragingcapstone/cldc9qo4i001m01lexygzvftr"
         // mapStyle="mapbox://styles/foragingcapstone/cldj35obm000101p9dxvz40cc/draft"
