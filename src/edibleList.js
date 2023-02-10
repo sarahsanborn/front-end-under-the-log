@@ -625,6 +625,36 @@ const edibleList = [
   //   label: "Twisted Stalk",
   // },
   // {
+  //   id: 117,
+  //   value: ["Nereocystis luetkeana"],
+  //   label: "Bull Kelp",
+  // },
+  // {
+  //   id: 118,
+  //   value: ["Macrocystis integrifolia"],
+  //   label: "Giant Kelp",
+  // },
+  // {
+  //   id: 119,
+  //   value: ["Alaria fistulosa"],
+  //   label: "Alaria",
+  // },
+  // {
+  //   id: 120,
+  //   value: ["Zostera marina"],
+  //   label: "Eel Grass",
+  // },
+  // {
+  //   id: 121,
+  //   value: ["N/A"],
+  //   label: "Purple Laver",
+  // },
+  // {
+  //   id: 122,
+  //   value: ["N/A"],
+  //   label: "Sea Lettuce",
+  // },
+  // {
   //   id: ,
   //   value: [""],
   //   label: "",
