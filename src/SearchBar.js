@@ -16,7 +16,7 @@ const SearchBar = ({
           name="search"
           value={formData}
           onChange={handleChange}
-          placeholder="Search by name"
+          placeholder="Search by scientific name"
           className="search-input"
         />
       </form>
