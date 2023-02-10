@@ -286,7 +286,11 @@ function App() {
       const numOfPages = 1 + Math.floor(response.data.total_results / 200);
 
       if (numOfPages === 1) {
-        dataUnpacker(response.data.results, filter);
+        if (filter && response.data.total_results === 0) {
+          window.alert("This Search Produced No Results");
+        } else {
+          dataUnpacker(response.data.results, filter);
+        }
       } else {
         let currentPage = page;
         dataUnpacker(response.data.results, filter);
