@@ -57,6 +57,8 @@ function App() {
   const handleSearchSubmit = (event) => {
     console.log("something was submitted!");
     event.preventDefault();
+    setIsOpen(false);
+    handleDropdownClear();
     resetFilteredObservations(true);
     pullFilteredObservations(formData);
   };
@@ -72,7 +74,6 @@ function App() {
   // *********************************************DROPDOWN FUNCTIONS START************************************************
 
   const handleSelection = (species) => {
-    console.log("handling the selction");
     setAllSelected(false);
     if (selectedSpecies.includes(species)) {
       setSelectedSpecies(
@@ -98,6 +99,7 @@ function App() {
 
     if (selectedSpecies) {
       pullFilteredObservations(selectedSpecies);
+      setFormData("");
     }
   };
 
@@ -164,7 +166,6 @@ function App() {
     return [dbSearchTaxa, apiSearchTaxa];
   };
 
-  // USING LATIN NAMES ONLY
   const pullFilteredObservations = (filterList) => {
     const results = sortFilterParameters(filterList);
     const dbSearchTaxa = results[0];

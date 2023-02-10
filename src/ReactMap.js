@@ -8,7 +8,7 @@ import {
   unclusteredPointLayer,
 } from "./Layers";
 
-function ReactMap({ dataMarkers, dataGeoJSON }) {
+function ReactMap({ dataGeoJSON }) {
   const [viewState, setViewState] = useState({
     latitude: 47.31,
     longitude: -120.485,
