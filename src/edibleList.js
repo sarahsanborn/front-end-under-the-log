@@ -41,7 +41,7 @@ const edibleList = [
   // },
   // {
   //   id: 8,
-  //   value: ["Sagittaria cuneata", "Sagittaria latifolia"],
+  //   value: ["Sagittaria latifolia"],
   //   label: "Arrowhead",
   // },
   // {
@@ -56,22 +56,13 @@ const edibleList = [
   // },
   // {
   //   id: 11,
-  //   value: ["Galium aparine", "Galium boreale", "Galium triflorum"],
+  //   value: ["Galium aparine", "Galium triflorum"],
   //   label: "Bedstraw",
   // },
   // {
   //   id: 12,
-  //   value: ["Bistorta bistortoides", "Bistorta vivipara"],
+  //   value: ["Bistorta bistortoides"],
   //   label: "Bistort",
-  // },
-  // {
-  //   id: 13,
-  //   value: [
-  //     "Cardamine breweri",
-  //     "Cardamine cordifolia",
-  //     "Cardamine pensylvanica",
-  //   ],
-  //   label: "Bittercress",
   // },
   // {
   //   id: 14,
@@ -84,18 +75,8 @@ const edibleList = [
   //   label: "Bracken",
   // },
   // {
-  //   id: 16,
-  //   value: ["Lycopus uniflorus", "Lycopus americanus"],
-  //   label: "Bugleweed",
-  // },
-  // {
-  //   id: 17,
-  //   value: ["Schoenoplectus acutus", "Schoenoplectus tabernaemontani"],
-  //   label: "Bulrush",
-  // },
-  // {
   //   id: 18,
-  //   value: ["Arctium minus", "Arctium tomentosum"],
+  //   value: ["Arctium minus"],
   //   label: "Burdock",
   // },
   // {
@@ -110,7 +91,7 @@ const edibleList = [
   // },
   // {
   //   id: 21,
-  //   value: ["Typha latifolia", "Typha angustifolia"],
+  //   value: ["Typha latifolia"],
   //   label: "Cattail",
   // },
   // {
@@ -124,11 +105,6 @@ const edibleList = [
   //   label: "Chicory",
   // },
   // {
-  //   id: 24,
-  //   value: ["Cyperus esculentus"],
-  //   label: "Chufa",
-  // },
-  // {
   //   id: 25,
   //   value: [
   //     "Trifolium pratense",
@@ -137,25 +113,6 @@ const edibleList = [
   //     "Trifolium wormskioldii",
   //   ],
   //   label: "Clover",
-  // },
-  // {
-  //   id: 26,
-  //   value: ["Xanthium strumarium"],
-  //   label: "Cocklebur",
-  // },
-  // {
-  //   id: 27,
-  //   value: [
-  //     "Petasites sagittatus",
-  //     "Petasites frigidus var palmatus",
-  //     "Petasites frigidus var frigidus",
-  //   ],
-  //   label: "Coltsfoot",
-  // },
-  // {
-  //   id: 28,
-  //   value: ["Atriplex patula"],
-  //   label: "Common Orache",
   // },
   // {
   //   id: 29,
@@ -169,23 +126,8 @@ const edibleList = [
   // },
   // {
   //   id: 31,
-  //   value: ["Taraxacum officinale"],
+  //   value: ["Taraxacum officinale"], DANDELION
   //   label: "Dandelion",
-  // },
-  // {
-  //   id: 32,
-  //   value: ["Oplopanax horridus"],
-  //   label: "Devils Club",
-  // },
-  // {
-  //   id: 33,
-  //   value: ["Rumex crispus", "Rumex occidentalis", "Rumex triangulivalvis"],
-  //   label: "Dock",
-  // },
-  // {
-  //   id: 34,
-  //   value: ["Pedicularis groenlandica"],
-  //   label: "Elephanthead Lousewort",
   // },
   // {
   //   id: 35,
@@ -198,28 +140,9 @@ const edibleList = [
   //   label: "Fireweed",
   // },
   // {
-  //   id: 37,
-  //   value: ["Erigeron annuus", "Erigeron philadelphicus"],
-  //   label: "Fleabane",
-  // },
-  // {
   //   id: 38,
   //   value: ["Nymphaea odorata"],
   //   label: "Fragrant Water Lily",
-  // },
-  // {
-  //   id: 39,
-  //   value: ["Atriplex hortensis"],
-  //   label: "Garden Orache",
-  // },
-  // {
-  //   id: 40,
-  //   value: [
-  //     "Solidago canadensis",
-  //     "Solidago missouriensis",
-  //     "Solidago multiradiata",
-  //   ],
-  //   label: "Goldenrod",
   // },
   // {
   //   id: 41,
@@ -228,7 +151,7 @@ const edibleList = [
   // },
   // {
   //   id: 42,
-  //   value: ["Boschniakia hookeri", "Boschniakia rossica"],
+  //   value: ["Boschniakia hookeri"],
   //   label: "Groundcone",
   // },
   // {
@@ -236,44 +159,10 @@ const edibleList = [
   //   value: ["Malva sylvestris"],
   //   label: "High Mallow",
   // },
-  // // {
-  // //   id: 44,
-  // //   value: ["Monotropa uniflora"],
-  // //   label: "Indian Pipe",
-  // // },
-  // {
-  //   id: 45,
-  //   value: ["Helianthus tuberosus"],
-  //   label: "Jerusalem Artichoke",
-  // },
-  // {
-  //   id: 46,
-  //   value: [
-  //     "Polygonum aviculare",
-  //     "Polygonum arenastrum",
-  //     "Polygonum douglasii",
-  //   ],
-  //   label: "Knotweed",
-  // },
-  // {
-  //   id: 47,
-  //   value: ["Chenopodium album"],
-  //   label: "Lamb's Quarter",
-  // },
   // {
   //   id: 48,
   //   value: ["Triteleia grandiflora"],
   //   label: "Largeflower Triteleia",
-  // },
-  // {
-  //   id: 49,
-  //   value: ["Calochortus apiculatus"],
-  //   label: "Mariposa Lily",
-  // },
-  // {
-  //   id: 50,
-  //   value: ["Caltha leptosepala", "Caltha palustris"],
-  //   label: "Marsh Marigold",
   // },
   // {
   //   id: 51,
@@ -285,21 +174,11 @@ const edibleList = [
   //   value: ["Oxyria digyna"],
   //   label: "Mountain Sorrel",
   // },
-  // {
-  //   id: 53,
-  //   value: ["Malva moschata"],
-  //   label: "Musk Mallow",
-  // },
   // // {
   // //   id: 54,
-  // //   value: [],
+  // //   value: [],  MUSTARD
   // //   label: "Mustard",
   // // },
-  // {
-  //   id: 55,
-  //   value: ["Alisma triviale"],
-  //   label: "Northern Water Plantain",
-  // },
   // {
   //   id: 56,
   //   value: ["Leucanthemum vulgare"],
@@ -309,16 +188,6 @@ const edibleList = [
   //   id: 57,
   //   value: ["Anaphalis margaritacea"],
   //   label: "Pearly Everlasting",
-  // },
-  // {
-  //   id: 58,
-  //   value: ["Lepidium virginicum"],
-  //   label: "Peppergrass",
-  // },
-  // {
-  //   id: 59,
-  //   value: ["Amaranthus hybridus", "Amaranthus retroflexus"],
-  //   label: "Pigweed",
   // },
   // {
   //   id: 60,
@@ -332,37 +201,13 @@ const edibleList = [
   // },
   // {
   //   id: 62,
-  //   value: ["Opuntia fragilis", "Opuntia polyacantha"],
+  //   value: ["Opuntia fragilis"],
   //   label: "Prickly Pear",
   // },
   // {
   //   id: 63,
   //   value: ["Clintonia uniflora"],
   //   label: "Queen's Cup",
-  // },
-  // {
-  //   id: 64,
-  //   value: ["Galinsoga parviflora"],
-  //   label: "Quickweed",
-  // },
-  // {
-  //   id: 65,
-  //   value: ["Rhodiola integrifolia"],
-  //   label: "Roseroot",
-  // },
-  // {
-  //   id: 66,
-  //   value: [
-  //     "Tragopogon porrifolius",
-  //     "Tragopogon dubius",
-  //     "Tragopogon pratensis",
-  //   ],
-  //   label: "Salsify",
-  // },
-  // {
-  //   id: 67,
-  //   value: ["Glaux maritima"],
-  //   label: "Sea Milkweed",
   // },
   // {
   //   id: 68,
@@ -385,19 +230,9 @@ const edibleList = [
   //   label: "Siberian Miner's Lettuce",
   // },
   // {
-  //   id: 72,
-  //   value: ["Atriplex argentea"],
-  //   label: "Silver Orache",
-  // },
-  // {
   //   id: 73,
-  //   value: ["Argentina anserina", "Argentina pacifica"],
+  //   value: ["Argentina pacifica"],
   //   label: "Silverweed",
-  // },
-  // {
-  //   id: 74,
-  //   value: ["Sonchus arvensis", "Sonchus asper", "Sonchus oleraceus"],
-  //   label: "Sow Thistle",
   // },
   // {
   //   id: 75,
@@ -424,19 +259,9 @@ const edibleList = [
   //   label: "Stork's Bill",
   // },
   // {
-  //   id: 79,
-  //   value: ["Chenopodium capitatum"],
-  //   label: "Strawberry Blite",
-  // },
-  // {
   //   id: 80,
-  //   value: ["Helianthus annuus", "Helianthus petiolaris"],
+  //   value: ["Helianthus annuus"],
   //   label: "Sunflower",
-  // },
-  // {
-  //   id: 81,
-  //   value: ["Stachys palustris"],
-  //   label: "Marsh Woundwort",
   // },
   // {
   //   id: 82,
@@ -444,13 +269,8 @@ const edibleList = [
   //   label: "Sweet Gale",
   // },
   // {
-  //   id: 83,
-  //   value: ["Acorus americanus"],
-  //   label: "Sweetflag",
-  // },
-  // {
   //   id: 84,
-  //   value: ["Cirsium arvense", "Cirsium vulgare", "Cirsium brevistylum"],
+  //   value: ["Cirsium arvense", "Cirsium vulgare"],
   //   label: "Thistle",
   // },
   // {
@@ -462,7 +282,6 @@ const edibleList = [
   //   id: 86,
   //   value: [
   //     "Viola adunca",
-  //     "Viola canadensis",
   //     "Viola tricolor",
   //     "Viola palustris",
   //   ],
@@ -474,35 +293,17 @@ const edibleList = [
   //   label: "Watercress",
   // },
   // {
-  //   id: 88,
-  //   value: ["Monarda fistulosa"],
-  //   label: "Wild Bergamot",
-  // },
-  // {
-  //   id: 89,
-  //   value: ["Glycyrrhiza lepidota"],
-  //   label: "Wild Licorice",
-  // },
-  // {
   //   id: 90,
-  //   value: ["Mentha arvensis", "Mentha spicata", "Mentha piperita"],
+  //   value: ["Mentha spicata", "Mentha piperita"], MINT
   //   label: "Wild Mint",
   // },
   // {
   //   id: 91,
   //   value: [
-  //     "Rosa arkansana",
-  //     "Rosa acicularis",
-  //     "Rosa woodsii",
   //     "Rosa gymnocarpa",
   //     "Rosa nutkana",
   //   ],
   //   label: "Wild Rose",
-  // },
-  // {
-  //   id: 92,
-  //   value: ["Lilium philadelphicum"],
-  //   label: "Wood Lily",
   // },
   // {
   //   id: 93,
@@ -510,13 +311,8 @@ const edibleList = [
   //   label: "Snow Lily",
   // },
   // {
-  //   id: 94,
-  //   value: ["Rorippa palustris"],
-  //   label: "Yellowcress",
-  // },
-  // {
   //   id: 95,
-  //   value: ["Ribes hudsonianum", "Ribes bracteosum", "Ribes lacustre"],
+  //   value: ["Ribes bracteosum", "Ribes lacustre"],
   //   label: "Black Currant",
   // },
   // {
@@ -526,27 +322,17 @@ const edibleList = [
   // },
   // {
   //   id: 97,
-  //   value: ["Rubus armeniacus", "Rubus ursinus", "Rubus allegheniensis"],
+  //   value: ["Rubus armeniacus", "Rubus ursinus"], BLACKBERRY
   //   label: "Blackberry",
   // },
   // {
   //   id: 98,
-  //   value: ["Vaccinium myrtilloides", "Vaccinium caespitosum", "Vaccinium uliginosum", "Vaccinium ovalifolium", "Vaccinium alaskaense"],
+  //   value: ["Vaccinium ovalifolium"], BLUEBERRY
   //   label: "Blueberry",
   // },
   // {
-  //   id: 99,
-  //   value: ["Cornus canadensis"],
-  //   label: "Bunchberry",
-  // },
-  // {
-  //   id: 100,
-  //   value: ["Rubus chamaemorus"],
-  //   label: "Cloudberry",
-  // },
-  // {
   //   id: 101,
-  //   value: ["Vaccinium oxycoccus", "Vaccinium vitis-idaea", "Vaccinium scoparium"],
+  //   value: ["Vaccinium oxycoccus", "Vaccinium scoparium"],
   //   label: "Cranberry",
   // },
   // {
@@ -561,7 +347,7 @@ const edibleList = [
   // },
   // {
   //   id: 104,
-  //   value: ["Prosartes hookeri", "Prosartes trachycarpa"],
+  //   value: ["Prosartes hookeri"],
   //   label: "Fairy Bell",
   // },
   // {
@@ -571,13 +357,8 @@ const edibleList = [
   // },
   // {
   //   id: 106,
-  //   value: ["Ribes divaricatum", "Ribes lobbii", "Ribes inerme", "Ribes oxyacanthoides"],
+  //   value: ["Ribes divaricatum", "Ribes lobbii"],
   //   label: "Gooseberry",
-  // },
-  // {
-  //   id: 107,
-  //   value: ["Morus alba"],
-  //   label: "Mulberry",
   // },
   // {
   //   id: 108,
@@ -586,12 +367,12 @@ const edibleList = [
   // },
   // {
   //   id: 109,
-  //   value: ["Rubus leucodermis", "Rubus idaeus", "Rubus arcticus", "Rubus pubescens", "Rubus pedatus"],
+  //   value: ["Rubus leucodermis", "Rubus idaeus", "Rubus pedatus"], RASPBERRY
   //   label: "Raspberry",
   // },
   // {
   //   id: 110,
-  //   value: ["Ribes triste", "Ribes montigenum"],
+  //   value: ["Ribes sanguineum"],
   //   label: "Red Currant",
   // },
   // {
@@ -606,7 +387,7 @@ const edibleList = [
   // },
   // {
   //   id: 113,
-  //   value: ["Fragaria virginiana", "Fragaria vesca", "Fragaria chiloensis"],
+  //   value: ["Fragaria virginiana", "Fragaria vesca", "Fragaria chiloensis"], STRAWBERRY
   //   label: "Strawberry",
   // },
   // {
@@ -635,24 +416,9 @@ const edibleList = [
   //   label: "Giant Kelp",
   // },
   // {
-  //   id: 119,
-  //   value: ["Alaria fistulosa"],
-  //   label: "Alaria",
-  // },
-  // {
   //   id: 120,
   //   value: ["Zostera marina"],
   //   label: "Eel Grass",
-  // },
-  // {
-  //   id: 121,
-  //   value: ["N/A"],
-  //   label: "Purple Laver",
-  // },
-  // {
-  //   id: 122,
-  //   value: ["N/A"],
-  //   label: "Sea Lettuce",
   // },
   // {
   //   id: ,
