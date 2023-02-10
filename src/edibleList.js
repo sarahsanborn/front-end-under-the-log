@@ -21,8 +21,8 @@ const edibleList = [
   },
   {
     id: 4,
-    value: ["Salicornia rubra", "Salicornia virginica"],
-    label: "Pickleweed",
+    value: ["Salicornia pacifica"],
+    label: "Pacific Glasswort",
   },
   {
     id: 5,

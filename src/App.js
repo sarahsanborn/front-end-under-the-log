@@ -12,6 +12,9 @@ function App() {
   const [observationsList, setObservationsList] = useState([]);
   const [filteredObservationsList, setFilteredObservationsList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  // SEARCH BAR STATE
+  const [formData, setFormData] = useState("");
+
   const MONTHS = [
     "null",
     "January",
@@ -39,6 +42,31 @@ function App() {
   // what use state is doing under the hood
   // https://blog.logrocket.com/using-react-usestate-object/
   // };
+
+  // *********************************************SEARCH BAR FUNCTIONS START***********************************************
+
+  const handleChange = (event) => {
+    setFormData(event.target.value);
+    console.log("handlin some change");
+  };
+
+  const handleSearchSubmit = (event) => {
+    console.log("something was submitted!");
+    event.preventDefault();
+    resetFilteredObservations(true);
+    pullFilteredObservations(formData);
+  };
+
+  const handleClear = () => {
+    console.log("We are in the clear");
+    setFormData("");
+    resetFilteredObservations();
+  };
+
+  // *********************************************SEARCH BAR FUNCTIONS END************************************************
+
+  // *********************************************DROP DOWN FUNCTIONS START***********************************************
+  // *********************************************DROP DOWN FUNCTIONS END*************************************************
 
   const resetFilteredObservations = (temp = false) => {
     if (temp) {
@@ -229,7 +257,7 @@ function App() {
     }
     setTimeout(() => {
       setIsLoading(false);
-    }, 3000); 
+    }, 3000);
     // getObservationsByTaxon does not have any dependencies that change
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -251,8 +279,10 @@ function App() {
           <li>
             <SearchBar
               className="search-bar"
-              searchByTaxon={pullFilteredObservations}
-              resetSearch={resetFilteredObservations}
+              handleChange={handleChange}
+              handleSearchSubmit={handleSearchSubmit}
+              handleClear={handleClear}
+              formData={formData}
             />
           </li>
           <li></li>
@@ -260,7 +290,7 @@ function App() {
       </header>
 
       <main>
-        {isLoading? (
+        {isLoading ? (
           <Loading />
         ) : (
           <ReactMap
