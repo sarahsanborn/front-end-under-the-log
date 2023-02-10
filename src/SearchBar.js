@@ -1,3 +1,4 @@
+import React from "react";
 import { MdOutlineClear } from "react-icons/md";
 
 const SearchBar = ({

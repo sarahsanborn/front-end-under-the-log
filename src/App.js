@@ -14,6 +14,10 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   // SEARCH BAR STATE
   const [formData, setFormData] = useState("");
+  // DROPDOWN STATE
+  const [allSelected, setAllSelected] = useState(false);
+  const [selectedSpecies, setSelectedSpecies] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
 
   const MONTHS = [
     "null",
@@ -57,7 +61,7 @@ function App() {
     pullFilteredObservations(formData);
   };
 
-  const handleClear = () => {
+  const handleSearchClear = () => {
     console.log("We are in the clear");
     setFormData("");
     resetFilteredObservations();
@@ -65,8 +69,58 @@ function App() {
 
   // *********************************************SEARCH BAR FUNCTIONS END************************************************
 
-  // *********************************************DROP DOWN FUNCTIONS START***********************************************
-  // *********************************************DROP DOWN FUNCTIONS END*************************************************
+  // *********************************************DROPDOWN FUNCTIONS START************************************************
+
+  const handleSelection = (species) => {
+    console.log("handling the selction");
+    setAllSelected(false);
+    if (selectedSpecies.includes(species)) {
+      setSelectedSpecies(
+        selectedSpecies.filter((selectedPlant) => selectedPlant !== species)
+      );
+
+      // setSelectedSpecies((currentSpecies) =>
+      //   currentSpecies.filter((selectedPlant) => selectedPlant !== species)
+      // );
+    } else {
+      setSelectedSpecies([...selectedSpecies, species]);
+
+      // setSelectedSpecies((currentSpecies) => [...currentSpecies, species]);
+    }
+    // resetFilteredObservations();
+    // pullFilteredObservations(selectedSpecies);
+  };
+
+  const handleDone = () => {
+    setIsOpen(false);
+
+    resetFilteredObservations(true);
+
+    if (selectedSpecies) {
+      pullFilteredObservations(selectedSpecies);
+    }
+  };
+
+  const handleDropdownClear = () => {
+    setAllSelected(false);
+    setSelectedSpecies([]);
+  };
+
+  const handleSelectAll = () => {
+    if (allSelected === false) {
+      setAllSelected(true);
+      const allSpecies = edibleList.map((species) => species.label);
+      setSelectedSpecies(allSpecies);
+    } else {
+      handleDropdownClear();
+    }
+  };
+
+  const alternateOpenClose = () => {
+    setIsOpen(!isOpen);
+  };
+
+  // *********************************************DROPDOWN FUNCTIONS END**************************************************
 
   const resetFilteredObservations = (temp = false) => {
     if (temp) {
@@ -272,8 +326,13 @@ function App() {
         <ul className="search-filter-list">
           <li>
             <Dropdown
-              filterByTaxon={pullFilteredObservations}
-              resetSearch={resetFilteredObservations}
+              handleSelection={handleSelection}
+              handleDone={handleDone}
+              handleSelectAll={handleSelectAll}
+              alternateOpenClose={alternateOpenClose}
+              allSelected={allSelected}
+              selectedSpecies={selectedSpecies}
+              isOpen={isOpen}
             ></Dropdown>
           </li>
           <li>
@@ -281,7 +340,7 @@ function App() {
               className="search-bar"
               handleChange={handleChange}
               handleSearchSubmit={handleSearchSubmit}
-              handleClear={handleClear}
+              handleClear={handleSearchClear}
               formData={formData}
             />
           </li>
