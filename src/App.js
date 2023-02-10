@@ -15,7 +15,7 @@ function App() {
   // SEARCH BAR STATE
   const [formData, setFormData] = useState("");
   // DROPDOWN STATE
-  const [allSelected, setAllSelected] = useState(false);
+  const [allSelected, setAllSelected] = useState(true);
   const [selectedSpecies, setSelectedSpecies] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
 
