@@ -34,11 +34,6 @@ const edibleList = [
     value: ["Balsamorhiza sagittata"],
     label: "Arrowleaf balsamroot",
   },
-  {
-    id: 51,
-    value: ["Claytonia perfoliata"],
-    label: "Miner's Lettuce",
-  },
   // {
   //   id: 7,
   //   value: ["Agoseris aurantiaca", "Agoseris glauca"],
@@ -282,7 +277,7 @@ const edibleList = [
   // },
   // {
   //   id: 51,
-  //   value: ["Montia perfoliata"],
+  //   value: ["Claytonia perfoliata"],
   //   label: "Miner's Lettuce",
   // },
   // {
@@ -523,6 +518,116 @@ const edibleList = [
   //   id: 95,
   //   value: ["Ribes hudsonianum", "Ribes bracteosum", "Ribes lacustre"],
   //   label: "Black Currant",
+  // },
+  // {
+  //   id: 96,
+  //   value: ["Vaccinium membranaceum", "Vaccinium ovatum"],
+  //   label: "Black Huckleberry",
+  // },
+  // {
+  //   id: 97,
+  //   value: ["Rubus armeniacus", "Rubus ursinus", "Rubus allegheniensis"],
+  //   label: "Blackberry",
+  // },
+  // {
+  //   id: 98,
+  //   value: ["Vaccinium myrtilloides", "Vaccinium caespitosum", "Vaccinium uliginosum", "Vaccinium ovalifolium", "Vaccinium alaskaense"],
+  //   label: "Blueberry",
+  // },
+  // {
+  //   id: 99,
+  //   value: ["Cornus canadensis"],
+  //   label: "Bunchberry",
+  // },
+  // {
+  //   id: 100,
+  //   value: ["Rubus chamaemorus"],
+  //   label: "Cloudberry",
+  // },
+  // {
+  //   id: 101,
+  //   value: ["Vaccinium oxycoccus", "Vaccinium vitis-idaea", "Vaccinium scoparium"],
+  //   label: "Cranberry",
+  // },
+  // {
+  //   id: 102,
+  //   value: ["Empetrum nigrum"],
+  //   label: "Crowberry",
+  // },
+  // {
+  //   id: 103,
+  //   value: ["Sambucus caerulea"],
+  //   label: "Elderberry",
+  // },
+  // {
+  //   id: 104,
+  //   value: ["Prosartes hookeri", "Prosartes trachycarpa"],
+  //   label: "Fairy Bell",
+  // },
+  // {
+  //   id: 105,
+  //   value: ["Ribes aureum"],
+  //   label: "Golden Currant",
+  // },
+  // {
+  //   id: 106,
+  //   value: ["Ribes divaricatum", "Ribes lobbii", "Ribes inerme", "Ribes oxyacanthoides"],
+  //   label: "Gooseberry",
+  // },
+  // {
+  //   id: 107,
+  //   value: ["Morus alba"],
+  //   label: "Mulberry",
+  // },
+  // {
+  //   id: 108,
+  //   value: ["Malus fusca"],
+  //   label: "Pacific Crabapple",
+  // },
+  // {
+  //   id: 109,
+  //   value: ["Rubus leucodermis", "Rubus idaeus", "Rubus arcticus", "Rubus pubescens", "Rubus pedatus"],
+  //   label: "Raspberry",
+  // },
+  // {
+  //   id: 110,
+  //   value: ["Ribes triste", "Ribes montigenum"],
+  //   label: "Red Currant",
+  // },
+  // {
+  //   id: 111,
+  //   value: ["Vaccinium parvifolium"],
+  //   label: "Red Huckleberry",
+  // },
+  // {
+  //   id: 112,
+  //   value: ["Gaultheria shallon"],
+  //   label: "Salal",
+  // },
+  // {
+  //   id: 113,
+  //   value: ["Fragaria virginiana", "Fragaria vesca", "Fragaria chiloensis"],
+  //   label: "Strawberry",
+  // },
+  // {
+  //   id: 114,
+  //   value: ["Rhus glabra"],
+  //   label: "Sumac",
+  // },
+  // {
+  //   id: 115,
+  //   value: ["Rubus parviflorus"],
+  //   label: "Thimbleberry",
+  // },
+  // {
+  //   id: 116,
+  //   value: ["Streptopus amplexifolius", "Streptopus lanceolatus"],
+  //   label: "Twisted Stalk",
+  // },
+  // {
+  //   id: ,
+  //   value: [""],
+  //   label: "",
   // },
 ];
 
