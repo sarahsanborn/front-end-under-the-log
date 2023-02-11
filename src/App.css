@@ -191,7 +191,7 @@ section li {
 
 .dropdown-species-list-with-scroll {
     max-height: 300px;
-    overflow: scroll; 
+    overflow: hidden; 
     overflow-y:scroll;
     list-style-type: none;
 }
