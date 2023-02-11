@@ -1,9 +1,10 @@
-import ReactMap from "./ReactMap";
+import ReactMap from "./ReactMap"
 import Dropdown from "./Dropdown";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import SearchBar from "./SearchBar";
 import Loading from "./Loading";
+// import { FlyToInterpolator } from "deck.gl";
 import "./App.css";
 
 import edibleList from "./edibleList";
@@ -59,11 +60,23 @@ function App() {
     setViewState(newview);
   };
 
+  // const mapEase = useRef.current.easeTo();
+
   const resetMapView = () => {
+    console.log("inside resetMapView")
+    // console.log(mapRef);
+    // mapEase({
+    //       center: event.features[0].geometry.coordinates,
+    //       zoom: 10,
+    //       duration: 500,
+    //     });
+    // Can this ease to zoom level?
     setViewState({
-      latitude: 47.31,
       longitude: -120.485,
-      zoom: 6.2,
+      latitude: 47.31,
+      zoom: 6.4,
+      // transitionDuration: 8000,
+      // transitionInterpolator: new FlyToInterpolator(),
     });
   };
 
@@ -82,11 +95,9 @@ function App() {
 
   const handleChange = (event) => {
     setFormData(event.target.value);
-    console.log("handlin some change");
   };
 
   const handleSearchSubmit = (event) => {
-    console.log("something was submitted!");
     event.preventDefault();
     setIsOpen(false);
     handleDropdownClear();
@@ -96,7 +107,6 @@ function App() {
   };
 
   const handleSearchClear = () => {
-    console.log("We are in the clear");
     setFormData("");
     resetFilteredObservations();
   };

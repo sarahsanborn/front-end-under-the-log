@@ -2,6 +2,7 @@
 import Map, { Source, Layer, Popup } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import React, { useState, useRef } from "react";
+// import { FlyToInterpolator } from "deck.gl";
 import {
   clusterLayer,
   clusterCountLayer,
@@ -69,6 +70,8 @@ function ReactMap({ viewState, changeMapView, dataGeoJSON }) {
         interactiveLayerIds={[clusterLayer.id, unclusteredPointLayer.id]}
         onClick={onClickMap}
         ref={mapRef}
+        // transitionDuration={2000}
+        // transitionInterpolator={new FlyToInterpolator()}
       >
         <Source
           id="taxa"

@@ -4,7 +4,7 @@ const clusterLayer = {
   source: 'taxa',
   filter: ['has', 'point_count'],
   paint: { 
-    'circle-color': ['step', ['get', 'point_count'], '#51bbd6', 100, '#f1f075', 750, '#f28cb1'],
+    'circle-color': ['step', ['get', 'point_count'], '#00A6A6', 100, '#F3B61F', 750, '#ff6b6b'],
     'circle-radius': ['step', ['get', 'point_count'], 20, 100, 30, 750, 40]
   }
 };
@@ -27,10 +27,10 @@ const unclusteredPointLayer = {
   source: 'taxa',
   filter: ['!', ['has', 'point_count']],
   paint: {
-    'circle-color': '#FC6A03',
+    'circle-color': '#F79824',
     'circle-radius': 5,
     'circle-stroke-width': 1,
-    'circle-stroke-color': '#fff'
+    'circle-stroke-color': '#265061'
   }
 };
 
