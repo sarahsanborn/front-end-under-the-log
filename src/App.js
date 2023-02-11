@@ -44,7 +44,8 @@ function App() {
     "December",
   ];
 
-  const URL = "https://api.inaturalist.org/v1";
+  const INAT_URL = "https://api.inaturalist.org/v1";
+  const TREFLE_URL = "https://trefle.io/api/v1";
 
   // if you set new state multiple times, make sure your function is not capturing data from the
   // previous render
@@ -211,6 +212,38 @@ function App() {
     return [dbSearchTaxa, apiSearchTaxa];
   };
 
+  const checkEdibleSearch = async (taxa) => {
+    let newTaxa = taxa;
+    const token = process.env.TREFLE_KEY;
+
+    try {
+      const response = await axios.get(
+        `${TREFLE_URL}/plants/search?token=${token}&q=${taxa}`
+        // {
+        //   params: {
+        //     q: taxa,
+        //     token: process.env.TREFLE_KEY,
+        //     // filter[edible]: true,
+        //     // filter_not[scientific_name]: null
+        //   },
+        // }
+      );
+      newTaxa = await response.data[0]["scientific_name"];
+      // newTaxa = await response.data.data[0]["scientific_name"]
+    } catch (err) {
+      console.log("species not found in trefle", err);
+    }
+    // try
+    // make an api call to trefle to get edible scientific name
+    // await response
+    // assign to newTaxa
+    // except
+    // newTaxa = taxa
+
+    console.log(newTaxa);
+    // getObservationsByTaxon(newTaxa, true);
+  };
+
   const pullFilteredObservations = (filterList) => {
     const results = sortFilterParameters(filterList);
     const dbSearchTaxa = results[0];
@@ -221,6 +254,9 @@ function App() {
 
     if (apiSearchTaxa.length !== 0) {
       for (let taxa of apiSearchTaxa) {
+        // TO SWITCH TO EDIBLE PLANT API CROSS REFERENCE:
+        // checkEdibleSearch(taxa);
+        // and comment out line below
         getObservationsByTaxon(taxa, true);
       }
       console.log("Im in the apiSearchTaxa handler");
@@ -314,7 +350,7 @@ function App() {
 
   const getObservationsByTaxon = async (taxon, filter = false, page = 1) => {
     try {
-      const response = await axios.get(`${URL}/observations`, {
+      const response = await axios.get(`${INAT_URL}/observations`, {
         params: {
           taxon_name: taxon,
           place_id: 46,
