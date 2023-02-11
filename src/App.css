@@ -26,14 +26,14 @@ header {
 
 .title {
     margin-block-end: 0;
-    color: #FFF;
+    color: #EFF1F3;
     font-family: CenturyGothic, Gill Sans, sans-serif;
 }
 
 .tagline {
     margin-block-start: 0;
     font-style: italic;
-    color: #FFF;
+    color: #EFF1F3;
 }
 
 /* Map */
@@ -58,7 +58,7 @@ header {
     border-radius: 5px;
     border: none;
     background-color: #265061;
-    color:#FFF;
+    color:#EFF1F3;
     padding: .75rem;
 }
 
@@ -78,7 +78,7 @@ header {
 
 /* Search */
 .search-container {
-    background-color: #FFF;
+    background-color: #EFF1F3;
     display: flex;
 }
 
@@ -90,14 +90,14 @@ header {
     border: none;
     /* border-bottom: 1px solid #999; */
     outline: none;
-    background-color: #FFF;
+    background-color: #EFF1F3;
     height: 14px;
 }
 
 .clear-input {
     border: none;
     outline: none;
-    background-color: #FFF;
+    background-color: #EFF1F3;
     color: #7a8082;
     /* margin-top: 5px; */
     padding-top: 6px;
@@ -112,7 +112,7 @@ header {
 }
 
 .select-species-button {
-    background-color: #FFF;
+    background-color: #EFF1F3;
     font-size: 16px;
     color: #7a8082;
     text-transform: none;
@@ -131,7 +131,7 @@ header {
     top: 100%;
     left: 0;
     z-index: 1;
-    background-color: #FFF;
+    background-color: #EFF1F3;
     width: 250px;
     list-style-type: none;
     padding: 0;
@@ -156,7 +156,7 @@ header {
 }
 
 .dropdown-button {
-    background-color: #FFF;
+    background-color: #EFF1F3;
     margin-bottom: 10px;
     border: 1px solid;
     color: #333;
