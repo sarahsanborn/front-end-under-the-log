@@ -4,20 +4,22 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import SearchBar from "./SearchBar";
 import Loading from "./Loading";
-// import { FlyToInterpolator } from "deck.gl";
+import About from "./About";
+import Responsibility from "./Responsibility";
 import "./App.css";
-
 import edibleList from "./edibleList";
 
 function App() {
   const [observationsList, setObservationsList] = useState([]);
   const [filteredObservationsList, setFilteredObservationsList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [mainDisplay, setMainDisplay] = useState('React Map');
+  const [selectNavItem, setSelectedNavItem] = useState('React Map');
   // MAP STATE
   const [viewState, setViewState] = useState({
     latitude: 47.31,
     longitude: -120.485,
-    zoom: 6.2,
+    zoom: 6.1,
   });
   // SEARCH BAR STATE
   const [formData, setFormData] = useState("");
@@ -371,8 +373,52 @@ function App() {
           <h1 className="title">UNDER THE LOG</h1>
           <p className="tagline">Your Washington State foraging companion</p>
         </div>
-        <ul className="search-filter-list">
-          <li>
+        <ul className="navbar-list">
+          <li 
+            style={selectNavItem === 'React Map' ? { fontWeight: 'bold', background: '#00A6A6' } : {}}
+            onClick={() => {
+              setMainDisplay('React Map')
+              setSelectedNavItem('React Map')
+              }}
+          >
+            Map
+          </li>
+          <li 
+            style={selectNavItem === 'About' ? {fontWeight: 'bold', background: '#00A6A6' } : {}}
+            onClick={() => {
+              setMainDisplay('About')
+              setSelectedNavItem('About')
+              }}
+          >
+            About
+          </li>
+          <li 
+            style={selectNavItem === 'Responsibility' ? {fontWeight: 'bold', background: '#00A6A6' } : {}}
+            onClick={() => {
+              setMainDisplay('Responsibility')
+              setSelectedNavItem('Responsibility')
+              }}
+          >
+            Forage Responsibily
+          </li>
+        </ul>
+      </header>
+      <main>
+        {mainDisplay === 'React Map' && 
+          <ReactMap
+          viewState={viewState}
+          changeMapView={changeMapView}
+          dataGeoJSON={{
+            type: "FeatureCollection",
+            features:
+              filteredObservationsList.length !== 0
+                ? filteredObservationsList
+                : observationsList,
+          }}
+          />
+        }
+        {mainDisplay === 'React Map' && 
+          <div className="dropsearch-container">
             <Dropdown
               handleSelection={handleSelection}
               handleDone={handleDone}
@@ -381,37 +427,23 @@ function App() {
               allSelected={allSelected}
               selectedSpecies={selectedSpecies}
               isOpen={isOpen}
-            ></Dropdown>
-          </li>
-          <li>
+            />
             <SearchBar
-              className="search-bar"
+              // className="search-bar"
               handleChange={handleChange}
               handleSearchSubmit={handleSearchSubmit}
               handleClear={handleSearchClear}
               formData={formData}
             />
-          </li>
-          <li></li>
-        </ul>
-      </header>
-
-      <main>
-        {isLoading ? (
+          </div>
+        }
+        {mainDisplay === 'About' && <About />}
+        {mainDisplay === 'Responsibility' && <Responsibility />}
+        {/* {isLoading ? (
           <Loading />
-        ) : (
-          <ReactMap
-            viewState={viewState}
-            changeMapView={changeMapView}
-            dataGeoJSON={{
-              type: "FeatureCollection",
-              features:
-                filteredObservationsList.length !== 0
-                  ? filteredObservationsList
-                  : observationsList,
-            }}
-          ></ReactMap>
-        )}
+        ) : ( */}
+          
+        {/* )} */}
       </main>
     </div>
   );
