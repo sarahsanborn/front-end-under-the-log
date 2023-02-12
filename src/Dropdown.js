@@ -1,6 +1,7 @@
 import React from "react";
 import { AiOutlineDown } from "react-icons/ai";
 import edibleList from "./edibleList";
+import newedibleList from "./newedibleList";
 
 const Dropdown = ({
   handleSelection,
@@ -10,6 +11,8 @@ const Dropdown = ({
   selectedSpecies,
   alternateOpenClose,
   isOpen,
+  plantsSelected,
+  handlePlantsSelected,
 }) => {
   return (
     <div className="dropdown-container">
@@ -34,15 +37,16 @@ const Dropdown = ({
                 onChange={handleSelectAll}
               />
               Select All
-              {/* <button className="dropdown-button" onClick={handleSelectAll}>
-                Select All
-              </button>
-              <span> </span>
-              <button className="dropdown-button" onClick={handleClear}>
-                Clear
-              </button> */}
             </li>
-            {edibleList.map((species) => (
+            <li className="dropdown-list-item">
+              <input
+                type="checkbox"
+                checked={plantsSelected}
+                onChange={handlePlantsSelected}
+              />
+              Select All Plants
+            </li>
+            {newedibleList.map((species) => (
               <li key={species.id} className="dropdown-list-item">
                 <input
                   type="checkbox"

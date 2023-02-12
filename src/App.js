@@ -8,6 +8,7 @@ import About from "./About";
 import Responsibility from "./Responsibility";
 import "./App.css";
 import edibleList from "./edibleList";
+import newedibleList from "./newedibleList";
 
 function App() {
   const [observationsList, setObservationsList] = useState([]);
@@ -25,6 +26,7 @@ function App() {
   const [formData, setFormData] = useState("");
   // DROPDOWN STATE
   const [allSelected, setAllSelected] = useState(true);
+  const [plantsSelected, setPlantsSelected] = useState(false);
   const [selectedSpecies, setSelectedSpecies] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -100,6 +102,12 @@ function App() {
     setFormData(event.target.value);
   };
 
+  // THIS IS FOR DROPDOWN, BUT NEEDS TO BE ABOVE HANDLSEARCHSUBMIT
+  const handleDropdownClear = () => {
+    setAllSelected(false);
+    setSelectedSpecies([]);
+  };
+
   const handleSearchSubmit = (event) => {
     event.preventDefault();
     setIsOpen(false);
@@ -124,17 +132,9 @@ function App() {
       setSelectedSpecies(
         selectedSpecies.filter((selectedPlant) => selectedPlant !== species)
       );
-
-      // setSelectedSpecies((currentSpecies) =>
-      //   currentSpecies.filter((selectedPlant) => selectedPlant !== species)
-      // );
     } else {
       setSelectedSpecies([...selectedSpecies, species]);
-
-      // setSelectedSpecies((currentSpecies) => [...currentSpecies, species]);
-    }
-    // resetFilteredObservations();
-    // pullFilteredObservations(selectedSpecies);
+    };
   };
 
   const handleDone = () => {
@@ -146,27 +146,61 @@ function App() {
       pullFilteredObservations(selectedSpecies);
       setFormData("");
       resetMapView();
-    }
+    };
   };
 
-  const handleDropdownClear = () => {
-    setAllSelected(false);
-    setSelectedSpecies([]);
-  };
+  
 
   const handleSelectAll = () => {
     if (allSelected === false) {
       setAllSelected(true);
-      const allSpecies = edibleList.map((species) => species.label);
+      const allSpecies = newedibleList.map((species) => species.label);
       setSelectedSpecies(allSpecies);
     } else {
       handleDropdownClear();
-    }
+    };
   };
 
   const alternateOpenClose = () => {
     setIsOpen(!isOpen);
   };
+
+  const handlePlantsSelected = () => {
+    setPlantsSelected(!plantsSelected);
+    setAllSelected(false);
+    setSelectedSpecies([]);
+    const filteredPlants = newedibleList.filter(object => object.type === 'plant');
+    setFilteredObservationsList(filteredPlants);
+    }
+  //   handleDropdownClear();
+  //   setPlantsSelected(!plantsSelected);
+  //   if (plantsSelected) {
+  //     console.log('in the if')
+  //     return;
+  //   }
+  //   console.log('in the else')
+  //   const newPlants = newedibleList.filter((species) => species.type === 'plant');
+  //   setSelectedSpecies((prevSelectedSpecies) => [
+  //     ...prevSelectedSpecies,
+  //     newPlants.map((species) => species.label),
+  //   ])
+  //   console.log(selectedSpecies);
+  // };
+  //   if (plantsSelected === false) {
+  //     setPlantsSelected(true);
+  //     for (species of newedibleList) {
+  //       if (species.type === 'plant') {
+  //         console.log("new one")
+  //         console.log(species.label);
+  //         // selectedSpecies.includes(species.label)
+  //         setSelectedSpecies(...species.label, species.label)
+  //       };
+  //     };
+  //   } else {
+  //     handleDropdownClear();
+  //     setPlantsSelected(false);
+  //   }
+  // };
 
   // *********************************************DROPDOWN FUNCTIONS END**************************************************
 
@@ -191,7 +225,7 @@ function App() {
     // loops through, and for each adds latin to return list:
     const filtersAccountedFor = [];
 
-    for (let item of edibleList) {
+    for (let item of newedibleList) {
       for (let filter of filterList) {
         if (item.label.toLowerCase() === filter.toLowerCase()) {
           dbSearchTaxa = dbSearchTaxa.concat(item.value);
@@ -390,7 +424,7 @@ function App() {
   };
 
   useEffect(() => {
-    for (let item of edibleList) {
+    for (let item of newedibleList) {
       for (let taxa of item.value) {
         getObservationsByTaxon(taxa);
       }
@@ -463,6 +497,7 @@ function App() {
               allSelected={allSelected}
               selectedSpecies={selectedSpecies}
               isOpen={isOpen}
+              handlePlantsSelected={handlePlantsSelected}
             />
             <SearchBar
               // className="search-bar"
