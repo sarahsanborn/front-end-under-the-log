@@ -1,9 +1,13 @@
-import ReactMap from "./ReactMap"
+import ReactMap from "./ReactMap";
 import Dropdown from "./Dropdown";
+import Authentication from "./Authentication";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import SearchBar from "./SearchBar";
 import Loading from "./Loading";
+
+import { db } from "./firestore-config";
+import { collection, getDocs } from "firebase/firestore";
 // import { FlyToInterpolator } from "deck.gl";
 import "./App.css";
 
@@ -13,6 +17,8 @@ function App() {
   const [observationsList, setObservationsList] = useState([]);
   const [filteredObservationsList, setFilteredObservationsList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  // FIRESTORE DATA
+  const userCurations = collection(db, "users");
   // MAP STATE
   const [viewState, setViewState] = useState({
     latitude: 47.31,
@@ -64,7 +70,7 @@ function App() {
   // const mapEase = useRef.current.easeTo();
 
   const resetMapView = () => {
-    console.log("inside resetMapView")
+    console.log("inside resetMapView");
     // console.log(mapRef);
     // mapEase({
     //       center: event.features[0].geometry.coordinates,
@@ -91,7 +97,14 @@ function App() {
   //   );
   // }
 
-  // *********************************************MAP FUNCTIONS END***********************************************
+  // *********************************************MAP FUNCTIONS END********************************************************
+  // *********************************************CURATION LIST FUNCTIONS START********************************************
+  const getUserCurations = async () => {
+    const data = await getDocs(userCurations);
+    console.log(data);
+  };
+
+  // *********************************************CURATION LIST FUNCTIONS END**********************************************
   // *********************************************SEARCH BAR FUNCTIONS START***********************************************
 
   const handleChange = (event) => {
@@ -212,7 +225,7 @@ function App() {
 
   const checkEdibleSearch = async (taxa) => {
     let newTaxa = taxa;
-    const token = process.env.TREFLE_KEY;
+    const token = process.env.REACT_APP_TREFLE_KEY;
 
     try {
       const response = await axios.get(
@@ -253,7 +266,7 @@ function App() {
     if (apiSearchTaxa.length !== 0) {
       for (let taxa of apiSearchTaxa) {
         // TO SWITCH TO EDIBLE PLANT API CROSS REFERENCE:
-        // checkEdibleSearch(taxa);
+        checkEdibleSearch(taxa);
         // and comment out line below
         getObservationsByTaxon(taxa, true);
       }
@@ -388,6 +401,8 @@ function App() {
   };
 
   useEffect(() => {
+    getUserCurations();
+
     for (let item of edibleList) {
       for (let taxa of item.value) {
         getObservationsByTaxon(taxa);
@@ -427,6 +442,9 @@ function App() {
               handleClear={handleSearchClear}
               formData={formData}
             />
+          </li>
+          <li>
+            <Authentication />
           </li>
           <li></li>
         </ul>
