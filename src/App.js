@@ -1,7 +1,10 @@
-import ReactMap from "./ReactMap"
+import ReactMap from "./ReactMap";
 import Dropdown from "./Dropdown";
+import Authentication from "./Authentication";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { db } from "./firestore-config";
+import { collection, getDocs } from "firebase/firestore";
 import SearchBar from "./SearchBar";
 import Loading from "./Loading";
 import About from "./About";
@@ -14,8 +17,10 @@ function App() {
   const [observationsList, setObservationsList] = useState([]);
   const [filteredObservationsList, setFilteredObservationsList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [mainDisplay, setMainDisplay] = useState('React Map');
-  const [selectNavItem, setSelectedNavItem] = useState('React Map');
+  const [mainDisplay, setMainDisplay] = useState("React Map");
+  const [selectNavItem, setSelectedNavItem] = useState("React Map");
+  // FIRESTORE DATA
+  const userCurations = collection(db, "users");
   // MAP STATE
   const [viewState, setViewState] = useState({
     latitude: 47.31,
@@ -68,7 +73,7 @@ function App() {
   // const mapEase = useRef.current.easeTo();
 
   const resetMapView = () => {
-    console.log("inside resetMapView")
+    console.log("inside resetMapView");
     // console.log(mapRef);
     // mapEase({
     //       center: event.features[0].geometry.coordinates,
@@ -95,7 +100,14 @@ function App() {
   //   );
   // }
 
-  // *********************************************MAP FUNCTIONS END***********************************************
+  // *********************************************MAP FUNCTIONS END********************************************************
+  // *********************************************CURATION LIST FUNCTIONS START********************************************
+  const getUserCurations = async () => {
+    const data = await getDocs(userCurations);
+    console.log(data);
+  };
+
+  // *********************************************CURATION LIST FUNCTIONS END**********************************************
   // *********************************************SEARCH BAR FUNCTIONS START***********************************************
 
   const handleChange = (event) => {
@@ -248,7 +260,7 @@ function App() {
 
   const checkEdibleSearch = async (taxa) => {
     let newTaxa = taxa;
-    const token = process.env.TREFLE_KEY;
+    const token = process.env.REACT_APP_TREFLE_KEY;
 
     try {
       const response = await axios.get(
@@ -424,7 +436,9 @@ function App() {
   };
 
   useEffect(() => {
-    for (let item of newedibleList) {
+    getUserCurations();
+
+    for (let item of edibleList) {
       for (let taxa of item.value) {
         getObservationsByTaxon(taxa);
       }
@@ -444,50 +458,63 @@ function App() {
           <p className="tagline">Your Washington State foraging companion</p>
         </div>
         <ul className="navbar-list">
-          <li 
-            style={selectNavItem === 'React Map' ? { fontWeight: 'bold', background: '#00A6A6' } : {}}
+          <li
+            style={
+              selectNavItem === "React Map"
+                ? { fontWeight: "bold", background: "#00A6A6" }
+                : {}
+            }
             onClick={() => {
-              setMainDisplay('React Map')
-              setSelectedNavItem('React Map')
-              }}
+              setMainDisplay("React Map");
+              setSelectedNavItem("React Map");
+            }}
           >
             Map
           </li>
-          <li 
-            style={selectNavItem === 'About' ? {fontWeight: 'bold', background: '#00A6A6' } : {}}
+          <li
+            style={
+              selectNavItem === "About"
+                ? { fontWeight: "bold", background: "#00A6A6" }
+                : {}
+            }
             onClick={() => {
-              setMainDisplay('About')
-              setSelectedNavItem('About')
-              }}
+              setMainDisplay("About");
+              setSelectedNavItem("About");
+            }}
           >
             About
           </li>
-          <li 
-            style={selectNavItem === 'Responsibility' ? {fontWeight: 'bold', background: '#00A6A6' } : {}}
+          <li
+            style={
+              selectNavItem === "Responsibility"
+                ? { fontWeight: "bold", background: "#00A6A6" }
+                : {}
+            }
             onClick={() => {
-              setMainDisplay('Responsibility')
-              setSelectedNavItem('Responsibility')
-              }}
+              setMainDisplay("Responsibility");
+              setSelectedNavItem("Responsibility");
+            }}
           >
             Forage Responsibily
           </li>
         </ul>
+        <Authentication />
       </header>
       <main>
-        {mainDisplay === 'React Map' && 
+        {mainDisplay === "React Map" && (
           <ReactMap
-          viewState={viewState}
-          changeMapView={changeMapView}
-          dataGeoJSON={{
-            type: "FeatureCollection",
-            features:
-              filteredObservationsList.length !== 0
-                ? filteredObservationsList
-                : observationsList,
-          }}
+            viewState={viewState}
+            changeMapView={changeMapView}
+            dataGeoJSON={{
+              type: "FeatureCollection",
+              features:
+                filteredObservationsList.length !== 0
+                  ? filteredObservationsList
+                  : observationsList,
+            }}
           />
-        }
-        {mainDisplay === 'React Map' && 
+        )}
+        {mainDisplay === "React Map" && (
           <div className="dropsearch-container">
             <Dropdown
               handleSelection={handleSelection}
@@ -507,13 +534,13 @@ function App() {
               formData={formData}
             />
           </div>
-        }
-        {mainDisplay === 'About' && <About />}
-        {mainDisplay === 'Responsibility' && <Responsibility />}
+        )}
+        {mainDisplay === "About" && <About />}
+        {mainDisplay === "Responsibility" && <Responsibility />}
         {/* {isLoading ? (
           <Loading />
         ) : ( */}
-          
+
         {/* )} */}
       </main>
     </div>
