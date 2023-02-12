@@ -8,8 +8,9 @@ import {
   clusterCountLayer,
   unclusteredPointLayer,
 } from "./Layers";
+import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 
-function ReactMap({ viewState, changeMapView, dataGeoJSON }) {
+function ReactMap({ viewState, changeMapView, dataGeoJSON, liked, addToFavorites }) {
   // const [viewState, setViewState] = useState({
   //   latitude: 47.31,
   //   longitude: -120.485,
@@ -57,6 +58,8 @@ function ReactMap({ viewState, changeMapView, dataGeoJSON }) {
       `https://maps.google.com/maps?daddr=${popupInfo.latitude},${popupInfo.longitude}&amp;ll=`
     );
   }
+
+  const likeOrNot = liked ? <AiOutlineHeart /> : <AiFillHeart/> 
 
   return (
     <div className="map-container">
@@ -113,6 +116,12 @@ function ReactMap({ viewState, changeMapView, dataGeoJSON }) {
                   >
                     Get Directions
                   </button>
+                  <p
+                    id='favorite-heart'
+                    onClick={() => addToFavorites()}
+                  >
+                    {likeOrNot}
+                  </p>
                 </div>
               </div>
             </div>

@@ -4,17 +4,19 @@ import Authentication from "./Authentication";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { db } from "./firestore-config";
-import { collection, doc, getDoc, getDocFromCache } from "firebase/firestore";
+import { doc, getDoc, getDocFromCache } from "firebase/firestore";
 import SearchBar from "./SearchBar";
 import Loading from "./Loading";
 import About from "./About";
 import Responsibility from "./Responsibility";
 import "./App.css";
 import edibleList from "./edibleList";
+import newedibleList from "./newedibleList";
 
 function App() {
   const [observationsList, setObservationsList] = useState([]);
   const [filteredObservationsList, setFilteredObservationsList] = useState([]);
+  const [favoritesList, setFavoritesList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [mainDisplay, setMainDisplay] = useState("React Map");
   const [selectNavItem, setSelectedNavItem] = useState("React Map");
@@ -26,10 +28,12 @@ function App() {
     longitude: -120.485,
     zoom: 6.1,
   });
+  const [liked, setLiked] = useState(true);
   // SEARCH BAR STATE
   const [formData, setFormData] = useState("");
   // DROPDOWN STATE
   const [allSelected, setAllSelected] = useState(true);
+  // const [plantsSelected, setPlantsSelected] = useState(false);!!!!!!
   const [selectedSpecies, setSelectedSpecies] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -104,6 +108,8 @@ function App() {
   // pull list of saved observations from doc associated with testuser
   // move to only pulling authenticated user
   const getUserCurations = async () => {
+    let userFavIds = [];
+
     const docRef = doc(
       db,
       "users",
@@ -117,11 +123,17 @@ function App() {
       const targetDocCached = await getDocFromCache(docRef);
       // Document was found in the cache. If no cached document exists,
       // an error will be returned to the 'catch' block below.
-      console.log("Cached document data:", targetDocCached.data());
+      userFavIds = targetDocCached.data().observationIDs;
+      console.log("Cached document data:", userFavIds);
     } catch (e) {
       console.log("Error getting cached document:", e);
       const targetDoc = await getDoc(docRef);
-      console.log("Server collection data:", targetDoc.data().observationIDs);
+      userFavIds = targetDoc.data().observationIDs;
+      console.log("Server collection data:", userFavIds);
+    }
+
+    for (let id of userFavIds) {
+      getObservationByID(id);
     }
   };
 
@@ -133,11 +145,41 @@ function App() {
   // store unpacked results in state variable (user favorites)
   // CHECK TO SEE IF UNPACK WORKS/ IF THE DATA IS RETURNED IN SAME FORMAT AS OTHER CALL
 
+  const addToFavorites = () => {
+    console.log("in adding to favorites");
+    setLiked(!liked);
+  };
+
+  const seeFavorites = () => {
+    console.log("in favorites");
+  };
+
+  const getObservationByID = async (id) => {
+    try {
+      const response = await axios.get(`${INAT_URL}/observations/`, {
+        params: {
+          id: id,
+        },
+      });
+
+      dataUnpacker(response.data.results, "favs");
+      console.log("success!", response.data.results);
+    } catch (err) {
+      console.log("ERROR! getObservationByID failed", err);
+    }
+  };
+
   // *********************************************CURATION LIST FUNCTIONS END**********************************************
   // *********************************************SEARCH BAR FUNCTIONS START***********************************************
 
   const handleChange = (event) => {
     setFormData(event.target.value);
+  };
+
+  // THIS IS FOR DROPDOWN, BUT NEEDS TO BE ABOVE HANDLSEARCHSUBMIT
+  const handleDropdownClear = () => {
+    setAllSelected(false);
+    setSelectedSpecies([]);
   };
 
   const handleSearchSubmit = (event) => {
@@ -164,17 +206,9 @@ function App() {
       setSelectedSpecies(
         selectedSpecies.filter((selectedPlant) => selectedPlant !== species)
       );
-
-      // setSelectedSpecies((currentSpecies) =>
-      //   currentSpecies.filter((selectedPlant) => selectedPlant !== species)
-      // );
     } else {
       setSelectedSpecies([...selectedSpecies, species]);
-
-      // setSelectedSpecies((currentSpecies) => [...currentSpecies, species]);
     }
-    // resetFilteredObservations();
-    // pullFilteredObservations(selectedSpecies);
   };
 
   const handleDone = () => {
@@ -189,15 +223,10 @@ function App() {
     }
   };
 
-  const handleDropdownClear = () => {
-    setAllSelected(false);
-    setSelectedSpecies([]);
-  };
-
   const handleSelectAll = () => {
     if (allSelected === false) {
       setAllSelected(true);
-      const allSpecies = edibleList.map((species) => species.label);
+      const allSpecies = newedibleList.map((species) => species.label);
       setSelectedSpecies(allSpecies);
     } else {
       handleDropdownClear();
@@ -207,6 +236,45 @@ function App() {
   const alternateOpenClose = () => {
     setIsOpen(!isOpen);
   };
+
+  // !!!!!!!!
+  // const handlePlantsSelected = () => {
+  //   setPlantsSelected(!plantsSelected);
+  //   setAllSelected(false);
+  //   setSelectedSpecies([]);
+  //   const filteredPlants = newedibleList.filter(object => object.type === 'plant');
+  //   setFilteredObservationsList(filteredPlants);
+  //   }
+  // //   handleDropdownClear();
+  // //   setPlantsSelected(!plantsSelected);
+  // //   if (plantsSelected) {
+  // //     console.log('in the if')
+  // //     return;
+  // //   }
+  // //   console.log('in the else')
+  // //   const newPlants = newedibleList.filter((species) => species.type === 'plant');
+  // //   setSelectedSpecies((prevSelectedSpecies) => [
+  // //     ...prevSelectedSpecies,
+  // //     newPlants.map((species) => species.label),
+  // //   ])
+  // //   console.log(selectedSpecies);
+  // // };
+  // //   if (plantsSelected === false) {
+  // //     setPlantsSelected(true);
+  // //     for (species of newedibleList) {
+  // //       if (species.type === 'plant') {
+  // //         console.log("new one")
+  // //         console.log(species.label);
+  // //         // selectedSpecies.includes(species.label)
+  // //         setSelectedSpecies(...species.label, species.label)
+  // //       };
+  // //     };
+  // //   } else {
+  // //     handleDropdownClear();
+  // //     setPlantsSelected(false);
+  // //   }
+  // // };
+  // !!!!!!!!!!!!!
 
   // *********************************************DROPDOWN FUNCTIONS END**************************************************
 
@@ -231,7 +299,7 @@ function App() {
     // loops through, and for each adds latin to return list:
     const filtersAccountedFor = [];
 
-    for (let item of edibleList) {
+    for (let item of newedibleList) {
       for (let filter of filterList) {
         if (item.label.toLowerCase() === filter.toLowerCase()) {
           dbSearchTaxa = dbSearchTaxa.concat(item.value);
@@ -380,6 +448,11 @@ function App() {
         ...currentObservations,
         ...updatedObservations,
       ]);
+    } else if (filter === "favs") {
+      setFavoritesList((currentObservations) => [
+        ...currentObservations,
+        ...updatedObservations,
+      ]);
     } else {
       setFilteredObservationsList((currentObservations) => [
         ...currentObservations,
@@ -505,11 +578,17 @@ function App() {
                 filteredObservationsList.length !== 0
                   ? filteredObservationsList
                   : observationsList,
+              // features: favoritesList,
             }}
+            addToFavorites={addToFavorites}
+            liked={liked}
           />
         )}
         {mainDisplay === "React Map" && (
           <div className="dropsearch-container">
+            <button className="favorite-button" onClick={() => seeFavorites()}>
+              See Favorites
+            </button>
             <Dropdown
               handleSelection={handleSelection}
               handleDone={handleDone}
@@ -518,6 +597,7 @@ function App() {
               allSelected={allSelected}
               selectedSpecies={selectedSpecies}
               isOpen={isOpen}
+              // handlePlantsSelected={handlePlantsSelected}
             />
             <SearchBar
               // className="search-bar"

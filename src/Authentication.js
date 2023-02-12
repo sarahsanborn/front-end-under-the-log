@@ -6,7 +6,7 @@ const Authentication = () => {
   return (
     <div>
       <button className="google-signin" onClick={signInWithGoogle}>
-        Sign In with Google
+        Sign In
       </button>
       <h1>{localStorage.getItem("name")}</h1>
       <h1>{localStorage.getItem("email")}</h1>
