@@ -4,7 +4,7 @@ import Authentication from "./Authentication";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { db } from "./firestore-config";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, doc, getDoc, getDocFromCache } from "firebase/firestore";
 import SearchBar from "./SearchBar";
 import Loading from "./Loading";
 import About from "./About";
@@ -19,7 +19,7 @@ function App() {
   const [mainDisplay, setMainDisplay] = useState("React Map");
   const [selectNavItem, setSelectedNavItem] = useState("React Map");
   // FIRESTORE DATA
-  const userCurations = collection(db, "users");
+  // const userCurations = collection(db, "users");
   // MAP STATE
   const [viewState, setViewState] = useState({
     latitude: 47.31,
@@ -100,10 +100,38 @@ function App() {
 
   // *********************************************MAP FUNCTIONS END********************************************************
   // *********************************************CURATION LIST FUNCTIONS START********************************************
+
+  // pull list of saved observations from doc associated with testuser
+  // move to only pulling authenticated user
   const getUserCurations = async () => {
-    const data = await getDocs(userCurations);
-    console.log(data);
+    const docRef = doc(
+      db,
+      "users",
+      "testuser",
+      "curatedobservations",
+      "curatedname"
+    );
+
+    // Get a document, forcing the SDK to fetch from the offline cache.
+    try {
+      const targetDocCached = await getDocFromCache(docRef);
+      // Document was found in the cache. If no cached document exists,
+      // an error will be returned to the 'catch' block below.
+      console.log("Cached document data:", targetDocCached.data());
+    } catch (e) {
+      console.log("Error getting cached document:", e);
+      const targetDoc = await getDoc(docRef);
+      console.log("Server collection data:", targetDoc.data().observationIDs);
+    }
   };
+
+  // sort through user docs in user collection
+  // if user email matching authenticated email
+  // access curation collection for that user
+  // return list of observations ids
+  // pass to api call --> edit data unpack to take favorites and...
+  // store unpacked results in state variable (user favorites)
+  // CHECK TO SEE IF UNPACK WORKS/ IF THE DATA IS RETURNED IN SAME FORMAT AS OTHER CALL
 
   // *********************************************CURATION LIST FUNCTIONS END**********************************************
   // *********************************************SEARCH BAR FUNCTIONS START***********************************************
@@ -402,7 +430,7 @@ function App() {
   };
 
   useEffect(() => {
-    getUserCurations();
+    // getUserCurations();
 
     for (let item of edibleList) {
       for (let taxa of item.value) {
