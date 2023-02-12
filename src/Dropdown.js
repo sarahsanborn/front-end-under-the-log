@@ -1,6 +1,5 @@
 import React from "react";
 import { AiOutlineDown } from "react-icons/ai";
-
 import edibleList from "./edibleList";
 
 const Dropdown = ({

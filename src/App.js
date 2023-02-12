@@ -3,27 +3,28 @@ import Dropdown from "./Dropdown";
 import Authentication from "./Authentication";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import SearchBar from "./SearchBar";
-import Loading from "./Loading";
-
 import { db } from "./firestore-config";
 import { collection, getDocs } from "firebase/firestore";
-// import { FlyToInterpolator } from "deck.gl";
+import SearchBar from "./SearchBar";
+import Loading from "./Loading";
+import About from "./About";
+import Responsibility from "./Responsibility";
 import "./App.css";
-
 import edibleList from "./edibleList";
 
 function App() {
   const [observationsList, setObservationsList] = useState([]);
   const [filteredObservationsList, setFilteredObservationsList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [mainDisplay, setMainDisplay] = useState("React Map");
+  const [selectNavItem, setSelectedNavItem] = useState("React Map");
   // FIRESTORE DATA
   const userCurations = collection(db, "users");
   // MAP STATE
   const [viewState, setViewState] = useState({
     latitude: 47.31,
     longitude: -120.485,
-    zoom: 6.2,
+    zoom: 6.1,
   });
   // SEARCH BAR STATE
   const [formData, setFormData] = useState("");
@@ -422,38 +423,51 @@ function App() {
           <h1 className="title">UNDER THE LOG</h1>
           <p className="tagline">Your Washington State foraging companion</p>
         </div>
-        <ul className="search-filter-list">
-          <li>
-            <Dropdown
-              handleSelection={handleSelection}
-              handleDone={handleDone}
-              handleSelectAll={handleSelectAll}
-              alternateOpenClose={alternateOpenClose}
-              allSelected={allSelected}
-              selectedSpecies={selectedSpecies}
-              isOpen={isOpen}
-            ></Dropdown>
+        <ul className="navbar-list">
+          <li
+            style={
+              selectNavItem === "React Map"
+                ? { fontWeight: "bold", background: "#00A6A6" }
+                : {}
+            }
+            onClick={() => {
+              setMainDisplay("React Map");
+              setSelectedNavItem("React Map");
+            }}
+          >
+            Map
           </li>
-          <li>
-            <SearchBar
-              className="search-bar"
-              handleChange={handleChange}
-              handleSearchSubmit={handleSearchSubmit}
-              handleClear={handleSearchClear}
-              formData={formData}
-            />
+          <li
+            style={
+              selectNavItem === "About"
+                ? { fontWeight: "bold", background: "#00A6A6" }
+                : {}
+            }
+            onClick={() => {
+              setMainDisplay("About");
+              setSelectedNavItem("About");
+            }}
+          >
+            About
           </li>
-          <li>
-            <Authentication />
+          <li
+            style={
+              selectNavItem === "Responsibility"
+                ? { fontWeight: "bold", background: "#00A6A6" }
+                : {}
+            }
+            onClick={() => {
+              setMainDisplay("Responsibility");
+              setSelectedNavItem("Responsibility");
+            }}
+          >
+            Forage Responsibily
           </li>
-          <li></li>
         </ul>
+        <Authentication />
       </header>
-
       <main>
-        {isLoading ? (
-          <Loading />
-        ) : (
+        {mainDisplay === "React Map" && (
           <ReactMap
             viewState={viewState}
             changeMapView={changeMapView}
@@ -464,8 +478,35 @@ function App() {
                   ? filteredObservationsList
                   : observationsList,
             }}
-          ></ReactMap>
+          />
         )}
+        {mainDisplay === "React Map" && (
+          <div className="dropsearch-container">
+            <Dropdown
+              handleSelection={handleSelection}
+              handleDone={handleDone}
+              handleSelectAll={handleSelectAll}
+              alternateOpenClose={alternateOpenClose}
+              allSelected={allSelected}
+              selectedSpecies={selectedSpecies}
+              isOpen={isOpen}
+            />
+            <SearchBar
+              // className="search-bar"
+              handleChange={handleChange}
+              handleSearchSubmit={handleSearchSubmit}
+              handleClear={handleSearchClear}
+              formData={formData}
+            />
+          </div>
+        )}
+        {mainDisplay === "About" && <About />}
+        {mainDisplay === "Responsibility" && <Responsibility />}
+        {/* {isLoading ? (
+          <Loading />
+        ) : ( */}
+
+        {/* )} */}
       </main>
     </div>
   );

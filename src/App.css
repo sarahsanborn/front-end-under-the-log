@@ -22,21 +22,63 @@ header {
     align-items: center;
     background-color: #265061;
     height: 15vh;
+    color: #eff1f3;
 }
 
 .title {
     margin-block-end: 0;
-    color: #EFF1F3;
     font-family: CenturyGothic, Gill Sans, sans-serif;
 }
 
 .tagline {
     margin-block-start: 0;
     font-style: italic;
-    color: #EFF1F3;
 }
 
-/* Map */
+.navbar-list {
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
+    padding: 0;
+}
+
+.navbar-list li {
+    padding: .3em 1em;
+    margin: 0 .4rem;
+    font-size: 1.4em;
+}
+
+.navbar-list li:hover {
+    background-color: #00A6A6;
+}
+
+
+/* ABOUT AND RESPONSIBILITY PAGES */
+.page-container {
+    display: flex;
+    justify-content: center;
+}
+
+.page-inner {
+    max-width: 800px;
+}
+
+.headline {
+    font-size: 3rem;
+    font-family: CenturyGothic, Gill Sans, sans-serif;
+}
+
+section p {
+    font-size: 1.3em;
+    line-height: 1.8em;
+}
+
+section li {
+    font-size: 1.4em;
+    line-height: 1.8em;
+}
+
+/* REACT MAP */
 .popup-container {
     display: flex;
     justify-content: space-between;
@@ -66,20 +108,26 @@ header {
     background-color: #30677d;
 }
 
-.search-filter-list {
+
+/* CONTAINER FOR DROPDOWN AND SEARCH BAR */
+.dropsearch-container {
     display: flex;
-    list-style: none;
+    justify-content: right;
+    align-items: center;
+    width: auto;
+    position: fixed;
+    top: 14vh;
+    right: 0px;
+    z-index: 1;
 }
 
-.search-filter-list li {
-    margin-left: 20px;
-}
 
-
-/* Search */
+/* SEARCH BAR */
 .search-container {
     background-color: #EFF1F3;
     display: flex;
+    margin: 1rem;
+    border: solid black 1px;
 }
 
 .search-input {
@@ -88,7 +136,6 @@ header {
     font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
     margin-right: 0;
     border: none;
-    /* border-bottom: 1px solid #999; */
     outline: none;
     background-color: #EFF1F3;
     height: 14px;
@@ -105,10 +152,12 @@ header {
 }
 
 
-/* Dropdown filter */
+/* DROP DOWN FILTER */
 .dropdown-container {
     position: relative;
     width: 250px;
+    margin: 1rem 0;
+    border: solid black 1px;
 }
 
 .select-species-button {
@@ -123,7 +172,7 @@ header {
 }
 
 .select-species-button:hover {
-    background-color: #e8e2e0;
+    background-color: #FFF;
 }
 
 .dropdown-list {
@@ -142,7 +191,7 @@ header {
 
 .dropdown-species-list-with-scroll {
     max-height: 300px;
-    overflow: scroll; 
+    overflow: hidden; 
     overflow-y:scroll;
     list-style-type: none;
 }

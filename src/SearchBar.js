@@ -4,7 +4,7 @@ import { MdOutlineClear } from "react-icons/md";
 const SearchBar = ({
   handleChange,
   handleSearchSubmit,
-  handleClear,
+  handleSearchClear,
   formData,
 }) => {
   return (
@@ -20,7 +20,7 @@ const SearchBar = ({
           className="search-input"
         />
       </form>
-      <button className="clear-input" onClick={handleClear}>
+      <button className="clear-input" onClick={handleSearchClear}>
         <MdOutlineClear />
       </button>
     </div>
