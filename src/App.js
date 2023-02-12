@@ -267,7 +267,7 @@ function App() {
     if (apiSearchTaxa.length !== 0) {
       for (let taxa of apiSearchTaxa) {
         // TO SWITCH TO EDIBLE PLANT API CROSS REFERENCE:
-        checkEdibleSearch(taxa);
+        // checkEdibleSearch(taxa);
         // and comment out line below
         getObservationsByTaxon(taxa, true);
       }
