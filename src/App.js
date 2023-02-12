@@ -36,6 +36,8 @@ function App() {
   // const [plantsSelected, setPlantsSelected] = useState(false);!!!!!!
   const [selectedSpecies, setSelectedSpecies] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
+  // FAVORITES BOX STATE
+  const [favOpen, setFavOpen] = useState(false);
 
   const MONTHS = [
     "null",
@@ -145,15 +147,6 @@ function App() {
   // store unpacked results in state variable (user favorites)
   // CHECK TO SEE IF UNPACK WORKS/ IF THE DATA IS RETURNED IN SAME FORMAT AS OTHER CALL
 
-  const addToFavorites = () => {
-    console.log("in adding to favorites");
-    setLiked(!liked);
-  };
-
-  const seeFavorites = () => {
-    console.log("in favorites");
-  };
-
   const getObservationByID = async (id) => {
     try {
       const response = await axios.get(`${INAT_URL}/observations/`, {
@@ -167,6 +160,20 @@ function App() {
     } catch (err) {
       console.log("ERROR! getObservationByID failed", err);
     }
+  };
+
+  const addToFavorites = () => {
+    console.log("in adding to favorites");
+    setLiked(!liked);
+  };
+
+  const seeFavorites = () => {
+    console.log("in favorites");
+    // NEED TO ADD SIDE BOX TOGGLE FUNCTIONALITY
+    // MAP DISPLAY FUNCTIONALITY (must test when switching to other "pages")
+
+    // toggles points on map, bot does not toggle box visibilty yet
+    favOpen ? setFavOpen(false) : setFavOpen(true);
   };
 
   // *********************************************CURATION LIST FUNCTIONS END**********************************************
@@ -189,6 +196,7 @@ function App() {
     resetFilteredObservations(true);
     pullFilteredObservations(formData);
     resetMapView();
+    setFavOpen(false);
   };
 
   const handleSearchClear = () => {
@@ -215,6 +223,7 @@ function App() {
     setIsOpen(false);
 
     resetFilteredObservations(true);
+    setFavOpen(false);
 
     if (selectedSpecies) {
       pullFilteredObservations(selectedSpecies);
@@ -574,10 +583,11 @@ function App() {
             changeMapView={changeMapView}
             dataGeoJSON={{
               type: "FeatureCollection",
-              features:
-                filteredObservationsList.length !== 0
-                  ? filteredObservationsList
-                  : observationsList,
+              features: favOpen
+                ? favoritesList
+                : filteredObservationsList.length !== 0
+                ? filteredObservationsList
+                : observationsList,
               // features: favoritesList,
             }}
             addToFavorites={addToFavorites}
