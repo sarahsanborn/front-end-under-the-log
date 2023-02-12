@@ -27,6 +27,7 @@ function App() {
     longitude: -120.485,
     zoom: 6.1,
   });
+  const [liked, setLiked] = useState(true);
   // SEARCH BAR STATE
   const [formData, setFormData] = useState("");
   // DROPDOWN STATE
@@ -100,12 +101,21 @@ function App() {
   //   );
   // }
 
+  const addToFavorites = () => {
+    console.log("in adding to favorites");
+    setLiked(!liked);
+  };
+
   // *********************************************MAP FUNCTIONS END********************************************************
   // *********************************************CURATION LIST FUNCTIONS START********************************************
   const getUserCurations = async () => {
     const data = await getDocs(userCurations);
     console.log(data);
   };
+
+  const seeFavorites = () => {
+    console.log('in favorites');
+  }
 
   // *********************************************CURATION LIST FUNCTIONS END**********************************************
   // *********************************************SEARCH BAR FUNCTIONS START***********************************************
@@ -512,10 +522,13 @@ function App() {
                   ? filteredObservationsList
                   : observationsList,
             }}
+            addToFavorites={addToFavorites}
+            liked={liked}
           />
         )}
         {mainDisplay === "React Map" && (
           <div className="dropsearch-container">
+            <button className="favorite-button" onClick={() => seeFavorites()}>See Favorites</button>
             <Dropdown
               handleSelection={handleSelection}
               handleDone={handleDone}

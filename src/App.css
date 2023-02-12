@@ -108,6 +108,29 @@ section li {
     background-color: #30677d;
 }
 
+#favorite-heart {
+    display: flex;
+    font-size: large;
+    margin-left: 1em;
+}
+
+.favorite-button {
+    background-color: #EFF1F3;
+    border: 1px solid;
+    /* padding: 8px 16px; */
+    font-family: "Whitney", "Trebuchet MS", Arial, sans-serif;
+    font-size: 16px;
+    color: #7a8082;
+    padding: 5px 10px;
+    margin: 1rem;
+    border-radius: 10px;
+}
+
+.favorite-button:hover {
+    background-color: #F79824;
+    color: #265061;
+}
+
 
 /* CONTAINER FOR DROPDOWN AND SEARCH BAR */
 .dropsearch-container {
