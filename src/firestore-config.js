@@ -49,6 +49,7 @@ export const signInWithGoogle = () => {
       const name = result.user.displayName;
       const email = result.user.email;
 
+      // local storage is not encrypted
       localStorage.setItem("name", name);
       localStorage.setItem("email", email);
     })

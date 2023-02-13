@@ -32,6 +32,7 @@ function App() {
   const [liked, setLiked] = useState(true);
   // SEARCH BAR STATE
   const [formData, setFormData] = useState("");
+  const [trefleToken, setTrefleToken] = useState("");
   // DROPDOWN STATE
   const [allSelected, setAllSelected] = useState(true);
   // const [plantsSelected, setPlantsSelected] = useState(false);!!!!!!
@@ -333,9 +334,16 @@ function App() {
     return [dbSearchTaxa, apiSearchTaxa];
   };
 
+  // calls cloud function and retrieves user temp api key to
+  // use in checkedEdibleSearch
+  // const retrieveUserTrefleToken = async () => {
+
+  // }
+
   const checkEdibleSearch = async (taxa) => {
     let newTaxa = taxa;
-    const token = process.env.REACT_APP_TREFLE_KEY;
+    // const token = retrieveUserTrefleToken()
+    const token = "cheese";
 
     try {
       const response = await axios.get(
