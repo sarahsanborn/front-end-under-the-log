@@ -169,7 +169,10 @@ function App() {
   };
 
   const seeFavorites = () => {
+    console.log("favorites List");
     console.log(favoritesList);
+    console.log(favoritesList[0]);
+
     // NEED TO ADD SIDE BOX TOGGLE FUNCTIONALITY
     // MAP DISPLAY FUNCTIONALITY (must test when switching to other "pages")
 
@@ -459,6 +462,7 @@ function App() {
         ...updatedObservations,
       ]);
     } else if (filter === "favs") {
+      console.log("updated observation", updatedObservations);
       setFavoritesList((currentObservations) => [
         ...currentObservations,
         ...updatedObservations,
@@ -619,13 +623,11 @@ function App() {
             />
           </div>
         )}
-        {mainDisplay === "React Map" && 
+        {mainDisplay === "React Map" && (
           <div className="favSidebar-on-map">
-            <FavSidebar 
-              favoritesList={favoritesList}
-            />
+            <FavSidebar favoritesList={favoritesList} />
           </div>
-        }
+        )}
         {mainDisplay === "About" && <About />}
         {mainDisplay === "Responsibility" && <Responsibility />}
         {/* {isLoading ? (
