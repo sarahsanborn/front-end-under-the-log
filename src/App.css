@@ -159,7 +159,7 @@ section li {
     width: 300px;
     background-color: #eff1f3;
     flex-direction: column;
-    height: 60vh;
+    max-height: 60vh;
 }
 
 .fave-list-ul {
