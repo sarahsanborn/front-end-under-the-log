@@ -153,7 +153,7 @@ function App() {
       "users",
       "testuser",
       "curatedobservations",
-      "curatedname"
+      "favorites"
     );
 
     // Get a document, forcing the SDK to fetch from the offline cache.

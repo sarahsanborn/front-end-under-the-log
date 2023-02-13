@@ -8,8 +8,8 @@ const Authentication = () => {
       <button className="google-signin" onClick={signInWithGoogle}>
         Sign In
       </button>
-      <h1>{localStorage.getItem("name")}</h1>
-      <h1>{localStorage.getItem("email")}</h1>
+      <p>Welcome, {localStorage.getItem("name")}!</p>
+      {/* <p>{localStorage.getItem("email")}</p> */}
     </div>
   );
 };
