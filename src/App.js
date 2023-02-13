@@ -169,14 +169,6 @@ function App() {
   };
 
   const seeFavorites = () => {
-    console.log("favorites List");
-    console.log(favoritesList);
-    console.log(favoritesList[0]);
-
-    // NEED TO ADD SIDE BOX TOGGLE FUNCTIONALITY
-    // MAP DISPLAY FUNCTIONALITY (must test when switching to other "pages")
-
-    // toggles points on map, bot does not toggle box visibilty yet
     favOpen ? setFavOpen(false) : setFavOpen(true);
   };
 
@@ -623,11 +615,11 @@ function App() {
             />
           </div>
         )}
-        {mainDisplay === "React Map" && (
+        {mainDisplay === "React Map" && favOpen === true ? (
           <div className="favSidebar-on-map">
             <FavSidebar favoritesList={favoritesList} />
           </div>
-        )}
+        ) : null}
         {mainDisplay === "About" && <About />}
         {mainDisplay === "Responsibility" && <Responsibility />}
         {/* {isLoading ? (
