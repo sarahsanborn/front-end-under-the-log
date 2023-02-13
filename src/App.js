@@ -617,11 +617,15 @@ function App() {
               handleClear={handleSearchClear}
               formData={formData}
             />
+          </div>
+        )}
+        {mainDisplay === "React Map" && 
+          <div className="favSidebar-on-map">
             <FavSidebar 
               favoritesList={favoritesList}
             />
           </div>
-        )}
+        }
         {mainDisplay === "About" && <About />}
         {mainDisplay === "Responsibility" && <Responsibility />}
         {/* {isLoading ? (

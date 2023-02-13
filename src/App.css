@@ -144,12 +144,19 @@ section li {
     z-index: 1;
 }
 
+/* FAVORITE SIDEBAR */
+.favSidebar-on-map {
+    z-index: 1;
+    position: fixed;
+    top: 25vh;
+    right: 1vw;
+}
+
 .favsidebar-container {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 300px;
-    z-index: 1;
     background-color: #eff1f3;
     flex-direction: column;
     height: 60vh;
