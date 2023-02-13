@@ -144,6 +144,50 @@ section li {
     z-index: 1;
 }
 
+.favsidebar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    z-index: 1;
+    background-color: #eff1f3;
+    flex-direction: column;
+    height: 60vh;
+}
+
+.fave-list-ul {
+    overflow: hidden; 
+    overflow-y:scroll;
+}
+
+#fave-title {
+    font-size: 1.7em;
+    margin-bottom: 0;
+}
+
+.favorite-list-item {
+    list-style: none;
+    display: flex;
+    padding: .2rem;
+}
+
+#fave-image {
+    height: 10vh;
+    width: 10vh;
+    background-color: #7a8082;
+    margin-right: 1rem;
+}
+
+#fave-header {
+    font-size: 1em;
+    margin: 0;
+}
+
+#fave-text {
+    font-size: .9em;
+    margin: 0;
+}
+
 
 /* SEARCH BAR */
 .search-container {
@@ -258,7 +302,6 @@ section li {
 /* Authentication */
 .google-signin {
     transition: background-color .3s, box-shadow .3s;
-      
     padding: 12px 16px 12px 42px;
     border: none;
     border-radius: 3px;
@@ -274,28 +317,25 @@ section li {
     background-repeat: no-repeat;
     background-position: 12px 11px;}
     
-    .google-signin:hover {
-      box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 2px 4px rgba(0, 0, 0, .25);
-    }
+.google-signin:hover {
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 2px 4px rgba(0, 0, 0, .25);
+}
     
-    .google-signin:active {
-      background-color: #eeeeee;
-    }
+.google-signin:active {
+    background-color: #eeeeee;
+}
     
-    .google-signin:focus {
-      outline: none;
-      box-shadow: 
+.google-signin:focus {
+    outline: none;
+    box-shadow: 
         0 -1px 0 rgba(0, 0, 0, .04),
         0 2px 4px rgba(0, 0, 0, .25),
         0 0 0 3px #c8dafc;
-    }
+}
     
-    .google-signin:disabled {
-      filter: grayscale(100%);
-      background-color: #ebebeb;
-      box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25);
-      cursor: not-allowed;
-    }
-  
-  
-  
+.google-signin:disabled {
+    filter: grayscale(100%);
+    background-color: #ebebeb;
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25);
+    cursor: not-allowed;
+}

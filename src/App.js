@@ -12,6 +12,7 @@ import Responsibility from "./Responsibility";
 import "./App.css";
 import edibleList from "./edibleList";
 import newedibleList from "./newedibleList";
+import FavSidebar from "./FavSidebar";
 
 function App() {
   const [observationsList, setObservationsList] = useState([]);
@@ -168,7 +169,7 @@ function App() {
   };
 
   const seeFavorites = () => {
-    console.log("in favorites");
+    console.log(favoritesList);
     // NEED TO ADD SIDE BOX TOGGLE FUNCTIONALITY
     // MAP DISPLAY FUNCTIONALITY (must test when switching to other "pages")
 
@@ -615,6 +616,9 @@ function App() {
               handleSearchSubmit={handleSearchSubmit}
               handleClear={handleSearchClear}
               formData={formData}
+            />
+            <FavSidebar 
+              favoritesList={favoritesList}
             />
           </div>
         )}
