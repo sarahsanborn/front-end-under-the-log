@@ -29,11 +29,12 @@ function App() {
     longitude: -120.485,
     zoom: 6.1,
   });
-  const [liked, setLiked] = useState(true);
+  const [liked, setLiked] = useState(false);
   const mapRef = useRef(null);
   const [popupInfo, setPopupInfo] = useState(null);
   // SEARCH BAR STATE
   const [formData, setFormData] = useState("");
+  const [trefleToken, setTrefleToken] = useState("");
   // DROPDOWN STATE
   const [allSelected, setAllSelected] = useState(true);
   // const [plantsSelected, setPlantsSelected] = useState(false);!!!!!!
@@ -198,9 +199,29 @@ function App() {
     }
   };
 
-  const addToFavorites = () => {
-    console.log("in adding to favorites");
+  const displayHeart = (reset = false) => {
+    console.log("in toggle heart");
+    if (reset === "reset") {
+      setLiked(false);
+    } else {
+      setLiked(true);
+    }
+  };
+
+  const handleFavorite = (id) => {
     setLiked(!liked);
+
+    if (favoritesList.includes(id)) {
+      // remove it from favorites list
+      setFavoritesList((currentIDs) =>
+        currentIDs.filter((i) => {
+          return i !== id;
+        })
+      );
+    } else {
+      // add it to favorites list
+      setFavoritesList((currentIDs) => [...currentIDs, id]);
+    }
   };
 
   const seeFavorites = () => {
@@ -360,9 +381,16 @@ function App() {
     return [dbSearchTaxa, apiSearchTaxa];
   };
 
+  // calls cloud function and retrieves user temp api key to
+  // use in checkedEdibleSearch
+  // const retrieveUserTrefleToken = async () => {
+
+  // }
+
   const checkEdibleSearch = async (taxa) => {
     let newTaxa = taxa;
-    const token = process.env.REACT_APP_TREFLE_KEY;
+    // const token = retrieveUserTrefleToken()
+    const token = "cheese";
 
     try {
       const response = await axios.get(
@@ -620,15 +648,21 @@ function App() {
                 : filteredObservationsList.length !== 0
                 ? filteredObservationsList
                 : observationsList,
-              // features: favoritesList,
             }}
-            addToFavorites={addToFavorites}
+            displayHeart={displayHeart}
             liked={liked}
+            favoritesList={favoritesList}
+            handleFavorite={handleFavorite}
           />
         )}
         {mainDisplay === "React Map" && (
           <div className="dropsearch-container">
-            <button className={favOpen ? "favorite-button-clicked" : "favorite-button"} onClick={() => seeFavorites()}>
+            <button
+              className={
+                favOpen ? "favorite-button-clicked" : "favorite-button"
+              }
+              onClick={() => seeFavorites()}
+            >
               See Favorites
             </button>
             <Dropdown
