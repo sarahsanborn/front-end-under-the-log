@@ -8,9 +8,17 @@ import {
   clusterCountLayer,
   unclusteredPointLayer,
 } from "./Layers";
-import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 
-function ReactMap({ viewState, changeMapView, dataGeoJSON, liked, addToFavorites }) {
+function ReactMap({
+  viewState,
+  changeMapView,
+  dataGeoJSON,
+  liked,
+  displayHeart,
+  favoritesList,
+  handleFavorite,
+}) {
   // const [viewState, setViewState] = useState({
   //   latitude: 47.31,
   //   longitude: -120.485,
@@ -34,6 +42,20 @@ function ReactMap({ viewState, changeMapView, dataGeoJSON, liked, addToFavorites
         //   zoom: 10,
         //   duration: 500,
         // });
+        if (favoritesList.includes(feature.properties.id)) {
+          displayHeart();
+        }
+        // if (feature.properties.id in favoritesList) {
+        //   // then render filled in heart
+        //   // otherwise emppty heart
+        //   removeFromFavorites(feature.properties.id);
+
+        //   // add funcitonality to onclick heart that adds id to favorites list
+        // } else {
+        //   addToFavorites(feature.properties.id);
+        //   // remove
+        // }
+        // displayHeart();
       } else {
         mapboxSource.getClusterExpansionZoom(clusterID, (err, zoom) => {
           if (err) {
@@ -53,13 +75,18 @@ function ReactMap({ viewState, changeMapView, dataGeoJSON, liked, addToFavorites
     }
   };
 
+  const closePopup = () => {
+    setPopupInfo(null);
+    displayHeart("reset");
+  };
+
   function mapsSelector() {
     window.open(
       `https://maps.google.com/maps?daddr=${popupInfo.latitude},${popupInfo.longitude}&amp;ll=`
     );
   }
 
-  const likeOrNot = liked ? <AiOutlineHeart /> : <AiFillHeart/> 
+  const likeOrNot = liked ? <AiFillHeart /> : <AiOutlineHeart />;
 
   return (
     <div className="map-container">
@@ -95,7 +122,7 @@ function ReactMap({ viewState, changeMapView, dataGeoJSON, liked, addToFavorites
             id={Number(popupInfo.id)}
             latitude={Number(popupInfo.latitude)}
             longitude={Number(popupInfo.longitude)}
-            onClose={() => setPopupInfo(null)}
+            onClose={() => closePopup()}
             maxWidth="1000px"
           >
             <div className="popup-container">
@@ -117,8 +144,8 @@ function ReactMap({ viewState, changeMapView, dataGeoJSON, liked, addToFavorites
                     Get Directions
                   </button>
                   <p
-                    id='favorite-heart'
-                    onClick={() => addToFavorites()}
+                    id="favorite-heart"
+                    onClick={() => handleFavorite(popupInfo.id)}
                   >
                     {likeOrNot}
                   </p>
