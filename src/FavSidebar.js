@@ -35,7 +35,7 @@ const FavSidebar = ({ favoritesList }) => {
     <div className="favsidebar-container">
       <h1 id="fave-title">Your Favorites</h1>
       <ul className="fave-list-ul">
-        {favoritesList.map((species) => (
+        {favoritesList.length > 0 ? (favoritesList.map((species) => (
           <li key={species.properties.id} className="favorite-list-item">
             <img
                 id="fave-image"
@@ -53,7 +53,7 @@ const FavSidebar = ({ favoritesList }) => {
               </section>
           </li>
           )
-        )}
+        )) : "Select a species to add to your favorites!"}
       </ul>
     </div>
   );
