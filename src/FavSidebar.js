@@ -1,4 +1,4 @@
-const FavSidebar = ({ favoritesList }) => {
+const FavSidebar = ({ favoritesList, openPopUp }) => {
 
   // const fakeFavoritesList = [
   //   {
@@ -36,7 +36,7 @@ const FavSidebar = ({ favoritesList }) => {
       <h1 id="fave-title">Your Favorites</h1>
       <ul className="fave-list-ul">
         {favoritesList.length > 0 ? (favoritesList.map((species) => (
-          <li key={species.properties.id} className="favorite-list-item">
+          <li key={species.properties.id} className="favorite-list-item" onClick={openPopUp}>
             <img
                 id="fave-image"
                 src={species.properties.image_url}
@@ -53,7 +53,7 @@ const FavSidebar = ({ favoritesList }) => {
               </section>
           </li>
           )
-        )) : "Select a species to add to your favorites!"}
+        )) : "Observations you favorite will appear here and on the map."}
       </ul>
     </div>
   );
