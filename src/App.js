@@ -2,7 +2,7 @@ import ReactMap from "./ReactMap";
 import Dropdown from "./Dropdown";
 import Authentication from "./Authentication";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { db } from "./firestore-config";
 import { doc, getDoc, getDocFromCache } from "firebase/firestore";
 import SearchBar from "./SearchBar";
@@ -30,6 +30,8 @@ function App() {
     zoom: 6.1,
   });
   const [liked, setLiked] = useState(true);
+  const mapRef = useRef(null);
+  const [popupInfo, setPopupInfo] = useState(null);
   // SEARCH BAR STATE
   const [formData, setFormData] = useState("");
   const [trefleToken, setTrefleToken] = useState("");
@@ -106,6 +108,39 @@ function App() {
   //   );
   // }
 
+  const onClickMap = (event) => {
+    try {
+      const feature = event.features[0];
+      let clusterID = feature.properties.cluster_id;
+      const mapboxSource = mapRef.current.getSource("taxa");
+
+      if (feature["layer"]["id"] === "unclustered-point") {
+        clusterID = feature.properties.id;
+        setPopupInfo(feature["properties"]);
+        // mapRef.current.easeTo({
+        //   center: feature.geometry.coordinates,
+        //   zoom: 10,
+        //   duration: 500,
+        // });
+      } else {
+        mapboxSource.getClusterExpansionZoom(clusterID, (err, zoom) => {
+          if (err) {
+            console.log("I'm in the error!");
+            return;
+          }
+
+          mapRef.current.easeTo({
+            center: feature.geometry.coordinates,
+            zoom,
+            duration: 500,
+          });
+        });
+      }
+    } catch (err) {
+      console.log("That's not a point!");
+    }
+  };
+
   // *********************************************MAP FUNCTIONS END********************************************************
   // *********************************************CURATION LIST FUNCTIONS START********************************************
 
@@ -170,14 +205,6 @@ function App() {
   };
 
   const seeFavorites = () => {
-    console.log("favorites List");
-    console.log(favoritesList);
-    console.log(favoritesList[0]);
-
-    // NEED TO ADD SIDE BOX TOGGLE FUNCTIONALITY
-    // MAP DISPLAY FUNCTIONALITY (must test when switching to other "pages")
-
-    // toggles points on map, bot does not toggle box visibilty yet
     favOpen ? setFavOpen(false) : setFavOpen(true);
   };
 
@@ -609,7 +636,7 @@ function App() {
         )}
         {mainDisplay === "React Map" && (
           <div className="dropsearch-container">
-            <button className="favorite-button" onClick={() => seeFavorites()}>
+            <button className={favOpen ? "favorite-button-clicked" : "favorite-button"} onClick={() => seeFavorites()}>
               See Favorites
             </button>
             <Dropdown
@@ -631,11 +658,11 @@ function App() {
             />
           </div>
         )}
-        {mainDisplay === "React Map" && (
+        {mainDisplay === "React Map" && favOpen === true ? (
           <div className="favSidebar-on-map">
             <FavSidebar favoritesList={favoritesList} />
           </div>
-        )}
+        ) : null}
         {mainDisplay === "About" && <About />}
         {mainDisplay === "Responsibility" && <Responsibility />}
         {/* {isLoading ? (

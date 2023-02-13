@@ -117,7 +117,6 @@ section li {
 .favorite-button {
     background-color: #EFF1F3;
     border: 1px solid;
-    /* padding: 8px 16px; */
     font-family: "Whitney", "Trebuchet MS", Arial, sans-serif;
     font-size: 16px;
     color: #7a8082;
@@ -127,8 +126,19 @@ section li {
 }
 
 .favorite-button:hover {
+    background-color: #FFF;
+    color: #265061;
+}
+
+.favorite-button-clicked {
     background-color: #F79824;
     color: #265061;
+    border: 1px solid;
+    font-family: "Whitney", "Trebuchet MS", Arial, sans-serif;
+    font-size: 16px;
+    padding: 5px 10px;
+    margin: 1rem;
+    border-radius: 10px;
 }
 
 
@@ -159,7 +169,7 @@ section li {
     width: 300px;
     background-color: #eff1f3;
     flex-direction: column;
-    height: 60vh;
+    max-height: 60vh;
 }
 
 .fave-list-ul {
