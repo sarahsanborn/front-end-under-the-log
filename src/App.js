@@ -83,7 +83,6 @@ function App() {
   };
 
   const getLoggedOut = () => {
-    console.log('in getLoggedOut')
     setIsLoggedIn(false);
     setFavOpen(false);
     // Need user curations function???
@@ -172,8 +171,7 @@ function App() {
       "users",
       `${uid}`,
       "curations",
-      "favorites",
-      "fav_Ids"
+      "favorites"
     );
 
     // Get a document, forcing the SDK to fetch from the offline cache.
@@ -186,7 +184,7 @@ function App() {
     } catch (e) {
       console.log("Error getting cached document:", e);
       const targetDoc = await getDoc(docRef);
-      userFavIds = targetDoc.data().observationIDs;
+      userFavIds = targetDoc.data().favIds;
       console.log("Server collection data:", userFavIds);
     }
     setFavIDs((currentIDs) => [...currentIDs, ...userFavIds]);

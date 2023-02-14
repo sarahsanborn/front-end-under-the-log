@@ -112,7 +112,6 @@ export const signInWithGoogle = async (getLogged) => {
 // };
 
 export const logout = (getLoggedOut) => {
-  console.log('in logout')
   signOut(auth);
   getLoggedOut();
 };
