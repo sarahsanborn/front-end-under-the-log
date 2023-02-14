@@ -61,8 +61,13 @@ header {
 }
 
 .welcome {
-    margin: 0;
+    margin: .5rem 1rem;
     font-size: .8em;
+}
+
+.signout-welcome-container {
+    display: flex;
+    justify-content: space-between;
 }
 
 

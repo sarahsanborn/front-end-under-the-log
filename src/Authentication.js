@@ -7,8 +7,10 @@ const Authentication = ({ isLoggedIn, getLogged, getLoggedOut }) => {
   return (
     <div>
       {isLoggedIn ? (
-        <button className="google-signin" onClick={() => logout(getLoggedOut)}>Sign Out</button>
-        // <p className="welcome">Welcome, {localStorage.getItem("name")}</p>
+        <div className="signout-welcome-container">
+          <p className="welcome">Welcome, {localStorage.getItem("name")}</p>
+          <button className="google-signin" onClick={() => logout(getLoggedOut)}>Sign Out</button>
+        </div>
       ) : (
         <button
           className="google-signin"
