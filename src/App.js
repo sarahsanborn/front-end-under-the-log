@@ -609,7 +609,7 @@ function App() {
   // )
 
   useEffect(() => {
-    for (let item of edibleList) {
+    for (let item of newedibleList) {
       for (let taxa of item.value) {
         getObservationsByTaxon(taxa);
       }
