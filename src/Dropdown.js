@@ -10,7 +10,15 @@ const Dropdown = ({
   selectedSpecies,
   alternateOpenClose,
   isOpen,
+  displaySpecies,
 }) => {
+  const filterByDisplaySpecies = (species) => {
+    if (displaySpecies.includes(species.label)) {
+      return true;
+    }
+    return false;
+  };
+
   return (
     <div className="dropdown-container">
       <button
@@ -35,7 +43,7 @@ const Dropdown = ({
               />
               Select All
             </li>
-            {newedibleList.map((species) => (
+            {newedibleList.filter(filterByDisplaySpecies).map((species) => (
               <li key={species.id} className="dropdown-list-item">
                 <input
                   type="checkbox"
@@ -47,6 +55,18 @@ const Dropdown = ({
                 {species.label}
               </li>
             ))}
+            {/* {newedibleList.map((species) => (
+              <li key={species.id} className="dropdown-list-item">
+                <input
+                  type="checkbox"
+                  checked={
+                    allSelected || selectedSpecies.includes(species.label)
+                  }
+                  onChange={() => handleSelection(species.label)}
+                />
+                {species.label}
+              </li>
+            ))} */}
           </ul>
           <li>
             <button className="dropdown-button" onClick={handleDone}>

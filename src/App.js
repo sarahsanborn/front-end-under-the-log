@@ -43,6 +43,8 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userUid, setUserUid] = useState("");
 
+  const DISPLAYONRENDERSPECIES = ["Asparagus"];
+
   const MONTHS = [
     "null",
     "January",
@@ -463,8 +465,10 @@ function App() {
 
   useEffect(() => {
     for (let item of newedibleList) {
-      for (let taxa of item.value) {
-        getObservationsByTaxon(taxa);
+      if (DISPLAYONRENDERSPECIES.includes(item.label)) {
+        for (let taxa of item.value) {
+          getObservationsByTaxon(taxa);
+        }
       }
     }
     // setTimeout(() => {
@@ -570,6 +574,7 @@ function App() {
               allSelected={allSelected}
               selectedSpecies={selectedSpecies}
               isOpen={isOpen}
+              displaySpecies={DISPLAYONRENDERSPECIES}
             />
             <SearchBar
               handleChange={handleChange}

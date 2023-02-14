@@ -1,33 +1,33 @@
-const newedibleList =[
+const newedibleList = [
   {
     id: 1,
-    value: [ 'Agoseris aurantiaca', 'Agoseris glauca' ],
-    label: 'Agoseris',
-    type: 'plant'
+    value: ["Agoseris aurantiaca", "Agoseris glauca"],
+    label: "Agoseris",
+    type: "plant",
   },
   {
     id: 2,
-    value: [ 'Sagittaria latifolia' ],
-    label: 'Broadleaf arrowhead',
-    type: 'plant'
+    value: ["Sagittaria latifolia"],
+    label: "Broadleaf arrowhead",
+    type: "plant",
   },
   {
     id: 3,
-    value: [ 'Balsamorhiza sagittata' ],
-    label: 'Arrowleaf balsamroot',
-    type: 'plant'
+    value: ["Balsamorhiza sagittata"],
+    label: "Arrowleaf balsamroot",
+    type: "plant",
   },
   {
     id: 4,
-    value: [ 'Asparagus officinalis' ],
-    label: 'Asparagus',
-    type: 'plant'
+    value: ["Asparagus officinalis"],
+    label: "Asparagus",
+    type: "plant",
   },
   {
     id: 5,
-    value: [ 'Xerophyllum tenax' ],
-    label: 'Beargrass',
-    type: 'plant'
+    value: ["Xerophyllum tenax"],
+    label: "Beargrass",
+    type: "plant",
   },
   // {
   //   id: 6,
