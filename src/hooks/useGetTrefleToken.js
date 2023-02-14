@@ -1,16 +1,23 @@
 import { useEffect, useState } from "react";
+const axios = require("axios");
 
 export function useGetTrefleToken() {
   const [userTrefleToken, setUserTrefleToken] = useState("");
-  const url = "OUR PATH FOR THE CLOUD FUNCTION"
+  const url = "OUR PATH FOR THE CLOUD FUNCTION";
 
   useEffect(() => {
-    const response = await axios.get(`${url}/getTrefleToken`)
+    axios
+      .get(`${url}/getTrefleToken`)
+      .then((response) => {
+        setUserTrefleToken(response);
+      })
+      .catch((err) => {
+        console.log("useGetTrefleToken failed", err);
+      });
   }, []);
 
-  return userTrefleToken
+  return userTrefleToken;
 }
-
 
 // ONLY CALLED ON USER LOGIN
 // called everytime they login?
