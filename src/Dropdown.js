@@ -69,7 +69,7 @@ const Dropdown = ({
               </li>
             ))} */}
           </ul>
-          <li>
+          <li className="dropdown-done-container">
             <button className="dropdown-button" onClick={handleDone}>
               Done
             </button>
