@@ -44,16 +44,16 @@ function App() {
   const [userUid, setUserUid] = useState("");
 
   const DISPLAYONRENDERSPECIES = [
-    "Arrowleaf balsamroot",
-    "Black landscape morel",
+    "Arrowleaf Balsamroot",
+    "Black Landscape Morel",
     "Chanterelle",
-    "Lady fern fiddlehead",
-    "Oyster mushroom",
-    "Red huckleberry",
+    "Lady Fern Fiddlehead",
+    "Oyster Mushroom",
+    "Red Huckleberry",
     "Salmonberry",
-    "Stinging nettle",
+    "Stinging Nettle",
     "Strawberry",
-    "Wood sorrel",
+    "Wood Sorrel",
   ];
 
   const MONTHS = [
