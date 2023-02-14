@@ -6,11 +6,10 @@ import { useState, useEffect, useRef } from "react";
 import { db } from "./firestore-config";
 import { doc, getDoc, getDocFromCache } from "firebase/firestore";
 import SearchBar from "./SearchBar";
-import Loading from "./Loading";
+// import Loading from "./Loading";
 import About from "./About";
 import Responsibility from "./Responsibility";
 import "./App.css";
-import edibleList from "./edibleList";
 import newedibleList from "./newedibleList";
 import FavSidebar from "./FavSidebar";
 
@@ -18,7 +17,7 @@ function App() {
   const [observationsList, setObservationsList] = useState([]);
   const [filteredObservationsList, setFilteredObservationsList] = useState([]);
   const [favoritesList, setFavoritesList] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
   const [mainDisplay, setMainDisplay] = useState("React Map");
   const [selectNavItem, setSelectedNavItem] = useState("React Map");
   // FIRESTORE DATA
@@ -31,7 +30,7 @@ function App() {
   });
   const [liked, setLiked] = useState(false);
   const mapRef = useRef(null);
-  const [popupInfo, setPopupInfo] = useState(null);
+  // const [popupInfo, setPopupInfo] = useState(null);
   // SEARCH BAR STATE
   const [formData, setFormData] = useState("");
   const [trefleToken, setTrefleToken] = useState("");
@@ -83,6 +82,13 @@ function App() {
     getUserCurations(uid);
   };
 
+  const getLoggedOut = () => {
+    console.log('in getLoggedOut')
+    setIsLoggedIn(false);
+    setFavOpen(false);
+    // Need user curations function???
+  }
+
   // *********************************************LOGIN FUNCTIONS END***********************************************
   // *********************************************MAP FUNCTIONS START***********************************************
 
@@ -120,38 +126,38 @@ function App() {
   //   );
   // }
 
-  const onClickMap = (event) => {
-    try {
-      const feature = event.features[0];
-      let clusterID = feature.properties.cluster_id;
-      const mapboxSource = mapRef.current.getSource("taxa");
+  // const onClickMap = (event) => {
+  //   try {
+  //     const feature = event.features[0];
+  //     let clusterID = feature.properties.cluster_id;
+  //     const mapboxSource = mapRef.current.getSource("taxa");
 
-      if (feature["layer"]["id"] === "unclustered-point") {
-        clusterID = feature.properties.id;
-        setPopupInfo(feature["properties"]);
-        // mapRef.current.easeTo({
-        //   center: feature.geometry.coordinates,
-        //   zoom: 10,
-        //   duration: 500,
-        // });
-      } else {
-        mapboxSource.getClusterExpansionZoom(clusterID, (err, zoom) => {
-          if (err) {
-            console.log("I'm in the error!");
-            return;
-          }
+  //     if (feature["layer"]["id"] === "unclustered-point") {
+  //       clusterID = feature.properties.id;
+  //       setPopupInfo(feature["properties"]);
+  //       // mapRef.current.easeTo({
+  //       //   center: feature.geometry.coordinates,
+  //       //   zoom: 10,
+  //       //   duration: 500,
+  //       // });
+  //     } else {
+  //       mapboxSource.getClusterExpansionZoom(clusterID, (err, zoom) => {
+  //         if (err) {
+  //           console.log("I'm in the error!");
+  //           return;
+  //         }
 
-          mapRef.current.easeTo({
-            center: feature.geometry.coordinates,
-            zoom,
-            duration: 500,
-          });
-        });
-      }
-    } catch (err) {
-      console.log("That's not a point!");
-    }
-  };
+  //         mapRef.current.easeTo({
+  //           center: feature.geometry.coordinates,
+  //           zoom,
+  //           duration: 500,
+  //         });
+  //       });
+  //     }
+  //   } catch (err) {
+  //     console.log("That's not a point!");
+  //   }
+  // };
 
   // *********************************************MAP FUNCTIONS END********************************************************
   // *********************************************CURATION LIST FUNCTIONS START********************************************
@@ -219,7 +225,7 @@ function App() {
   };
 
   const displayHeart = (reset = false) => {
-    if (isLoggedIn) {
+    if (!isLoggedIn) {
       return null;
     }
     console.log("in toggle heart");
@@ -614,9 +620,9 @@ function App() {
         getObservationsByTaxon(taxa);
       }
     }
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
+    // setTimeout(() => {
+    //   setIsLoading(false);
+    // }, 3000);
     // getObservationsByTaxon does not have any dependencies that change
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -670,7 +676,7 @@ function App() {
           </li>
         </ul>
         <div className="authentication">
-          <Authentication isLoggedIn={isLoggedIn} getLogged={getLogged} />
+          <Authentication isLoggedIn={isLoggedIn} getLogged={getLogged} getLoggedOut={getLoggedOut} />
         </div>
       </header>
       <main>
@@ -694,14 +700,16 @@ function App() {
         )}
         {mainDisplay === "React Map" && (
           <div className="dropsearch-container">
-            <button
+            {isLoggedIn ? 
+            (<button
               className={
                 favOpen ? "favorite-button-clicked" : "favorite-button"
               }
               onClick={() => seeFavorites()}
             >
               See Favorites
-            </button>
+            </button>) : (null)
+            }
             <Dropdown
               handleSelection={handleSelection}
               handleDone={handleDone}

@@ -10,7 +10,7 @@ import {
   where,
   doc,
 } from "@firebase/firestore";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 
 // import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -111,8 +111,10 @@ export const signInWithGoogle = async (getLogged) => {
 //     });
 // };
 
-// export const signOutWithGoogle = () => {
-//   auth.signOut();
-// };
+export const logout = (getLoggedOut) => {
+  console.log('in logout')
+  signOut(auth);
+  getLoggedOut();
+};
 
 // https://blog.logrocket.com/user-authentication-firebase-react-apps/

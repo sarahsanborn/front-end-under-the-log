@@ -28,9 +28,6 @@ const FavSidebar = ({ favoritesList, openPopUp }) => {
   //   },
   // ];
 
-  console.log(favoritesList[0]["properties"]);
-  console.log(favoritesList);
-
   return (
     <div className="favsidebar-container">
       <h1 id="fave-title">Your Favorites</h1>
