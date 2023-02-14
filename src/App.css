@@ -201,6 +201,7 @@ section li {
     list-style: none;
     display: flex;
     margin-bottom: .5rem;
+    margin-right: .5rem;
 }
 
 .favorite-list-item:hover {
