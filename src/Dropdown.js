@@ -11,6 +11,20 @@ const Dropdown = ({
   alternateOpenClose,
   isOpen,
 }) => {
+
+  const dropdownDisplaySpecies = [
+    "Arrowleaf balsamroot", 
+    "Black landscape morel",
+    "Chanterelle",
+    "Lady fern fiddlehead",
+    "Oyster mushroom",
+    "Red huckleberry",
+    "Salmonberry",
+    "Stinging nettle",
+    "Strawberry",
+    "Wood sorrel"
+  ]
+
   return (
     <div className="dropdown-container">
       <button
