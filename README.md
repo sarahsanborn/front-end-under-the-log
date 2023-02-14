@@ -21,3 +21,7 @@ Visit https://under-the-log.web.app/
 4. To run on your local server, run 'yarn start'. 
 
 ### Backend
+
+
+### Firebase Authentication 
+For user authentication, create a Google Firebase project for Under The Log. Enable Google as a sign-in method and add your local host as an authorized domain. 
