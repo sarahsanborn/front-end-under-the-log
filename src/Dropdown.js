@@ -17,7 +17,7 @@ const Dropdown = ({
         className={`select-species-button ${isOpen ? "open" : ""}`}
         onClick={alternateOpenClose}
       >
-        Select Edible Species
+        Common Foragables
         <span>
           <AiOutlineDown
             className={isOpen ? "rotated-up" : "rotated-down"}
