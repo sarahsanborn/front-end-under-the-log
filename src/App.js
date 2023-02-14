@@ -60,7 +60,7 @@ function App() {
   ];
 
   const INAT_URL = "https://api.inaturalist.org/v1";
-  const TREFLE_URL = "https://trefle.io/api/v1";
+  // const TREFLE_URL = "https://trefle.io/api/v1";
 
   // *********************************************LOGIN FUNCTIONS START***********************************************
   const getLogged = (uid) => {
@@ -181,6 +181,7 @@ function App() {
       getObservationByID(favIDs);
       updateFavoritesInDB();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [favIDs]);
 
   // *********************************************CURATION LIST FUNCTIONS END**********************************************
