@@ -43,7 +43,18 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userUid, setUserUid] = useState("");
 
-  const DISPLAYONRENDERSPECIES = ["Asparagus"];
+  const DISPLAYONRENDERSPECIES = [
+    "Arrowleaf balsamroot",
+    "Black landscape morel",
+    "Chanterelle",
+    "Lady fern fiddlehead",
+    "Oyster mushroom",
+    "Red huckleberry",
+    "Salmonberry",
+    "Stinging nettle",
+    "Strawberry",
+    "Wood sorrel",
+  ];
 
   const MONTHS = [
     "null",

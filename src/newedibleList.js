@@ -13,7 +13,7 @@ const newedibleList = [
       "value": [
           "Balsamorhiza sagittata"
       ],
-      "label": "Arrowleaf balsamroot",
+      "label": "Arrowleaf Balsamroot",
       "type": "plant"
   },
   {
@@ -27,13 +27,21 @@ const newedibleList = [
   {
       "id": 4,
       "value": [
+          "Rosa rugosa"
+      ],
+      "label": "Beach Rose",
+      "type": "plant"
+  },
+  {
+      "id": 5,
+      "value": [
           "Xerophyllum tenax"
       ],
       "label": "Beargrass",
       "type": "plant"
   },
   {
-      "id": 5,
+      "id": 6,
       "value": [
           "Galium aparine",
           "Galium triflorum"
@@ -42,7 +50,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 6,
+      "id": 7,
       "value": [
           "Bistorta bistortoides"
       ],
@@ -50,7 +58,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 7,
+      "id": 8,
       "value": [
           "Lewisia rediviva"
       ],
@@ -58,7 +66,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 8,
+      "id": 9,
       "value": [
           "Ribes bracteosum",
           "Ribes lacustre"
@@ -67,7 +75,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 9,
+      "id": 10,
       "value": [
           "Vaccinium membranaceum",
           "Vaccinium ovatum"
@@ -76,7 +84,15 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 10,
+      "id": 11,
+      "value": [
+          "Morchella importuna"
+      ],
+      "label": "Black landscape morel",
+      "type": "fungi"
+  },
+  {
+      "id": 12,
       "value": [
           "Rubus armeniacus",
           "Rubus ursinus"
@@ -85,7 +101,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 11,
+      "id": 13,
       "value": [
           "Camassia leichtlinii",
           "Camassia quamash"
@@ -94,7 +110,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 12,
+      "id": 14,
       "value": [
           "Vaccinium ovalifolium"
       ],
@@ -102,7 +118,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 13,
+      "id": 15,
       "value": [
           "Borago officinalis"
       ],
@@ -110,7 +126,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 14,
+      "id": 16,
       "value": [
           "Pteridium aquilinum"
       ],
@@ -118,7 +134,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 15,
+      "id": 17,
       "value": [
           "Sagittaria latifolia"
       ],
@@ -126,7 +142,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 16,
+      "id": 18,
       "value": [
           "Nereocystis luetkeana"
       ],
@@ -134,7 +150,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 17,
+      "id": 19,
       "value": [
           "Arctium minus"
       ],
@@ -142,7 +158,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 18,
+      "id": 20,
       "value": [
           "Nepeta cataria"
       ],
@@ -150,7 +166,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 19,
+      "id": 21,
       "value": [
           "Typha latifolia"
       ],
@@ -158,7 +174,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 20,
+      "id": 22,
       "value": [
           "Cantharellus cibarius",
           "Cantharellus formosus"
@@ -167,7 +183,7 @@ const newedibleList = [
       "type": "fungi"
   },
   {
-      "id": 21,
+      "id": 23,
       "value": [
           "Stellaria media"
       ],
@@ -175,7 +191,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 22,
+      "id": 24,
       "value": [
           "Cichorium intybus"
       ],
@@ -183,7 +199,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 23,
+      "id": 25,
       "value": [
           "Trifolium pratense",
           "Trifolium hybridum",
@@ -194,7 +210,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 24,
+      "id": 26,
       "value": [
           "Melilotus officinalis"
       ],
@@ -202,7 +218,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 25,
+      "id": 27,
       "value": [
           "Nuphar lutea",
           "Nuphar polysepala"
@@ -211,7 +227,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 26,
+      "id": 28,
       "value": [
           "Vaccinium oxycoccus",
           "Vaccinium scoparium"
@@ -220,7 +236,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 27,
+      "id": 29,
       "value": [
           "Empetrum nigrum"
       ],
@@ -228,7 +244,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 28,
+      "id": 30,
       "value": [
           "Taraxacum officinale"
       ],
@@ -236,7 +252,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 29,
+      "id": 31,
       "value": [
           "Zostera marina"
       ],
@@ -244,7 +260,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 30,
+      "id": 32,
       "value": [
           "Sambucus caerulea"
       ],
@@ -252,7 +268,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 31,
+      "id": 33,
       "value": [
           "Prosartes hookeri"
       ],
@@ -260,7 +276,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 32,
+      "id": 34,
       "value": [
           "Maianthemum racemosum",
           "Maianthemum stellatum"
@@ -269,7 +285,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 33,
+      "id": 35,
       "value": [
           "Epilobium angustifolium",
           "Epilobium latifolium"
@@ -278,7 +294,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 34,
+      "id": 36,
       "value": [
           "Nymphaea odorata"
       ],
@@ -286,7 +302,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 35,
+      "id": 37,
       "value": [
           "Macrocystis integrifolia"
       ],
@@ -294,7 +310,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 36,
+      "id": 38,
       "value": [
           "Ribes aureum"
       ],
@@ -302,7 +318,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 37,
+      "id": 39,
       "value": [
           "Ribes divaricatum",
           "Ribes lobbii"
@@ -311,7 +327,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 38,
+      "id": 40,
       "value": [
           "Glechoma hederacea"
       ],
@@ -319,7 +335,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 39,
+      "id": 41,
       "value": [
           "Boschniakia hookeri"
       ],
@@ -327,7 +343,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 40,
+      "id": 42,
       "value": [
           "Malva sylvestris"
       ],
@@ -335,7 +351,15 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 41,
+      "id": 43,
+      "value": [
+          "Athyrium filix-femina"
+      ],
+      "label": "Lady fern fiddlehead",
+      "type": "plant"
+  },
+  {
+      "id": 44,
       "value": [
           "Triteleia grandiflora"
       ],
@@ -343,7 +367,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 42,
+      "id": 45,
       "value": [
           "Claytonia perfoliata"
       ],
@@ -351,7 +375,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 43,
+      "id": 46,
       "value": [
           "Oxyria digyna"
       ],
@@ -359,13 +383,13 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 44,
+      "id": 47,
       "value": [],
       "label": "Mustard",
       "type": "plant"
   },
   {
-      "id": 45,
+      "id": 48,
       "value": [
           "Leucanthemum vulgare"
       ],
@@ -373,7 +397,15 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 46,
+      "id": 49,
+      "value": [
+          "Pleurotus ostreatus"
+      ],
+      "label": "Oyster mushroom",
+      "type": "fungi"
+  },
+  {
+      "id": 50,
       "value": [
           "Malus fusca"
       ],
@@ -381,7 +413,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 47,
+      "id": 51,
       "value": [
           "Salicornia pacifica"
       ],
@@ -389,7 +421,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 48,
+      "id": 52,
       "value": [
           "Anaphalis margaritacea"
       ],
@@ -397,7 +429,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 49,
+      "id": 53,
       "value": [
           "Matricaria discoidea"
       ],
@@ -405,7 +437,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 50,
+      "id": 54,
       "value": [
           "Plantago major",
           "Plantago lanceolata"
@@ -414,7 +446,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 51,
+      "id": 55,
       "value": [
           "Opuntia fragilis"
       ],
@@ -422,7 +454,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 52,
+      "id": 56,
       "value": [
           "Clintonia uniflora"
       ],
@@ -430,7 +462,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 53,
+      "id": 57,
       "value": [
           "Rubus leucodermis",
           "Rubus idaeus",
@@ -440,7 +472,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 54,
+      "id": 58,
       "value": [
           "Ribes sanguineum"
       ],
@@ -448,7 +480,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 55,
+      "id": 59,
       "value": [
           "Vaccinium parvifolium"
       ],
@@ -456,7 +488,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 56,
+      "id": 60,
       "value": [
           "Gaultheria shallon"
       ],
@@ -464,7 +496,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 57,
+      "id": 61,
       "value": [
           "Rubus spectabilis"
       ],
@@ -472,7 +504,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 58,
+      "id": 62,
       "value": [
           "Prunella vulgaris"
       ],
@@ -480,7 +512,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 59,
+      "id": 63,
       "value": [
           "Rumex acetosella"
       ],
@@ -488,7 +520,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 60,
+      "id": 64,
       "value": [
           "Capsella bursa-pastoris"
       ],
@@ -496,7 +528,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 61,
+      "id": 65,
       "value": [
           "Claytonia sibirica"
       ],
@@ -504,7 +536,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 62,
+      "id": 66,
       "value": [
           "Argentina pacifica"
       ],
@@ -512,7 +544,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 63,
+      "id": 67,
       "value": [
           "Erythronium grandiflorum"
       ],
@@ -520,7 +552,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 64,
+      "id": 68,
       "value": [
           "Veronica americana",
           "Veronica officinalis",
@@ -530,7 +562,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 65,
+      "id": 69,
       "value": [
           "Urtica dioica"
       ],
@@ -538,7 +570,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 66,
+      "id": 70,
       "value": [
           "Sedum lanceolatum",
           "Sedum divergens"
@@ -547,7 +579,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 67,
+      "id": 71,
       "value": [
           "Erodium cicutarium"
       ],
@@ -555,7 +587,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 68,
+      "id": 72,
       "value": [
           "Fragaria virginiana",
           "Fragaria vesca",
@@ -565,7 +597,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 69,
+      "id": 73,
       "value": [
           "Rhus glabra"
       ],
@@ -573,7 +605,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 70,
+      "id": 74,
       "value": [
           "Helianthus annuus"
       ],
@@ -581,7 +613,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 71,
+      "id": 75,
       "value": [
           "Myrica gale"
       ],
@@ -589,7 +621,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 72,
+      "id": 76,
       "value": [
           "Rubus parviflorus"
       ],
@@ -597,7 +629,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 73,
+      "id": 77,
       "value": [
           "Cirsium arvense",
           "Cirsium vulgare"
@@ -606,7 +638,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 74,
+      "id": 78,
       "value": [
           "Lilium columbianum"
       ],
@@ -614,7 +646,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 75,
+      "id": 79,
       "value": [
           "Streptopus amplexifolius",
           "Streptopus lanceolatus"
@@ -623,7 +655,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 76,
+      "id": 80,
       "value": [
           "Viola adunca",
           "Viola tricolor",
@@ -633,7 +665,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 77,
+      "id": 81,
       "value": [
           "Rorippa nasturtium-aquaticum"
       ],
@@ -641,7 +673,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 78,
+      "id": 82,
       "value": [
           "Mentha spicata",
           "Mentha piperita"
@@ -650,7 +682,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 79,
+      "id": 83,
       "value": [
           "Rosa gymnocarpa",
           "Rosa nutkana"
@@ -659,7 +691,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 80,
+      "id": 84,
       "value": [
           "Oxalis articulata",
           "Oxalis corniculata",
@@ -671,7 +703,7 @@ const newedibleList = [
       "type": "plant"
   },
   {
-      "id": 81,
+      "id": 85,
       "value": [
           "Laccaria amethysteo-occidentalis"
       ],
@@ -679,7 +711,7 @@ const newedibleList = [
       "type": "fungi"
   },
   {
-      "id": 82,
+      "id": 86,
       "value": [
           "Pleurocybella porrigens"
       ],
@@ -687,7 +719,7 @@ const newedibleList = [
       "type": "fungi"
   },
   {
-      "id": 83,
+      "id": 87,
       "value": [
           "Hericium abietis"
       ],
@@ -695,15 +727,7 @@ const newedibleList = [
       "type": "fungi"
   },
   {
-      "id": 84,
-      "value": [
-          "Morchella importuna"
-      ],
-      "label": "Black landscape morel",
-      "type": "fungi"
-  },
-  {
-      "id": 85,
+      "id": 88,
       "value": [
           "Laetiporus conifericola"
       ],
@@ -711,7 +735,7 @@ const newedibleList = [
       "type": "fungi"
   },
   {
-      "id": 86,
+      "id": 89,
       "value": [
           "Clavariadelphus truncatus"
       ],
@@ -719,7 +743,7 @@ const newedibleList = [
       "type": "fungi"
   },
   {
-      "id": 87,
+      "id": 90,
       "value": [
           "Laccaria laccata"
       ],
@@ -727,7 +751,7 @@ const newedibleList = [
       "type": "fungi"
   },
   {
-      "id": 88,
+      "id": 91,
       "value": [
           "Pluteus cervinus"
       ],
@@ -735,7 +759,7 @@ const newedibleList = [
       "type": "fungi"
   },
   {
-      "id": 89,
+      "id": 92,
       "value": [
           "Marasmius oreades"
       ],
@@ -743,7 +767,7 @@ const newedibleList = [
       "type": "fungi"
   },
   {
-      "id": 90,
+      "id": 93,
       "value": [
           "Suillus caerulescens"
       ],
@@ -751,7 +775,7 @@ const newedibleList = [
       "type": "fungi"
   },
   {
-      "id": 91,
+      "id": 94,
       "value": [
           "Lycoperdon perlatum"
       ],
@@ -759,7 +783,7 @@ const newedibleList = [
       "type": "fungi"
   },
   {
-      "id": 92,
+      "id": 95,
       "value": [
           "Glistening Ink Cap"
       ],
@@ -767,7 +791,7 @@ const newedibleList = [
       "type": "fungi"
   },
   {
-      "id": 93,
+      "id": 96,
       "value": [
           "Hydnum repandum"
       ],
@@ -775,7 +799,7 @@ const newedibleList = [
       "type": "fungi"
   },
   {
-      "id": 94,
+      "id": 97,
       "value": [
           "Coprinopsis atramentaria"
       ],
@@ -783,185 +807,165 @@ const newedibleList = [
       "type": "fungi"
   },
   {
-      "id": 95,
+      "id": 98,
       "value": [
           "Boletus edulis"
       ],
-      "label": "king bolete",
-      "type": "fungi"
-  },
-  {
-      "id": 96,
-      "value": [
-          "Hypomyces lactifluorum"
-      ],
-      "label": "lobster mushroom",
-      "type": "fungi"
-  },
-  {
-      "id": 97,
-      "value": [
-          "Agaricus campestris"
-      ],
-      "label": "meadow mushroom",
-      "type": "fungi"
-  },
-  {
-      "id": 98,
-      "value": [
-          "Aleuria aurantia"
-      ],
-      "label": "orange peel fungus",
+      "label": "King Bolete",
       "type": "fungi"
   },
   {
       "id": 99,
       "value": [
-          "Pleurotus ostreatus"
+          "Hypomyces lactifluorum"
       ],
-      "label": "Oyster mushroom",
+      "label": "Lobster Mushroom",
+      "type": "fungi"
+  },
+  {
+      "id": 100,
+      "value": [
+          "Agaricus campestris"
+      ],
+      "label": "Meadow Mushroom",
       "type": "fungi"
   },
   {
       "id": 101,
       "value": [
-          "Gomphus clavatus"
+          "Aleuria aurantia"
       ],
-      "label": "pig's ears",
+      "label": "Orange Peel Fungus",
       "type": "fungi"
   },
   {
       "id": 102,
       "value": [
-          "Gomphidius subroseus"
+          "Gomphus clavatus"
       ],
-      "label": "rosy gomphidius",
+      "label": "Pig's Ears",
       "type": "fungi"
   },
   {
       "id": 103,
       "value": [
-          "Sarcodon imbricatus"
+          "Gomphidius subroseus"
       ],
-      "label": "scaly hedgehog",
+      "label": "Rosy Gomphidius",
       "type": "fungi"
   },
   {
       "id": 104,
       "value": [
-          "Coprinus comatus"
+          "Sarcodon imbricatus"
       ],
-      "label": "shaggy mane",
+      "label": "Scaly Hedgehog",
       "type": "fungi"
   },
   {
       "id": 105,
       "value": [
-          "Chlorophyllum olivieri"
+          "Coprinus comatus"
       ],
-      "label": "shaggy parasol",
+      "label": "Shaggy Mane",
       "type": "fungi"
   },
   {
       "id": 106,
       "value": [
-          "Suillus brevipes"
+          "Chlorophyllum olivieri"
       ],
-      "label": "short-stemmed slippery jack",
+      "label": "Shaggy Parasol",
       "type": "fungi"
   },
   {
       "id": 107,
       "value": [
-          "Gomphidius glutinosus"
+          "Suillus brevipes"
       ],
-      "label": "slimy spike cap",
+      "label": "Short-Stemmed Slippery Jack",
       "type": "fungi"
   },
   {
       "id": 108,
       "value": [
-          "Boletus rex-veris"
+          "Gomphidius glutinosus"
       ],
-      "label": "spring king bolete",
+      "label": "Slimy Spike Cap",
       "type": "fungi"
   },
   {
       "id": 109,
       "value": [
-          "Apioperdon pyriforme"
+          "Boletus rex-veris"
       ],
-      "label": "stump puffball",
+      "label": "Spring King Bolete",
       "type": "fungi"
   },
   {
       "id": 110,
       "value": [
-          "Hydnum oregonense"
+          "Apioperdon pyriforme"
       ],
-      "label": "sweet tooth mushroom",
+      "label": "Stump Puffball",
       "type": "fungi"
   },
   {
       "id": 111,
       "value": [
-          "Morchella snyderi"
+          "Hydnum oregonense"
       ],
-      "label": "thick stemmed morel",
+      "label": "Sweet Tooth Mushroom",
       "type": "fungi"
   },
   {
       "id": 112,
       "value": [
-          "Pseudohydnum gelatinosum"
+          "Morchella snyderi"
       ],
-      "label": "toothed jelly fungus",
+      "label": "Thick Stemmed Morel",
       "type": "fungi"
   },
   {
       "id": 113,
       "value": [
-          "Sparassis radicata"
+          "Pseudohydnum gelatinosum"
       ],
-      "label": "western cauliflower mushroom",
+      "label": "Toothed Jelly Fungus",
       "type": "fungi"
   },
   {
       "id": 114,
       "value": [
-          "Suillus lakei"
+          "Sparassis radicata"
       ],
-      "label": "western painted suillus",
+      "label": "Western Cauliflower Mushroom",
       "type": "fungi"
   },
   {
       "id": 115,
       "value": [
-          "Cantharellus subalbidus"
+          "Suillus lakei"
       ],
-      "label": "white chanterelle",
+      "label": "Western Painted Suillus",
       "type": "fungi"
   },
   {
       "id": 116,
       "value": [
-          "Craterellus tubaeformis"
+          "Cantharellus subalbidus"
       ],
-      "label": "winter chanterelle",
+      "label": "White Chanterelle",
       "type": "fungi"
   },
   {
-    "id": 117,
-    "value": ["Rosa rugosa"],
-    "label": "Beach Rose",
-    "type": "plant"
-  },
-  {
-    "id": 118,
-    "value": ["Athyrium filix-femina"],
-    "label": "Lady fern fiddlehead",
-    "type": "plant"
+      "id": 117,
+      "value": [
+          "Craterellus tubaeformis"
+      ],
+      "label": "Winter Chanterelle",
+      "type": "fungi"
   }
-];
+]
 
 export default newedibleList;
