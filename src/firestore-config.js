@@ -1,6 +1,15 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore, addDoc, setDoc, collection, getDocs, query, where, doc } from "@firebase/firestore";
+import {
+  getFirestore,
+  addDoc,
+  setDoc,
+  collection,
+  getDocs,
+  query,
+  where,
+  doc,
+} from "@firebase/firestore";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 // import { getAnalytics } from "firebase/analytics";
@@ -42,59 +51,60 @@ export const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
 // function that represents sign in for google
-export const signInWithGoogle = async () => {
+export const signInWithGoogle = async (getLogged) => {
   try {
     const res = await signInWithPopup(auth, provider);
     const user = res.user;
-    const q = query(collection(db, 'users'), where("uid", "==", user.uid));
+    const q = query(collection(db, "users"), where("uid", "==", user.uid));
     const docs = await getDocs(q);
     if (docs.docs.length === 0) {
-      await setDoc(doc(db, 'users', `${user.uid}`), {
+      await setDoc(doc(db, "users", `${user.uid}`), {
         uid: user.uid,
         name: user.displayName,
         email: user.email,
       });
-      await setDoc(doc(db, 'users', `${user.uid}`, 'curations', 'favorites'), {
+      await setDoc(doc(db, "users", `${user.uid}`, "curations", "favorites"), {
         favIds: [],
-      })
+      });
       // await addDoc(collection(db, 'users', `${user.uid}`, 'curations'), {
       //   favIds: [],
       // })
     }
+
+    getLogged(user.uid);
   } catch (err) {
     console.error(err);
-  };
+  }
 };
-  // signInWithPopup(auth, provider)
-  //   .then((result) => {
-  //     console.log(result);
-  //     const name = result.user.displayName;
-  //     const email = result.user.email;
+// signInWithPopup(auth, provider)
+//   .then((result) => {
+//     console.log(result);
+//     const name = result.user.displayName;
+//     const email = result.user.email;
 
-      // try {
-      //   const docRef = await addDoc(collection(db, "users"), {
-      //     name: result.user.name,
-      //     email: result.user.email,
-      //     uid: result.user.uid,
-      //   });
-      // }
-      // catch (error) {
-      //   console.error("Error adding document: ", error);
-      // }
-      
-      
-      // let usersRef = db.collection("users");
+// try {
+//   const docRef = await addDoc(collection(db, "users"), {
+//     name: result.user.name,
+//     email: result.user.email,
+//     uid: result.user.uid,
+//   });
+// }
+// catch (error) {
+//   console.error("Error adding document: ", error);
+// }
 
-      // usersRef.add({
-      //   displayEmail: {email},
-      //   displayName: {name}
-      // })
-      // .then(function(docRef) {
-      //   console.log("User added with ID: ", docRef.id);
-      // })
-      // .catch(function(error) {
-      //   console.log("Error adding user: ", error);
-      // })
+// let usersRef = db.collection("users");
+
+// usersRef.add({
+//   displayEmail: {email},
+//   displayName: {name}
+// })
+// .then(function(docRef) {
+//   console.log("User added with ID: ", docRef.id);
+// })
+// .catch(function(error) {
+//   console.log("Error adding user: ", error);
+// })
 //     })
 //     .catch((error) => {
 //       console.log(error);
@@ -105,5 +115,4 @@ export const signInWithGoogle = async () => {
 //   auth.signOut();
 // };
 
-
-// https://blog.logrocket.com/user-authentication-firebase-react-apps/ 
+// https://blog.logrocket.com/user-authentication-firebase-react-apps/

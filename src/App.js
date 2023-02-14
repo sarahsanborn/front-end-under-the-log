@@ -44,7 +44,7 @@ function App() {
   const [favOpen, setFavOpen] = useState(false);
   const [favIDs, setFavIDs] = useState([]);
   // LOGGEDIN STATE
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const MONTHS = [
     "null",
@@ -75,6 +75,15 @@ function App() {
   // https://blog.logrocket.com/using-react-usestate-object/
   // };
 
+  // *********************************************LOGIN FUNCTIONS START***********************************************
+  const getLogged = (uid) => {
+    console.log("in get logged");
+    console.log(uid);
+    setIsLoggedIn(true);
+    getUserCurations(uid);
+  };
+
+  // *********************************************LOGIN FUNCTIONS END***********************************************
   // *********************************************MAP FUNCTIONS START***********************************************
 
   const changeMapView = (newview) => {
@@ -158,7 +167,7 @@ function App() {
       `${uid}`,
       "curations",
       "favorites",
-      "fav_id"
+      "fav_Ids"
     );
 
     // Get a document, forcing the SDK to fetch from the offline cache.
@@ -175,8 +184,9 @@ function App() {
       console.log("Server collection data:", userFavIds);
     }
     setFavIDs((currentIDs) => [...currentIDs, ...userFavIds]);
+    // CHEESE
 
-    getObservationByID(favIDs);
+    // getObservationByID(favIDs);
   };
 
   // sort through user docs in user collection
@@ -209,6 +219,9 @@ function App() {
   };
 
   const displayHeart = (reset = false) => {
+    if (isLoggedIn) {
+      return null;
+    }
     console.log("in toggle heart");
     if (reset === "reset") {
       setLiked(false);
@@ -219,17 +232,20 @@ function App() {
 
   const handleFavorite = (id) => {
     setLiked(!liked);
-
-    if (favIDs.includes(id)) {
-      // remove it from favorites list
-      setFavIDs((currentIDs) =>
-        currentIDs.filter((i) => {
-          return i !== id;
-        })
-      );
+    if (isLoggedIn) {
+      if (favIDs.includes(id)) {
+        // remove it from favorites list
+        setFavIDs((currentIDs) =>
+          currentIDs.filter((i) => {
+            return i !== id;
+          })
+        );
+      } else {
+        // add it to favorites list
+        setFavIDs((currentIDs) => [...currentIDs, id]);
+      }
     } else {
-      // add it to favorites list
-      setFavIDs((currentIDs) => [...currentIDs, id]);
+      window.alert("Please login to add an observation to your favorites.");
     }
   };
 
@@ -588,6 +604,7 @@ function App() {
   // useEffect(() =>{
   //   // getUserCurations(UID?!?);
   // change fav button and box to appear
+  // remove signin button, replace with welcome message
   // }, [isLoggedIn]
   // )
 
@@ -652,7 +669,7 @@ function App() {
             Forage Responsibily
           </li>
         </ul>
-        <Authentication />
+        <Authentication isLoggedIn={isLoggedIn} getLogged={getLogged} />
       </header>
       <main>
         {mainDisplay === "React Map" && (
