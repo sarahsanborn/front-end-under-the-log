@@ -1,8 +1,6 @@
-// import Map, { Marker, Popup } from "react-map-gl";
 import Map, { Source, Layer, Popup } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import React, { useState, useRef } from "react";
-// import { FlyToInterpolator } from "deck.gl";
 import {
   clusterLayer,
   clusterCountLayer,
@@ -19,11 +17,6 @@ function ReactMap({
   favIDs,
   handleFavorite,
 }) {
-  // const [viewState, setViewState] = useState({
-  //   latitude: 47.31,
-  //   longitude: -120.485,
-  //   zoom: 6.2,
-  // });
 
   const mapRef = useRef(null);
   const [popupInfo, setPopupInfo] = useState(null);
@@ -45,17 +38,6 @@ function ReactMap({
         if (favIDs.includes(feature.properties.id)) {
           displayHeart();
         }
-        // if (feature.properties.id in favIDs) {
-        //   // then render filled in heart
-        //   // otherwise emppty heart
-        //   removeFromFavorites(feature.properties.id);
-
-        //   // add funcitonality to onclick heart that adds id to favorites list
-        // } else {
-        //   addToFavorites(feature.properties.id);
-        //   // remove
-        // }
-        // displayHeart();
       } else {
         mapboxSource.getClusterExpansionZoom(clusterID, (err, zoom) => {
           if (err) {
@@ -95,13 +77,10 @@ function ReactMap({
         onMove={(event) => changeMapView(event.viewState)}
         style={{ width: "100vw", height: "85vh" }}
         mapStyle="mapbox://styles/foragingcapstone/cldc9qo4i001m01lexygzvftr"
-        // mapStyle="mapbox://styles/foragingcapstone/cldj35obm000101p9dxvz40cc/draft"
         mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
         interactiveLayerIds={[clusterLayer.id, unclusteredPointLayer.id]}
         onClick={onClickMap}
         ref={mapRef}
-        // transitionDuration={2000}
-        // transitionInterpolator={new FlyToInterpolator()}
       >
         <Source
           id="taxa"

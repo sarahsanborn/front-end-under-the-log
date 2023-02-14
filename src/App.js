@@ -2,7 +2,7 @@ import ReactMap from "./ReactMap";
 import Dropdown from "./Dropdown";
 import Authentication from "./Authentication";
 import axios from "axios";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { db } from "./firestore-config";
 import { doc, getDoc, updateDoc, getDocFromCache } from "firebase/firestore";
 import SearchBar from "./SearchBar";
@@ -29,14 +29,12 @@ function App() {
     zoom: 6.1,
   });
   const [liked, setLiked] = useState(false);
-  const mapRef = useRef(null);
-  // const [popupInfo, setPopupInfo] = useState(null);
+  
   // SEARCH BAR STATE
   const [formData, setFormData] = useState("");
   const [trefleToken, setTrefleToken] = useState("");
   // DROPDOWN STATE
   const [allSelected, setAllSelected] = useState(true);
-  // const [plantsSelected, setPlantsSelected] = useState(false);!!!!!!
   const [selectedSpecies, setSelectedSpecies] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   // FAVORITES BOX STATE
@@ -72,7 +70,6 @@ function App() {
   // "here is a function that does "
   // reducer = state +action produces new state --> always stateless
   // what use state is doing under the hood
-  // https://blog.logrocket.com/using-react-usestate-object/
   // };
 
   // *********************************************LOGIN FUNCTIONS START***********************************************
@@ -101,68 +98,13 @@ function App() {
     setViewState(newview);
   };
 
-  // const mapEase = useRef.current.easeTo();
-
   const resetMapView = () => {
-    console.log("inside resetMapView");
-    // console.log(mapRef);
-    // mapEase({
-    //       center: event.features[0].geometry.coordinates,
-    //       zoom: 10,
-    //       duration: 500,
-    //     });
-    // Can this ease to zoom level?
     setViewState({
       longitude: -120.485,
       latitude: 47.31,
-      zoom: 6.4,
-      // transitionDuration: 8000,
-      // transitionInterpolator: new FlyToInterpolator(),
+      zoom: 6.1,
     });
   };
-
-  // const popupSetter = (info) => {
-  //   setPopupInfo(info);
-  // };
-
-  // const mapsSelector = () => {
-  //   window.open(
-  //     `https://maps.google.com/maps?daddr=${popupInfo.latitude},${popupInfo.longitude}&amp;ll=`
-  //   );
-  // }
-
-  // const onClickMap = (event) => {
-  //   try {
-  //     const feature = event.features[0];
-  //     let clusterID = feature.properties.cluster_id;
-  //     const mapboxSource = mapRef.current.getSource("taxa");
-
-  //     if (feature["layer"]["id"] === "unclustered-point") {
-  //       clusterID = feature.properties.id;
-  //       setPopupInfo(feature["properties"]);
-  //       // mapRef.current.easeTo({
-  //       //   center: feature.geometry.coordinates,
-  //       //   zoom: 10,
-  //       //   duration: 500,
-  //       // });
-  //     } else {
-  //       mapboxSource.getClusterExpansionZoom(clusterID, (err, zoom) => {
-  //         if (err) {
-  //           console.log("I'm in the error!");
-  //           return;
-  //         }
-
-  //         mapRef.current.easeTo({
-  //           center: feature.geometry.coordinates,
-  //           zoom,
-  //           duration: 500,
-  //         });
-  //       });
-  //     }
-  //   } catch (err) {
-  //     console.log("That's not a point!");
-  //   }
-  // };
 
   // *********************************************MAP FUNCTIONS END********************************************************
   // *********************************************CURATION LIST FUNCTIONS START********************************************
@@ -255,6 +197,7 @@ function App() {
 
   const seeFavorites = () => {
     favOpen ? setFavOpen(false) : setFavOpen(true);
+    resetMapView();
   };
 
   // how to securely pass uid into function below???
@@ -279,7 +222,6 @@ function App() {
     setFormData(event.target.value);
   };
 
-  // THIS IS FOR DROPDOWN, BUT NEEDS TO BE ABOVE HANDLSEARCHSUBMIT
   const handleDropdownClear = () => {
     setAllSelected(false);
     setSelectedSpecies([]);
@@ -342,51 +284,11 @@ function App() {
     setIsOpen(!isOpen);
   };
 
-  // !!!!!!!!
-  // const handlePlantsSelected = () => {
-  //   setPlantsSelected(!plantsSelected);
-  //   setAllSelected(false);
-  //   setSelectedSpecies([]);
-  //   const filteredPlants = newedibleList.filter(object => object.type === 'plant');
-  //   setFilteredObservationsList(filteredPlants);
-  //   }
-  // //   handleDropdownClear();
-  // //   setPlantsSelected(!plantsSelected);
-  // //   if (plantsSelected) {
-  // //     console.log('in the if')
-  // //     return;
-  // //   }
-  // //   console.log('in the else')
-  // //   const newPlants = newedibleList.filter((species) => species.type === 'plant');
-  // //   setSelectedSpecies((prevSelectedSpecies) => [
-  // //     ...prevSelectedSpecies,
-  // //     newPlants.map((species) => species.label),
-  // //   ])
-  // //   console.log(selectedSpecies);
-  // // };
-  // //   if (plantsSelected === false) {
-  // //     setPlantsSelected(true);
-  // //     for (species of newedibleList) {
-  // //       if (species.type === 'plant') {
-  // //         console.log("new one")
-  // //         console.log(species.label);
-  // //         // selectedSpecies.includes(species.label)
-  // //         setSelectedSpecies(...species.label, species.label)
-  // //       };
-  // //     };
-  // //   } else {
-  // //     handleDropdownClear();
-  // //     setPlantsSelected(false);
-  // //   }
-  // // };
-  // !!!!!!!!!!!!!
-
   // *********************************************DROPDOWN FUNCTIONS END**************************************************
 
   const resetFilteredObservations = (temp = false) => {
     if (temp) {
       setFilteredObservationsList([{}]);
-      console.log("we're in temp");
     } else {
       setFilteredObservationsList([]);
     }
@@ -400,8 +302,7 @@ function App() {
     let dbSearchTaxa = [];
     let apiSearchTaxa = [];
 
-    // takes list of common names
-    // loops through, and for each adds latin to return list:
+    // loops through list of common names and for each adds latin to return list
     const filtersAccountedFor = [];
 
     for (let item of newedibleList) {
@@ -563,11 +464,6 @@ function App() {
         ...updatedObservations,
       ]);
     } else if (filter === "favs") {
-      console.log("updated observation", updatedObservations);
-      // setFavoritesList((currentObservations) => [
-      //   ...currentObservations,
-      //   ...updatedObservations,
-      // ]);
       return updatedObservations[0];
     } else {
       setFilteredObservationsList((currentObservations) => [
@@ -727,10 +623,8 @@ function App() {
               allSelected={allSelected}
               selectedSpecies={selectedSpecies}
               isOpen={isOpen}
-              // handlePlantsSelected={handlePlantsSelected}
             />
             <SearchBar
-              // className="search-bar"
               handleChange={handleChange}
               handleSearchSubmit={handleSearchSubmit}
               handleClear={handleSearchClear}

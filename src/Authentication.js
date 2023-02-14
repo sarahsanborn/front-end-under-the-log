@@ -1,7 +1,5 @@
-import { signOut } from "firebase/auth";
 import React from "react";
 import { logout, signInWithGoogle } from "./firestore-config";
-// import { MdOutlineClear } from "react-icons/md";
 
 const Authentication = ({ isLoggedIn, getLogged, getLoggedOut, saveUID }) => {
   return (
@@ -25,8 +23,6 @@ const Authentication = ({ isLoggedIn, getLogged, getLoggedOut, saveUID }) => {
           Sign In
         </button>
       )}
-
-      {/* <p>{localStorage.getItem("email")}</p> */}
     </div>
   );
 };
