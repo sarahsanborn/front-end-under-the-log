@@ -4,7 +4,7 @@ import Authentication from "./Authentication";
 import axios from "axios";
 import { useState, useEffect, useRef } from "react";
 import { db } from "./firestore-config";
-import { doc, getDoc, getDocFromCache } from "firebase/firestore";
+import { doc, getDoc, updateDoc, getDocFromCache } from "firebase/firestore";
 import SearchBar from "./SearchBar";
 // import Loading from "./Loading";
 import About from "./About";
@@ -257,8 +257,16 @@ function App() {
     favOpen ? setFavOpen(false) : setFavOpen(true);
   };
 
+  // how to securely pass uid into function below???
+  const updateFavoritesInDB = () => {
+    updateDoc(doc(db, "users", `${user.uid}`, "curations", "favorites"), {
+      favIds: [...favIDs],
+    });
+  };
+
   useEffect(() => {
     getObservationByID(favIDs);
+    // updateFavoritesInDB();
   }, [favIDs]);
 
   // *********************************************CURATION LIST FUNCTIONS END**********************************************
@@ -422,16 +430,18 @@ function App() {
 
   const checkEdibleSearch = async (taxa) => {
     let newTaxa = taxa;
-    // const token = retrieveUserTrefleToken()
+    // const token = state variable returned by hook
     const token = "cheese";
 
     try {
       const response = await axios.get(
-        `${TREFLE_URL}/plants/search?token=${token}&q=${taxa}`
-        // {
+        `${TREFLE_URL}/plants/search`
+        // `${TREFLE_URL}/plants/search?token=${token}&q=${taxa}`
+
+        // ,{
         //   params: {
         //     q: taxa,
-        //     token: process.env.TREFLE_KEY,
+        //     token: token,
         //     // filter[edible]: true,
         //     // filter_not[scientific_name]: null
         //   },
@@ -604,13 +614,6 @@ function App() {
       console.log("ERROR!", err);
     }
   };
-
-  // useEffect(() =>{
-  //   // getUserCurations(UID?!?);
-  // change fav button and box to appear
-  // remove signin button, replace with welcome message
-  // }, [isLoggedIn]
-  // )
 
   useEffect(() => {
     for (let item of newedibleList) {
