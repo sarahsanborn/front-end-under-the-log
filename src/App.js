@@ -64,8 +64,6 @@ function App() {
 
   // *********************************************LOGIN FUNCTIONS START***********************************************
   const getLogged = (uid) => {
-    console.log("in get logged");
-    console.log(uid);
     setIsLoggedIn(true);
     getUserCurations(uid);
   };
@@ -121,7 +119,6 @@ function App() {
 
   const getObservationByID = async (id_list) => {
     const resultObjectsList = [];
-    console.log(id_list);
     for (let id of id_list) {
       try {
         const response = await axios.get(`${INAT_URL}/observations/`, {
@@ -144,7 +141,6 @@ function App() {
     if (!isLoggedIn) {
       return null;
     }
-    console.log("in toggle heart");
     if (reset === "reset") {
       setLiked(false);
     } else {
@@ -175,7 +171,6 @@ function App() {
   };
 
   const updateFavoritesInDB = () => {
-    console.log("in update fav in db");
     updateDoc(doc(db, "users", `${userUid}`, "curations", "favorites"), {
       favIds: [...favIDs],
     });
@@ -319,7 +314,6 @@ function App() {
   //     console.log("species not found in trefle", err);
   //   }
 
-  //   console.log(newTaxa);
   //   getObservationsByTaxon(newTaxa, true);
   // };
 
@@ -327,7 +321,6 @@ function App() {
     const results = sortFilterParameters(filterList);
     const dbSearchTaxa = results[0];
     const apiSearchTaxa = results[1];
-    console.log(results);
 
     const updatedObservations = [];
 
@@ -338,12 +331,9 @@ function App() {
         // and comment out line below
         getObservationsByTaxon(taxa, true);
       }
-      console.log("Im in the apiSearchTaxa handler");
     }
 
     if (dbSearchTaxa.length !== 0) {
-      console.log("Im in the dbSearchTaxa handler");
-
       for (let observation of observationsList) {
         for (let latin of dbSearchTaxa) {
           if (latin === observation.properties.latin_name) {
