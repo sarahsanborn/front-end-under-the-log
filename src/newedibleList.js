@@ -8,7 +8,7 @@ const newedibleList =[
   {
     id: 2,
     value: [ 'Sagittaria latifolia' ],
-    label: 'Arrowhead',
+    label: 'Broadleaf arrowhead',
     type: 'plant'
   },
   {
