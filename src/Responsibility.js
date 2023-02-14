@@ -36,6 +36,7 @@ const Responsibility = () => {
           <li><b>Be equipped.</b> Bring water, navigation, sun protection, first aid, food, and extra clothes. </li>
         </ul>
         <p>We hope Under The Log can help you forage safely and responsibly.</p>
+        <p>Some observations returned through Under The Log, particularly through the search function, may reflect species that are unfit for consumption. In using Under The Log to retrieve foragables, please exercise caution and understand that consumption is at the discretion of the user and at their own risk.</p>
       </section>
     </div>
   );

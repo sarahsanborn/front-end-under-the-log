@@ -4,7 +4,7 @@ const About = () => {
     <div className="page-container">
       <section className="page-inner">
         <h1 className="headline">About</h1>
-        <p>Under The Log was created by <a href="https://www.linkedin.com/in/sarah-sanborn-profile/">
+        <p>Under The Log is an interactive foraging app that shows edible plants and fungi observed by community members in Washington State. The website was created by <a href="https://www.linkedin.com/in/sarah-sanborn-profile/">
           Sarah Sanborn</a> and <a href="https://www.linkedin.com/in/tara-alsaidi/">Tara Alsaidi</a> for their 
           capstone project at <a href="https://adadevelopersacademy.org/">Ada Developers Academy</a>. 
           Code for this project can be <a href="https://github.com/sarahsanborn/front-end-under-the-log">viewed on Github</a>.</p>
