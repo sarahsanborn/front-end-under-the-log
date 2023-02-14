@@ -23,7 +23,7 @@ const About = () => {
           displayed on the map. iNaturalist defines an observation as “research grade” quality 
           when the observation has a photo, date, coordinates, and two-thirds of the community 
           agree with the identification. </p>
-        <p>Sarah and Tara hope this website encourages more people to get outside and to use Under The Log as their foraging companion. Please forage respectfully and responsibly LINK HERE.</p>
+        <p>Sarah and Tara hope this website encourages more people to get outside and to use Under The Log as their foraging companion. Read more on our forage respectfully and responsibly page.</p>
         <h2>Technologies used to create Under The Log</h2>
         <ul>
           <li>iNaturalist API</li>

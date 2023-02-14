@@ -15,7 +15,6 @@ const Authentication = ({ isLoggedIn, getLogged, getLoggedOut, saveUID }) => {
           </button>
         </div>
       ) : (
-        // <p className="welcome">Welcome, {localStorage.getItem("name")}</p>
         <button
           className="google-signin"
           onClick={() => signInWithGoogle(getLogged, saveUID)}

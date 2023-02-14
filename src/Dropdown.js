@@ -56,18 +56,6 @@ const Dropdown = ({
                 {species.label}
               </li>
             ))}
-            {/* {newedibleList.map((species) => (
-              <li key={species.id} className="dropdown-list-item">
-                <input
-                  type="checkbox"
-                  checked={
-                    allSelected || selectedSpecies.includes(species.label)
-                  }
-                  onChange={() => handleSelection(species.label)}
-                />
-                {species.label}
-              </li>
-            ))} */}
           </ul>
           <li className="dropdown-done-container">
             <button className="dropdown-button" onClick={handleDone}>

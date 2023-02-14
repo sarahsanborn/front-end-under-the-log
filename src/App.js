@@ -6,7 +6,6 @@ import { useState, useEffect } from "react";
 import { db } from "./firestore-config";
 import { doc, getDoc, updateDoc, getDocFromCache } from "firebase/firestore";
 import SearchBar from "./SearchBar";
-// import Loading from "./Loading";
 import About from "./About";
 import Responsibility from "./Responsibility";
 import "./App.css";
@@ -490,15 +489,12 @@ function App() {
         }
       }
     }
-    // setTimeout(() => {
-    //   setIsLoading(false);
-    // }, 3000);
     // getObservationsByTaxon does not have any dependencies that change
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <div className="grid-container">
+    <div>
       <header>
         <div>
           <h1 className="title">UNDER THE LOG</h1>
@@ -610,11 +606,6 @@ function App() {
         ) : null}
         {mainDisplay === "About" && <About />}
         {mainDisplay === "Responsibility" && <Responsibility />}
-        {/* {isLoading ? (
-          <Loading />
-        ) : ( */}
-
-        {/* )} */}
       </main>
     </div>
   );
