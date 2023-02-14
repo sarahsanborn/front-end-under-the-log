@@ -10,7 +10,12 @@ import {
   where,
   doc,
 } from "@firebase/firestore";
-import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
 
 // import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -51,7 +56,7 @@ export const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
 // function that represents sign in for google
-export const signInWithGoogle = async (getLogged) => {
+export const signInWithGoogle = async (getLogged, saveUID) => {
   try {
     const res = await signInWithPopup(auth, provider);
     const user = res.user;
@@ -72,6 +77,7 @@ export const signInWithGoogle = async (getLogged) => {
     }
 
     getLogged(user.uid);
+    saveUID(user.uid);
   } catch (err) {
     console.error(err);
   }

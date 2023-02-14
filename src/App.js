@@ -44,6 +44,7 @@ function App() {
   const [favIDs, setFavIDs] = useState([]);
   // LOGGEDIN STATE
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userUid, setUserUid] = useState("");
 
   const MONTHS = [
     "null",
@@ -85,8 +86,13 @@ function App() {
   const getLoggedOut = () => {
     setIsLoggedIn(false);
     setFavOpen(false);
+    setUserUid("");
     // Need user curations function???
-  }
+  };
+
+  const saveUID = (uid) => {
+    setUserUid(uid);
+  };
 
   // *********************************************LOGIN FUNCTIONS END***********************************************
   // *********************************************MAP FUNCTIONS START***********************************************
@@ -166,13 +172,7 @@ function App() {
   const getUserCurations = async (uid) => {
     let userFavIds = [];
 
-    const docRef = doc(
-      db,
-      "users",
-      `${uid}`,
-      "curations",
-      "favorites"
-    );
+    const docRef = doc(db, "users", `${uid}`, "curations", "favorites");
 
     // Get a document, forcing the SDK to fetch from the offline cache.
     try {
@@ -213,7 +213,7 @@ function App() {
         });
 
         resultObjectsList.push(dataUnpacker(response.data.results, "favs"));
-        console.log("success!", response.data.results);
+        console.log("successly retreived observation!", response.data.results);
       } catch (err) {
         console.log("ERROR! getObservationByID failed", err);
       }
@@ -259,14 +259,17 @@ function App() {
 
   // how to securely pass uid into function below???
   const updateFavoritesInDB = () => {
-    updateDoc(doc(db, "users", `${user.uid}`, "curations", "favorites"), {
+    console.log("in update fav in db");
+    updateDoc(doc(db, "users", `${userUid}`, "curations", "favorites"), {
       favIds: [...favIDs],
     });
   };
 
   useEffect(() => {
-    getObservationByID(favIDs);
-    // updateFavoritesInDB();
+    if (isLoggedIn) {
+      getObservationByID(favIDs);
+      updateFavoritesInDB();
+    }
   }, [favIDs]);
 
   // *********************************************CURATION LIST FUNCTIONS END**********************************************
@@ -677,7 +680,12 @@ function App() {
           </li>
         </ul>
         <div className="authentication">
-          <Authentication isLoggedIn={isLoggedIn} getLogged={getLogged} getLoggedOut={getLoggedOut} />
+          <Authentication
+            isLoggedIn={isLoggedIn}
+            getLogged={getLogged}
+            getLoggedOut={getLoggedOut}
+            saveUID={saveUID}
+          />
         </div>
       </header>
       <main>
@@ -701,16 +709,16 @@ function App() {
         )}
         {mainDisplay === "React Map" && (
           <div className="dropsearch-container">
-            {isLoggedIn ? 
-            (<button
-              className={
-                favOpen ? "favorite-button-clicked" : "favorite-button"
-              }
-              onClick={() => seeFavorites()}
-            >
-              See Favorites
-            </button>) : (null)
-            }
+            {isLoggedIn ? (
+              <button
+                className={
+                  favOpen ? "favorite-button-clicked" : "favorite-button"
+                }
+                onClick={() => seeFavorites()}
+              >
+                See Favorites
+              </button>
+            ) : null}
             <Dropdown
               handleSelection={handleSelection}
               handleDone={handleDone}

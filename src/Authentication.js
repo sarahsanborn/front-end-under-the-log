@@ -3,16 +3,18 @@ import React from "react";
 import { logout, signInWithGoogle } from "./firestore-config";
 // import { MdOutlineClear } from "react-icons/md";
 
-const Authentication = ({ isLoggedIn, getLogged, getLoggedOut }) => {
+const Authentication = ({ isLoggedIn, getLogged, getLoggedOut, saveUID }) => {
   return (
     <div>
       {isLoggedIn ? (
-        <button className="google-signin" onClick={() => logout(getLoggedOut)}>Sign Out</button>
-        // <p className="welcome">Welcome, {localStorage.getItem("name")}</p>
+        <button className="google-signin" onClick={() => logout(getLoggedOut)}>
+          Sign Out
+        </button>
       ) : (
+        // <p className="welcome">Welcome, {localStorage.getItem("name")}</p>
         <button
           className="google-signin"
-          onClick={() => signInWithGoogle(getLogged)}
+          onClick={() => signInWithGoogle(getLogged, saveUID)}
         >
           Sign In
         </button>
