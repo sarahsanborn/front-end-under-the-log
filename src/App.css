@@ -335,7 +335,7 @@ section li {
 /* Authentication */
 .google-signin {
     transition: background-color .3s, box-shadow .3s;
-    padding: .6rem .7rem .6rem 2.5rem;
+    padding: .5rem .7rem .5rem 2.5rem;
     border: none;
     border-radius: 3px;
     box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25);
