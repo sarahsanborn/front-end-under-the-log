@@ -331,7 +331,7 @@ const newedibleList = [
   {
     id: 55,
     value: ["Vaccinium parvifolium"],
-    label: "Red huckleberry",
+    label: "Red Huckleberry",
     type: "plant",
   },
   {
@@ -395,7 +395,7 @@ const newedibleList = [
   {
     id: 65,
     value: ["Urtica dioica"],
-    label: "Stinging nettle",
+    label: "Stinging Nettle",
     type: "plant",
   },
   {
@@ -617,91 +617,91 @@ const newedibleList = [
   {
     id: 102,
     value: ["Gomphidius subroseus"],
-    label: "rosy gomphidius",
+    label: "Rosy Gomphidius",
     type: "fungi",
   },
   {
     id: 103,
     value: ["Sarcodon imbricatus"],
-    label: "scaly hedgehog",
+    label: "Scaly Hedgehog",
     type: "fungi",
   },
   {
     id: 104,
     value: ["Coprinus comatus"],
-    label: "shaggy mane",
+    label: "Shaggy Mane",
     type: "fungi",
   },
   {
     id: 105,
     value: ["Chlorophyllum olivieri"],
-    label: "shaggy parasol",
+    label: "Shaggy Parasol",
     type: "fungi",
   },
   {
     id: 106,
     value: ["Suillus brevipes"],
-    label: "short-stemmed slippery jack",
+    label: "Short-Stemmed Slippery Jack",
     type: "fungi",
   },
   {
     id: 107,
     value: ["Gomphidius glutinosus"],
-    label: "slimy spike cap",
+    label: "Slimy Spike Cap",
     type: "fungi",
   },
   {
     id: 108,
     value: ["Boletus rex-veris"],
-    label: "spring king bolete",
+    label: "Spring King Bolete",
     type: "fungi",
   },
   {
     id: 109,
     value: ["Apioperdon pyriforme"],
-    label: "stump puffball",
+    label: "Stump Puffball",
     type: "fungi",
   },
   {
     id: 110,
     value: ["Hydnum oregonense"],
-    label: "sweet tooth mushroom",
+    label: "Sweet Tooth Mushroom",
     type: "fungi",
   },
   {
     id: 111,
     value: ["Morchella snyderi"],
-    label: "thick stemmed morel",
+    label: "Thick Stemmed Morel",
     type: "fungi",
   },
   {
     id: 112,
     value: ["Pseudohydnum gelatinosum"],
-    label: "toothed jelly fungus",
+    label: "Toothed Jelly Fungus",
     type: "fungi",
   },
   {
     id: 113,
     value: ["Sparassis radicata"],
-    label: "western cauliflower mushroom",
+    label: "Western Cauliflower Mushroom",
     type: "fungi",
   },
   {
     id: 114,
     value: ["Suillus lakei"],
-    label: "western painted suillus",
+    label: "Western Painted Suillus",
     type: "fungi",
   },
   {
     id: 115,
     value: ["Cantharellus subalbidus"],
-    label: "white chanterelle",
+    label: "White Chanterelle",
     type: "fungi",
   },
   {
     id: 116,
     value: ["Craterellus tubaeformis"],
-    label: "winter chanterelle",
+    label: "Winter Chanterelle",
     type: "fungi",
   },
   {
@@ -713,7 +713,7 @@ const newedibleList = [
   {
     id: 118,
     value: ["Athyrium filix-femina"],
-    label: "Lady fern fiddlehead",
+    label: "Lady Fern Fiddlehead",
     type: "plant",
   },
 ];

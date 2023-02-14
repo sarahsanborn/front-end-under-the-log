@@ -13,18 +13,6 @@ const Dropdown = ({
   displaySpecies,
 }) => {
 
-  const dropdownDisplaySpecies = [
-    "Arrowleaf balsamroot", 
-    "Black landscape morel",
-    "Chanterelle",
-    "Lady fern fiddlehead",
-    "Oyster mushroom",
-    "Red huckleberry",
-    "Salmonberry",
-    "Stinging nettle",
-    "Strawberry",
-    "Wood sorrel"
-  ]
   const filterByDisplaySpecies = (species) => {
     if (displaySpecies.includes(species.label)) {
       return true;
