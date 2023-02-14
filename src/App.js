@@ -669,7 +669,9 @@ function App() {
             Forage Responsibily
           </li>
         </ul>
-        <Authentication isLoggedIn={isLoggedIn} getLogged={getLogged} />
+        <div className="authentication">
+          <Authentication isLoggedIn={isLoggedIn} getLogged={getLogged} />
+        </div>
       </header>
       <main>
         {mainDisplay === "React Map" && (

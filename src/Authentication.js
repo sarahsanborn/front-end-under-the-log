@@ -13,7 +13,7 @@ const Authentication = ({ isLoggedIn, getLogged }) => {
           Sign In
         </button>
       ) : (
-        <p>Welcome, {localStorage.getItem("name")}!</p>
+        <p className="welcome">Welcome, {localStorage.getItem("name")}</p>
       )}
 
       {/* <p>{localStorage.getItem("email")}</p> */}
