@@ -1,7 +1,5 @@
-import { signOut } from "firebase/auth";
 import React from "react";
 import { logout, signInWithGoogle } from "./firestore-config";
-// import { MdOutlineClear } from "react-icons/md";
 
 const Authentication = ({ isLoggedIn, getLogged, getLoggedOut }) => {
   return (
@@ -9,7 +7,12 @@ const Authentication = ({ isLoggedIn, getLogged, getLoggedOut }) => {
       {isLoggedIn ? (
         <div className="signout-welcome-container">
           <p className="welcome">Welcome, {localStorage.getItem("name")}</p>
-          <button className="google-signin" onClick={() => logout(getLoggedOut)}>Sign Out</button>
+          <button 
+            className="google-signin" 
+            onClick={() => logout(getLoggedOut)}
+          >
+              Sign Out
+          </button>
         </div>
       ) : (
         <button
@@ -19,8 +22,6 @@ const Authentication = ({ isLoggedIn, getLogged, getLoggedOut }) => {
           Sign In
         </button>
       )}
-
-      {/* <p>{localStorage.getItem("email")}</p> */}
     </div>
   );
 };

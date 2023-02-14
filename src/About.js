@@ -7,7 +7,7 @@ const About = () => {
         <p>Under The Log was created by <a href="https://www.linkedin.com/in/sarah-sanborn-profile/">
           Sarah Sanborn</a> and <a href="https://www.linkedin.com/in/tara-alsaidi/">Tara Alsaidi</a> for their 
           capstone project at <a href="https://adadevelopersacademy.org/">Ada Developers Academy</a>. 
-          Code for this project can be viewed on <a href="https://github.com/sarahsanborn/front-end-under-the-log">Github</a>.</p>
+          Code for this project can be <a href="https://github.com/sarahsanborn/front-end-under-the-log">viewed on Github</a>.</p>
         <p>Sarah and Tara were interested in creating a website that would help foragers find 
           edible plants and fungi in Washington State. Oftentimes, the best way to find a plant 
           or mushroom is to go to the exact spot where someone else recently observed that species. 

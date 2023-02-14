@@ -1,32 +1,4 @@
-const FavSidebar = ({ favoritesList, openPopUp }) => {
-  // const fakeFavoritesList = [
-  //   {
-  //     geometry: { type: "point" },
-  //     properties: {
-  //       common_name: "wrinkled thimble morel",
-  //       date: "October 18, 2022",
-  //       id: 139292223,
-  //       image_url: "image url here",
-  //       latin_name: "Verpa bohemica",
-  //       latitude: 47.4314833333,
-  //       longitude: -122.0841916667,
-  //       native: false,
-  //     },
-  //   },
-  //   {
-  //     geometry: { type: "point" },
-  //     properties: {
-  //       common_name: "wrinkled thimble morel",
-  //       date: "October 18, 2022",
-  //       id: 139292223,
-  //       image_url: "image url here",
-  //       latin_name: "Verpa bohemica",
-  //       latitude: 47.4314833333,
-  //       longitude: -122.0841916667,
-  //       native: false,
-  //     },
-  //   },
-  // ];
+const FavSidebar = ({ favoritesList }) => {
 
   return (
     <div className="favsidebar-container">
@@ -37,7 +9,6 @@ const FavSidebar = ({ favoritesList, openPopUp }) => {
               <li
                 key={species.properties.id}
                 className="favorite-list-item"
-                onClick={openPopUp}
               >
                 <img
                   id="fave-image"
