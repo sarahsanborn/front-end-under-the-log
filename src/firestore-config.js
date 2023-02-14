@@ -9,7 +9,12 @@ import {
   where,
   doc,
 } from "@firebase/firestore";
-import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAc9H2w9VI6BkKkKR6CJ4NIzLaWqlU_cTs",
@@ -30,7 +35,8 @@ export const auth = getAuth(app);
 
 const provider = new GoogleAuthProvider();
 
-export const signInWithGoogle = async (getLogged) => {
+// function that represents sign in for google
+export const signInWithGoogle = async (getLogged, saveUID) => {
   try {
     const res = await signInWithPopup(auth, provider);
     const user = res.user;
@@ -48,6 +54,7 @@ export const signInWithGoogle = async (getLogged) => {
     }
 
     getLogged(user.uid);
+    saveUID(user.uid);
   } catch (err) {
     console.error(err);
   }
