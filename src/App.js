@@ -42,6 +42,9 @@ function App() {
   const [isOpen, setIsOpen] = useState(false);
   // FAVORITES BOX STATE
   const [favOpen, setFavOpen] = useState(false);
+  const [favIDs, setFavIDs] = useState([]);
+  // LOGGEDIN STATE
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const MONTHS = [
     "null",
@@ -146,15 +149,16 @@ function App() {
 
   // pull list of saved observations from doc associated with testuser
   // move to only pulling authenticated user
-  const getUserCurations = async () => {
+  const getUserCurations = async (uid) => {
     let userFavIds = [];
 
     const docRef = doc(
       db,
       "users",
-      "testuser",
-      "curatedobservations",
-      "curatedname"
+      `${uid}`,
+      "curations",
+      "favorites",
+      "fav_id"
     );
 
     // Get a document, forcing the SDK to fetch from the offline cache.
@@ -170,10 +174,9 @@ function App() {
       userFavIds = targetDoc.data().observationIDs;
       console.log("Server collection data:", userFavIds);
     }
+    setFavIDs((currentIDs) => [...currentIDs, ...userFavIds]);
 
-    for (let id of userFavIds) {
-      getObservationByID(id);
-    }
+    getObservationByID(favIDs);
   };
 
   // sort through user docs in user collection
@@ -184,19 +187,25 @@ function App() {
   // store unpacked results in state variable (user favorites)
   // CHECK TO SEE IF UNPACK WORKS/ IF THE DATA IS RETURNED IN SAME FORMAT AS OTHER CALL
 
-  const getObservationByID = async (id) => {
-    try {
-      const response = await axios.get(`${INAT_URL}/observations/`, {
-        params: {
-          id: id,
-        },
-      });
+  const getObservationByID = async (id_list) => {
+    const resultObjectsList = [];
+    console.log(id_list);
+    for (let id of id_list) {
+      try {
+        const response = await axios.get(`${INAT_URL}/observations/`, {
+          params: {
+            id: id,
+          },
+        });
 
-      dataUnpacker(response.data.results, "favs");
-      console.log("success!", response.data.results);
-    } catch (err) {
-      console.log("ERROR! getObservationByID failed", err);
+        resultObjectsList.push(dataUnpacker(response.data.results, "favs"));
+        console.log("success!", response.data.results);
+      } catch (err) {
+        console.log("ERROR! getObservationByID failed", err);
+      }
     }
+
+    setFavoritesList(resultObjectsList);
   };
 
   const displayHeart = (reset = false) => {
@@ -211,22 +220,26 @@ function App() {
   const handleFavorite = (id) => {
     setLiked(!liked);
 
-    if (favoritesList.includes(id)) {
+    if (favIDs.includes(id)) {
       // remove it from favorites list
-      setFavoritesList((currentIDs) =>
+      setFavIDs((currentIDs) =>
         currentIDs.filter((i) => {
           return i !== id;
         })
       );
     } else {
       // add it to favorites list
-      setFavoritesList((currentIDs) => [...currentIDs, id]);
+      setFavIDs((currentIDs) => [...currentIDs, id]);
     }
   };
 
   const seeFavorites = () => {
     favOpen ? setFavOpen(false) : setFavOpen(true);
   };
+
+  useEffect(() => {
+    getObservationByID(favIDs);
+  }, [favIDs]);
 
   // *********************************************CURATION LIST FUNCTIONS END**********************************************
   // *********************************************SEARCH BAR FUNCTIONS START***********************************************
@@ -518,10 +531,11 @@ function App() {
       ]);
     } else if (filter === "favs") {
       console.log("updated observation", updatedObservations);
-      setFavoritesList((currentObservations) => [
-        ...currentObservations,
-        ...updatedObservations,
-      ]);
+      // setFavoritesList((currentObservations) => [
+      //   ...currentObservations,
+      //   ...updatedObservations,
+      // ]);
+      return updatedObservations[0];
     } else {
       setFilteredObservationsList((currentObservations) => [
         ...currentObservations,
@@ -571,9 +585,13 @@ function App() {
     }
   };
 
-  useEffect(() => {
-    // getUserCurations();
+  // useEffect(() =>{
+  //   // getUserCurations(UID?!?);
+  // change fav button and box to appear
+  // }, [isLoggedIn]
+  // )
 
+  useEffect(() => {
     for (let item of edibleList) {
       for (let taxa of item.value) {
         getObservationsByTaxon(taxa);
@@ -651,7 +669,7 @@ function App() {
             }}
             displayHeart={displayHeart}
             liked={liked}
-            favoritesList={favoritesList}
+            favIDs={favIDs}
             handleFavorite={handleFavorite}
           />
         )}

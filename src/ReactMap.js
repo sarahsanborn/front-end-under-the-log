@@ -16,7 +16,7 @@ function ReactMap({
   dataGeoJSON,
   liked,
   displayHeart,
-  favoritesList,
+  favIDs,
   handleFavorite,
 }) {
   // const [viewState, setViewState] = useState({
@@ -42,10 +42,10 @@ function ReactMap({
         //   zoom: 10,
         //   duration: 500,
         // });
-        if (favoritesList.includes(feature.properties.id)) {
+        if (favIDs.includes(feature.properties.id)) {
           displayHeart();
         }
-        // if (feature.properties.id in favoritesList) {
+        // if (feature.properties.id in favIDs) {
         //   // then render filled in heart
         //   // otherwise emppty heart
         //   removeFromFavorites(feature.properties.id);
