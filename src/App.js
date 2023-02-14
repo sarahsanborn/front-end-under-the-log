@@ -20,8 +20,6 @@ function App() {
   // const [isLoading, setIsLoading] = useState(true);
   const [mainDisplay, setMainDisplay] = useState("React Map");
   const [selectNavItem, setSelectedNavItem] = useState("React Map");
-  // FIRESTORE DATA
-  // const userCurations = collection(db, "users");
   // MAP STATE
   const [viewState, setViewState] = useState({
     latitude: 47.31,
@@ -29,13 +27,14 @@ function App() {
     zoom: 6.1,
   });
   const [liked, setLiked] = useState(false);
-  
   // SEARCH BAR STATE
   const [formData, setFormData] = useState("");
-  const [trefleToken, setTrefleToken] = useState("");
+  // const [trefleToken, setTrefleToken] = useState("");
   // DROPDOWN STATE
   const [allSelected, setAllSelected] = useState(true);
-  const [selectedSpecies, setSelectedSpecies] = useState(newedibleList.map((species) => species.label));
+  const [selectedSpecies, setSelectedSpecies] = useState(
+    newedibleList.map((species) => species.label)
+  );
   const [isOpen, setIsOpen] = useState(false);
   // FAVORITES BOX STATE
   const [favOpen, setFavOpen] = useState(false);
@@ -63,15 +62,6 @@ function App() {
   const INAT_URL = "https://api.inaturalist.org/v1";
   const TREFLE_URL = "https://trefle.io/api/v1";
 
-  // if you set new state multiple times, make sure your function is not capturing data from the
-  // previous render
-  // this was uses useDSate hook to get the incremental updates that are available to you in the hooks
-  // this is the reducer pattern; supplying a less complicated reducer function to the setstate
-  // "here is a function that does "
-  // reducer = state +action produces new state --> always stateless
-  // what use state is doing under the hood
-  // };
-
   // *********************************************LOGIN FUNCTIONS START***********************************************
   const getLogged = (uid) => {
     console.log("in get logged");
@@ -84,7 +74,7 @@ function App() {
     setIsLoggedIn(false);
     setFavOpen(false);
     setUserUid("");
-    // Need user curations function???
+    setFavIDs([]);
   };
 
   const saveUID = (uid) => {
@@ -109,14 +99,11 @@ function App() {
   // *********************************************MAP FUNCTIONS END********************************************************
   // *********************************************CURATION LIST FUNCTIONS START********************************************
 
-  // pull list of saved observations from doc associated with testuser
-  // move to only pulling authenticated user
   const getUserCurations = async (uid) => {
     let userFavIds = [];
 
     const docRef = doc(db, "users", `${uid}`, "curations", "favorites");
 
-    // Get a document, forcing the SDK to fetch from the offline cache.
     try {
       const targetDocCached = await getDocFromCache(docRef);
       // Document was found in the cache. If no cached document exists,
@@ -130,18 +117,7 @@ function App() {
       console.log("Server collection data:", userFavIds);
     }
     setFavIDs((currentIDs) => [...currentIDs, ...userFavIds]);
-    // CHEESE
-
-    // getObservationByID(favIDs);
   };
-
-  // sort through user docs in user collection
-  // if user email matching authenticated email
-  // access curation collection for that user
-  // return list of observations ids
-  // pass to api call --> edit data unpack to take favorites and...
-  // store unpacked results in state variable (user favorites)
-  // CHECK TO SEE IF UNPACK WORKS/ IF THE DATA IS RETURNED IN SAME FORMAT AS OTHER CALL
 
   const getObservationByID = async (id_list) => {
     const resultObjectsList = [];
@@ -180,14 +156,12 @@ function App() {
     setLiked(!liked);
     if (isLoggedIn) {
       if (favIDs.includes(id)) {
-        // remove it from favorites list
         setFavIDs((currentIDs) =>
           currentIDs.filter((i) => {
             return i !== id;
           })
         );
       } else {
-        // add it to favorites list
         setFavIDs((currentIDs) => [...currentIDs, id]);
       }
     } else {
@@ -200,7 +174,6 @@ function App() {
     resetMapView();
   };
 
-  // how to securely pass uid into function below???
   const updateFavoritesInDB = () => {
     console.log("in update fav in db");
     updateDoc(doc(db, "users", `${userUid}`, "curations", "favorites"), {
@@ -294,7 +267,6 @@ function App() {
     }
   };
 
-  // filter list comes from dropdown and search bar
   const sortFilterParameters = (filterList) => {
     if (typeof filterList === "string") {
       filterList = [filterList];
@@ -302,7 +274,6 @@ function App() {
     let dbSearchTaxa = [];
     let apiSearchTaxa = [];
 
-    // loops through list of common names and for each adds latin to return list
     const filtersAccountedFor = [];
 
     for (let item of newedibleList) {
@@ -320,52 +291,37 @@ function App() {
       }
     }
 
-    // but what happens if they plug in latin names? --> goes to api
-    // what if name doesn't exist in db??? --> same
-
     return [dbSearchTaxa, apiSearchTaxa];
   };
 
-  // calls cloud function and retrieves user temp api key to
-  // use in checkedEdibleSearch
-  // const retrieveUserTrefleToken = async () => {
+  // MUST DEPLOY TREFLE FUNCTION BEFORE ACTIVATING:
+  // const checkEdibleSearch = async (taxa) => {
+  //   let newTaxa = taxa;
+  //   const token = "state variable returned by useGetTrefleToken hook";
 
-  // }
+  //   try {
+  //     const response = await axios.get(
+  //       `${TREFLE_URL}/plants/search`,
+  //       // `${TREFLE_URL}/plants/search?token=${token}&q=${taxa}`
 
-  const checkEdibleSearch = async (taxa) => {
-    let newTaxa = taxa;
-    // const token = state variable returned by hook
-    const token = "cheese";
+  //       {
+  //         params: {
+  //           q: taxa,
+  //           token: token,
+  //           // filter[edible]: true,
+  //           // filter_not[scientific_name]: null
+  //         },
+  //       }
+  //     );
+  //     newTaxa = await response.data[0]["scientific_name"];
+  //     // newTaxa = await response.data.data[0]["scientific_name"]
+  //   } catch (err) {
+  //     console.log("species not found in trefle", err);
+  //   }
 
-    try {
-      const response = await axios.get(
-        `${TREFLE_URL}/plants/search`
-        // `${TREFLE_URL}/plants/search?token=${token}&q=${taxa}`
-
-        // ,{
-        //   params: {
-        //     q: taxa,
-        //     token: token,
-        //     // filter[edible]: true,
-        //     // filter_not[scientific_name]: null
-        //   },
-        // }
-      );
-      newTaxa = await response.data[0]["scientific_name"];
-      // newTaxa = await response.data.data[0]["scientific_name"]
-    } catch (err) {
-      console.log("species not found in trefle", err);
-    }
-    // try
-    // make an api call to trefle to get edible scientific name
-    // await response
-    // assign to newTaxa
-    // except
-    // newTaxa = taxa
-
-    console.log(newTaxa);
-    // getObservationsByTaxon(newTaxa, true);
-  };
+  //   console.log(newTaxa);
+  //   getObservationsByTaxon(newTaxa, true);
+  // };
 
   const pullFilteredObservations = (filterList) => {
     const results = sortFilterParameters(filterList);
