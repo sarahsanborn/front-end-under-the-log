@@ -703,19 +703,7 @@ const newedibleList = [
     ],
     label: "Wood Sorrel",
     type: "plant",
-  },
-  {
-    id: 116,
-    value: ["Aleuria aurantia"],
-    label: "orange peel fungus",
-    type: "fungi",
-  },
-  {
-    id: 117,
-    value: ["Gomphus clavatus"],
-    label: "pig's ears",
-    type: "fungi",
-  },
+  }
 ];
 
 export default newedibleList;
