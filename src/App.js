@@ -35,7 +35,7 @@ function App() {
   const [trefleToken, setTrefleToken] = useState("");
   // DROPDOWN STATE
   const [allSelected, setAllSelected] = useState(true);
-  const [selectedSpecies, setSelectedSpecies] = useState([]);
+  const [selectedSpecies, setSelectedSpecies] = useState([newedibleList.map((species) => species.label)]);
   const [isOpen, setIsOpen] = useState(false);
   // FAVORITES BOX STATE
   const [favOpen, setFavOpen] = useState(false);
@@ -503,7 +503,7 @@ function App() {
         }
 
         currentPage++;
-        // CALL FUNCTION RECURSIVELY WITH CURRENT PAGE
+        // Calls function recursively with current page
         getObservationsByTaxon(taxon, filter, currentPage);
       }
     } catch (err) {
