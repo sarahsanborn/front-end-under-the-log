@@ -100,6 +100,10 @@ section li {
     flex-direction: row;
 }
 
+.popup-common-name {
+    text-transform: capitalize;
+}
+
 #observation-image {
     height: 200px;
     padding-right: 10px;
@@ -182,7 +186,7 @@ section li {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 300px;
+    width: 340px;
     background-color: #eff1f3;
     flex-direction: column;
     max-height: 60vh;
@@ -205,9 +209,9 @@ section li {
     margin-right: .5rem;
 }
 
-.favorite-list-item:hover {
+/* .favorite-list-item:hover {
     background-color: #FFF;
-}
+} */
 
 #fave-image {
     height: 10vh;
@@ -220,6 +224,7 @@ section li {
 #fave-header {
     font-size: 1em;
     margin: 0;
+    text-transform: capitalize;
 }
 
 #fave-text {

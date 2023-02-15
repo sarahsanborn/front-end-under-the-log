@@ -17,7 +17,6 @@ function ReactMap({
   favIDs,
   handleFavorite,
 }) {
-
   const mapRef = useRef(null);
   const [popupInfo, setPopupInfo] = useState(null);
 
@@ -111,7 +110,7 @@ function ReactMap({
                 alt="observed species"
               ></img>
               <div>
-                <h1>{popupInfo.common_name}</h1>
+                <h1 className="popup-common-name">{popupInfo.common_name}</h1>
                 <h2>{popupInfo.latin_name}</h2>
                 <p>Date Observed: {popupInfo.date}</p>
                 <p>Native: {popupInfo.native.toString()}</p>
