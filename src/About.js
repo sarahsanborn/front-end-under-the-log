@@ -29,12 +29,12 @@ const About = () => {
           <li>iNaturalist API</li>
           <li>Mapbox Studio</li>
           <li>Uber’s Mapbox plugin: React-Map-GL</li>
-          <li>JavaScript</li>
-          <li>React</li>
-          <li>CSS/HTML</li>
           <li>Google Firestore Database</li>
           <li>Google Firebase user authentication</li>
           <li>Google Firebase hosting</li>
+          <li>JavaScript</li>
+          <li>React</li>
+          <li>CSS/HTML</li>
         </ul>
       </section>
     </div>
