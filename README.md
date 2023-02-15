@@ -21,7 +21,11 @@ Visit https://under-the-log.web.app/
 4. To run on your local server, run 'yarn start'. 
 
 ### Backend
+1. Create a Google Firebase account. 
+2. Create a Firestore Database with a users collection.
+3. Set up Firebase configuration file to use Firebase services. 
 
-
-### Firebase Authentication 
-For user authentication, create a Google Firebase project for Under The Log. Enable Google as a sign-in method and add your local host as an authorized domain. 
+### Firebase User Authentication 
+1. Create a Google Firebase project (same as backend). 
+2. Enable Google as a sign-in method.
+3. Ensure your Firebase configuration file is set up to support your project's Firebase features.
