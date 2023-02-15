@@ -13,35 +13,6 @@ import newedibleList from "./newedibleList";
 import FavSidebar from "./FavSidebar";
 
 function App() {
-  const [observationsList, setObservationsList] = useState([]);
-  const [filteredObservationsList, setFilteredObservationsList] = useState([]);
-  const [favoritesList, setFavoritesList] = useState([]);
-  // const [isLoading, setIsLoading] = useState(true);
-  const [mainDisplay, setMainDisplay] = useState("React Map");
-  const [selectNavItem, setSelectedNavItem] = useState("React Map");
-  // MAP STATE
-  const [viewState, setViewState] = useState({
-    latitude: 47.31,
-    longitude: -120.485,
-    zoom: 6.1,
-  });
-  const [liked, setLiked] = useState(false);
-  // SEARCH BAR STATE
-  const [formData, setFormData] = useState("");
-  // const [trefleToken, setTrefleToken] = useState("");
-  // DROPDOWN STATE
-  const [allSelected, setAllSelected] = useState(true);
-  const [selectedSpecies, setSelectedSpecies] = useState(
-    newedibleList.map((species) => species.label)
-  );
-  const [isOpen, setIsOpen] = useState(false);
-  // FAVORITES BOX STATE
-  const [favOpen, setFavOpen] = useState(false);
-  const [favIDs, setFavIDs] = useState([]);
-  // LOGGEDIN STATE
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userUid, setUserUid] = useState("");
-
   const DISPLAYONRENDERSPECIES = [
     "Arrowleaf Balsamroot",
     "Black Landscape Morel",
@@ -70,6 +41,35 @@ function App() {
     "November",
     "December",
   ];
+
+  const [observationsList, setObservationsList] = useState([]);
+  const [filteredObservationsList, setFilteredObservationsList] = useState([]);
+  const [favoritesList, setFavoritesList] = useState([]);
+  // const [isLoading, setIsLoading] = useState(true);
+  const [mainDisplay, setMainDisplay] = useState("React Map");
+  const [selectNavItem, setSelectedNavItem] = useState("React Map");
+  // MAP STATE
+  const [viewState, setViewState] = useState({
+    latitude: 47.31,
+    longitude: -120.485,
+    zoom: 6.1,
+  });
+  const [liked, setLiked] = useState(false);
+  // SEARCH BAR STATE
+  const [formData, setFormData] = useState("");
+  // const [trefleToken, setTrefleToken] = useState("");
+  // DROPDOWN STATE
+  const [allSelected, setAllSelected] = useState(true);
+  const [selectedSpecies, setSelectedSpecies] = useState(
+    DISPLAYONRENDERSPECIES
+  );
+  const [isOpen, setIsOpen] = useState(false);
+  // FAVORITES BOX STATE
+  const [favOpen, setFavOpen] = useState(false);
+  const [favIDs, setFavIDs] = useState([]);
+  // LOGGEDIN STATE
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userUid, setUserUid] = useState("");
 
   const INAT_URL = "https://api.inaturalist.org/v1";
   // const TREFLE_URL = "https://trefle.io/api/v1";
@@ -254,10 +254,10 @@ function App() {
   };
 
   const handleSelectAll = () => {
+    console.log("allSelected", allSelected);
     if (allSelected === false) {
       setAllSelected(true);
-      const allSpecies = newedibleList.map((species) => species.label);
-      setSelectedSpecies(allSpecies);
+      setSelectedSpecies(DISPLAYONRENDERSPECIES);
     } else {
       handleDropdownClear();
     }
