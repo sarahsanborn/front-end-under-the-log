@@ -71,6 +71,7 @@ header {
 .page-container {
     display: flex;
     justify-content: center;
+    background-color: #EFF1F3;
 }
 
 .page-inner {
