@@ -596,7 +596,7 @@ function App() {
             <SearchBar
               handleChange={handleChange}
               handleSearchSubmit={handleSearchSubmit}
-              handleClear={handleSearchClear}
+              handleSearchClear={handleSearchClear}
               formData={formData}
             />
           </div>
