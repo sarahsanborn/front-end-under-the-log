@@ -292,7 +292,7 @@ function App() {
 
     for (let item of newedibleList) {
       for (let filter of filterList) {
-        if (lowerCaseRenderList.includes(filter.toLowerCase)) {
+        if (lowerCaseRenderList.includes(filter.toLowerCase())) {
           if (item.label.toLowerCase() === filter.toLowerCase()) {
             dbSearchTaxa = dbSearchTaxa.concat(item.value);
             filtersAccountedFor.push(filter);
@@ -342,8 +342,6 @@ function App() {
     const results = sortFilterParameters(filterList);
     const dbSearchTaxa = results[0];
     const apiSearchTaxa = results[1];
-
-    console.log("db searhc taxa is", dbSearchTaxa);
 
     const updatedObservations = [];
 
