@@ -152,11 +152,12 @@ function App() {
   const displayHeart = (reset = false) => {
     if (!isLoggedIn) {
       return null;
-    }
-    if (reset === "reset") {
-      setLiked(false);
     } else {
-      setLiked(true);
+      if (reset === "reset") {
+        setLiked(false);
+      } else {
+        setLiked(true);
+      }
     }
   };
 
@@ -174,6 +175,7 @@ function App() {
       }
     } else {
       window.alert("Please login to add an observation to your favorites.");
+      setLiked(false);
     }
   };
 
