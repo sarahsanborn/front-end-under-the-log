@@ -32,7 +32,9 @@ const About = () => {
           <li>JavaScript</li>
           <li>React</li>
           <li>CSS/HTML</li>
-          <li>Google Firebase for hosting</li>
+          <li>Google Firestore Database</li>
+          <li>Google Firebase user authentication</li>
+          <li>Google Firebase hosting</li>
         </ul>
       </section>
     </div>
