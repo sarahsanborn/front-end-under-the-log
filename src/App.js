@@ -223,6 +223,7 @@ function App() {
   const handleSearchClear = () => {
     setFormData("");
     resetFilteredObservations();
+    setAllSelected(true);
   };
 
   // *********************************************SEARCH BAR FUNCTIONS END************************************************
