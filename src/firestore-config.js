@@ -40,6 +40,7 @@ export const signInWithGoogle = async (getLogged, saveUID) => {
   try {
     const res = await signInWithPopup(auth, provider);
     const user = res.user;
+    localStorage.setItem("name", user.displayName);
     const q = query(collection(db, "users"), where("uid", "==", user.uid));
     const docs = await getDocs(q);
     if (docs.docs.length === 0) {
